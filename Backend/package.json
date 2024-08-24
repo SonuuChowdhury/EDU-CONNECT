@@ -1,0 +1,11 @@
+{
+  "name": "institute-server",
+  "version": "1.0.0",
+  "description": "Annual Report Portal for Institute- SIH @2024",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AZ BUG BUSTERS @SIH 2024",
+  "license": "ISC"
+}
