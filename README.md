@@ -1,4 +1,4 @@
-# **AZ BUG BUSTERS**  
+# **AZ BUG BUSTERS @SIH 2024**  
 ### Annual Report Portal for Institute
 
 ## Overview
