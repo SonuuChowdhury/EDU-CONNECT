@@ -1,6 +1,6 @@
 // app.js
 import express from 'express';
-import connectDB from './db/index.js';
+import connectDB from './src/db/index.js';
 const app = express();
 
 // Connect the Database
