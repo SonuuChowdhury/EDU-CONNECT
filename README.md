@@ -1,4 +1,5 @@
-# **AZ BUG BUSTERS @SIH 2024**  
+
+   # **AZ BUG BUSTERS @SIH 2024**  
 ### Annual Report Portal for Institute
 
 ## Overview
@@ -49,11 +50,12 @@ The **Annual Report Portal** is a comprehensive web-based platform designed by *
   ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
   ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
   ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-  
+  ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+
 - **Backend:**
   ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
   ![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-  
+
 - **Database:**
   ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
@@ -70,4 +72,6 @@ The **Annual Report Portal** is a comprehensive web-based platform designed by *
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/Institute-Annual-Report-Portal.git
+   git clone https://github.com/SonuuChowdhury/Institute-Site-AZ-BUG-BUSTERS
+
+
