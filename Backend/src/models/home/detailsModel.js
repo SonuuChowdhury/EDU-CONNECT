@@ -9,4 +9,4 @@ const detailsSchema = new mongoose.Schema({
   alumniCount:Number
 });
 
-export const details = mongoose.model('details', detailsSchema);
+export const detail = mongoose.model('detail', detailsSchema);

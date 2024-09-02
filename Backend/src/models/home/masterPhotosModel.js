@@ -2,10 +2,10 @@
 
 import mongoose from 'mongoose';
 
-const masterAreaSchema = new mongoose.Schema({
+const masterPhotosSchema = new mongoose.Schema({
   serial:Number,
   link:String,
   tittle:String
 });
 
-export const masterArea = mongoose.model('masterArea', masterAreaSchema);
+export const masterphotos = mongoose.model('masterphotos', masterPhotosSchema);

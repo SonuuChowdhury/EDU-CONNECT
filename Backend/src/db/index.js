@@ -3,7 +3,6 @@ import { DB_NAME } from "../../constants.js";
 import dotenv from 'dotenv'
 dotenv.config()
 
-
 const uri=`${process.env.MONGODB_URI}/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`
 const connectDB = async () => {
     try {

@@ -1,13 +1,21 @@
 // app.js
 import express from 'express';
 import connectDB from './src/db/index.js';
-import { setDB_NAME } from './constants.js';
+import homeRouter from './src/api/homeAPI.js';
+
+
 const app = express();
+
+
+
+
 
 // Connect the Database
 connectDB()
 
 
+
+app.use('/',homeRouter)
 
 // Start Server
 const PORT = process.env.PORT || 3000;
