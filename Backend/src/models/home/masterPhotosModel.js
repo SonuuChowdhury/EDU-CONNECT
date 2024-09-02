@@ -8,4 +8,4 @@ const masterPhotosSchema = new mongoose.Schema({
   tittle:String
 });
 
-export const masterphotos = mongoose.model('masterphotos', masterPhotosSchema);
+export const masterphoto = mongoose.model('masterphoto', masterPhotosSchema);

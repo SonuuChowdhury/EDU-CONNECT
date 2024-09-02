@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { masterphotos } from '../models/home/masterPhotosModel.js';
+import { masterphoto } from '../models/home/masterPhotosModel.js';
 import { notice } from '../models/home/noticemodel.js';
 import {event} from '../models/home/eventsmodel.js'
 import { achievement } from '../models/home/achievementModel.js';
@@ -8,14 +8,14 @@ import { facility } from '../models/home/facilityModel.js';
 import { detail } from '../models/home/detailsModel.js';
 import { message } from '../models/home/messageModel.js';
 import { faq } from '../models/home/faq.js';
-import { footer } from '../models/home/footerDataModel.js';
+import { footerinfo } from '../models/home/footerDataModel.js';
 
 const homeRouter = express.Router();
 
 // APIs are listed here
 homeRouter.get('/api/home', async (req, res) => {
     try {
-      const masterAreas=await masterphotos.find();
+      const masterphotos=await masterphoto.find();
       const notices=await notice.find();
       const events = await event.find();
       const achievements=await achievement.find();
@@ -23,10 +23,10 @@ homeRouter.get('/api/home', async (req, res) => {
       const details=await detail.find();
       const messages=await message.find();
       const faqs=await faq.find();
-      const footers=await footer.find();
+      const footerinfos=await footerinfo.find();
 
       const responseData = {
-        masterAreas,
+        masterphotos,
         notices,
         events,
         achievements,
@@ -34,7 +34,7 @@ homeRouter.get('/api/home', async (req, res) => {
         details,
         messages,
         faqs,
-        footers
+        footerinfos,
       };
       res.json(responseData);
     } catch (error) {

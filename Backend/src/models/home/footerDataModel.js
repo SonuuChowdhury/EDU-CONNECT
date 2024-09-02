@@ -2,7 +2,7 @@
 
 import mongoose from 'mongoose';
 
-const footerSchema = new mongoose.Schema({
+const footerinfoSchema = new mongoose.Schema({
   contactMobile:String,
   contackMail:String,
   Xlink:String,
@@ -13,4 +13,4 @@ const footerSchema = new mongoose.Schema({
   lastUpdated:String
 });
 
-export const footer = mongoose.model('footer', footerSchema);
+export const footerinfo = mongoose.model('footerinfo', footerinfoSchema);
