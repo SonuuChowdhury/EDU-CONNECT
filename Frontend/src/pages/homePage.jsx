@@ -1,26 +1,32 @@
 // importing modules 
-import { useState,useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 
 // importing components
-import MasterPhotos from '../components/MasterSection/MasterSectionPhotos'
-import { FetchAllHomePageData } from '../api/GetHomeData'
+const MasterPhotos = lazy(() => import('../components/MasterSection/MasterSectionPhotos'));
+import { FetchAllHomePageData } from '../api/GetHomeData';
+import Loader from '../components/loader/loader'; // Import the Loader component
 
-export default function HomePage(){
-    // Getting the home page data 
-    const [HomeData, SetHomeData] = useState({});
-    const GetHomeData = async () => {
+export default function HomePage() {
+  // Getting the home page data 
+  const [HomeData, SetHomeData] = useState({});
+  const GetHomeData = async () => {
     const data = await FetchAllHomePageData();
     SetHomeData(data);
-    };
+  };
 
-    useEffect(() => {
+  useEffect(() => {
     GetHomeData();
-    }, []);
+  }, []);
 
-    return(<>
-        <MasterPhotos params={HomeData.masterphotos}></MasterPhotos>
-        
+  return (
+    <>
+      <Suspense fallback={<Loader />}>
+        {HomeData.masterphotos ? (
+          <MasterPhotos params={HomeData.masterphotos}></MasterPhotos>
+        ) : (
+          <Loader /> // Show loader while fetching the home page data
+        )}
+      </Suspense>
     </>
-    )
+  );
 }
-
