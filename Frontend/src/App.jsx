@@ -1,10 +1,14 @@
 import './styles/App.css'
 
+// Components 
+import HeadNav from './components/HeadNav/headNav'
+import Navbar from './components/Navbar/navbar'
+
 function App() {
     return <>
-        <h1>First heading</h1>
+        <HeadNav></HeadNav>
+        <Navbar></Navbar>
     </>
-
 
 }
 

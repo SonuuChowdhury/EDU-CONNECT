@@ -1,0 +1,85 @@
+.navbarTop{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.leftArea{
+    height: auto;
+    width: auto;
+    display: flex;
+}
+.rightArea{
+    height: auto;
+    width: auto;
+    display: flex;
+}
+.collegeLogo{
+    height: 4rem;
+    width: 6rem;
+    margin-left: 0.7rem;
+    background-image: url("/aot-logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nameArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 15rem;
+    font-size:large;
+    margin-left: 0.5rem;
+}
+
+.nameAreaEng{
+    border-bottom: 3px solid black;
+}
+
+.SearchAndLangSec{
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.LanguageSelector{
+    height: 1.3rem;
+    margin-top: 0.3rem;
+}
+
+.mainSearchBar{
+    height: 1.5rem;
+    margin-bottom: 0.3rem;
+    background-color: #CCCCCC;
+    width: 14rem;
+    border:1px solid black;
+    border-radius: 6px;
+    text-align: center;
+}
+
+
+
+.extraLogo1{
+    height:4rem;
+    width: 5rem;
+    right: 0;
+    background-image: url("/G20-LOGO.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.extraLogo2{
+    height:4rem;
+    right: 0;
+    width: 5rem;
+    background-image: url("/75Years-LOGO.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
