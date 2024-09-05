@@ -1,9 +1,14 @@
 // app.js
 import express from 'express';
+import cors from 'cors';
+
 import connectDB from './src/db/index.js';
 import homeRouter from './src/api/homeAPI.js';
 
 const app = express();
+app.use(cors());
+
+app.use(cors({ origin: '*' }));
 
 // Connect the Database
 connectDB()
