@@ -1,10 +1,14 @@
+// CSS importings 
+import './homePage.css'
+
 // importing modules 
 import { useState, useEffect, lazy, Suspense } from 'react';
 
 // importing components
 const MasterPhotos = lazy(() => import('../components/MasterSection/MasterSectionPhotos'));
+import NoticeSection from '../components/NoticeSection/notices';
 import { FetchAllHomePageData } from '../api/GetHomeData';
-import Loader from '../components/loader/loader'; // Import the Loader component
+import Loader from '../components/loader/loader'; 
 
 export default function HomePage() {
   // Getting the home page data 
@@ -24,8 +28,24 @@ export default function HomePage() {
         {HomeData.masterphotos ? (
           <MasterPhotos params={HomeData.masterphotos}></MasterPhotos>
         ) : (
-          <Loader /> // Show loader while fetching the home page data
+          <Loader />
         )}
+        <div className='noticeAndEventSection'>
+          <div className="noticeSection">
+            <h2 className='noticeHeading'>Important Notices</h2>
+            <div className='noticeSectionContent'>
+              <NoticeSection params={HomeData.notices}></NoticeSection>
+            </div>
+            
+    
+          </div>
+          <div className="eventSection">
+            <h2 className='eventHeading'>Upcoming Events</h2>
+            
+
+          </div>
+        </div>
+
       </Suspense>
     </>
   );
