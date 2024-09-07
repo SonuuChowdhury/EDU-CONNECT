@@ -1,8 +1,28 @@
 import './notices.css'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { formatDate } from '../../utils/fomatDate'
 
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+
 function NoticeSection({ params = [] }) {
+
+    useEffect(() => {
+        Aos.init({
+            duration: 600,
+            easing: 'ease-in-out',
+            once: false,
+            mirror: false,
+            offset: 0,
+        });
+        console.log('AOS initialized');
+    }, []);
+
+    useEffect(() => {
+        Aos.refresh();
+    }, [params]);
+
+
     const [selectedNotice, setSelectedNotice] = useState(null)
 
     const handleNoticeClick = (data) => {
@@ -15,7 +35,8 @@ function NoticeSection({ params = [] }) {
 
     return <>
         {params.map((data) => (
-            <div 
+            <div
+                data-aos='fade-up'
                 className="NoticeContainer" 
                 key={data.serial} 
                 onClick={() => handleNoticeClick(data)}

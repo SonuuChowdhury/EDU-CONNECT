@@ -4,13 +4,19 @@ import './homePage.css'
 // importing modules 
 import { useState, useEffect, lazy, Suspense } from 'react';
 
+// home apis 
+import { FetchAllHomePageData } from '../api/GetHomeData';
+
 // importing components
 const MasterPhotos = lazy(() => import('../components/MasterSection/MasterSectionPhotos'));
 import NoticeSection from '../components/NoticeSection/notices';
-import { FetchAllHomePageData } from '../api/GetHomeData';
 import Loader from '../components/loader/loader'; 
+import EventSection from '../components/eventSection/eventSection';
 
 export default function HomePage() {
+
+
+
   // Getting the home page data 
   const [HomeData, SetHomeData] = useState({});
   const GetHomeData = async () => {
@@ -36,14 +42,19 @@ export default function HomePage() {
             <div className='noticeSectionContent'>
               <NoticeSection params={HomeData.notices}></NoticeSection>
             </div>
-            
-    
           </div>
           <div className="eventSection">
             <h2 className='eventHeading'>Upcoming Events</h2>
-            
+            <div className="eventSectionContent">
+              <EventSection params={HomeData.events}></EventSection>
 
+
+            </div>
           </div>
+        </div>
+
+        <div className="achievementSection">
+
         </div>
 
       </Suspense>
