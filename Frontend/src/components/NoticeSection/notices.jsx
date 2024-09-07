@@ -13,7 +13,7 @@ function NoticeSection({ params = [] }) {
             easing: 'ease-in-out',
             once: false,
             mirror: false,
-            offset: 0,
+            offset: 5,
         });
         console.log('AOS initialized');
     }, []);
@@ -62,7 +62,8 @@ function NoticePopUP({ parampop, onClose }) {
     return <>
         <div className="NoticePopUPContainer">
             <button className="closeButton" onClick={onClose}>X</button>
-            <h2 className='NoticePopUPTitle'>{parampop.tittle}</h2>
+            <h2 className='noticeHeadingPopUp'>Notice</h2>
+            <h1 className='NoticePopUPTitle'>{parampop.tittle}</h1>
             <h3>{formatDate(parampop.date)}</h3>
             <p className='NoticePopUPDescription'>{parampop.description}</p>
             <button className="explore-button" onClick={handleExploreClick}>

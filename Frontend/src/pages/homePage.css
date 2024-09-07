@@ -1,6 +1,6 @@
 .noticeAndEventSection{
     width: 100%;
-    height: 90vh;
+    height: 550px;
     display: flex;
 
 }
@@ -24,7 +24,7 @@
 }
 .noticeSectionContent{
     width: 90%;
-    height: 75vh;
+    height: 80%;
     margin-bottom: 2rem;
     overflow-y: auto;
     display: flex;
@@ -69,7 +69,6 @@
     justify-content: start;
     
 }
-
 
 
 

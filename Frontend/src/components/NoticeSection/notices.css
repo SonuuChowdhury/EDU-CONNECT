@@ -25,6 +25,16 @@
     animation: hoverExpand 0.3s forwards; /* Apply animation */
 }
 
+.noticeHeadingPopUp{
+    border-radius: 10px;
+    background-color: antiquewhite;
+    text-align: center;
+    width: 10rem;
+    height: 2rem;
+    border-bottom: 1px solid black;
+}
+
+
 .noticePNG {
     width: 10%;
     height: 70%;
@@ -56,8 +66,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50vw;
-    height: 60vh;
+    width: 50rem;
+    height: 30rem;
     background-color: white;
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
