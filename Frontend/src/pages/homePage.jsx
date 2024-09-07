@@ -12,6 +12,7 @@ const MasterPhotos = lazy(() => import('../components/MasterSection/MasterSectio
 import NoticeSection from '../components/NoticeSection/notices';
 import Loader from '../components/loader/loader'; 
 import EventSection from '../components/eventSection/eventSection';
+import Achievements from '../components/achievements/achievements';
 
 export default function HomePage() {
 
@@ -47,13 +48,18 @@ export default function HomePage() {
             <h2 className='eventHeading'>Upcoming Events</h2>
             <div className="eventSectionContent">
               <EventSection params={HomeData.events}></EventSection>
-
-
             </div>
           </div>
         </div>
 
         <div className="achievementSection">
+          <h1 className='achievementSectionHeading'>Achievements @2024</h1>
+          <div className="achievementSectionArea">
+            <Achievements params={HomeData.achievements}></Achievements>
+          </div>
+
+
+
 
         </div>
 
