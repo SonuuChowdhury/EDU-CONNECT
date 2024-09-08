@@ -8,7 +8,6 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'; 
 
 const MasterPhotos = ({ params = [] }) => {
-  console.log(params);
 
   return (<>
     <Swiper

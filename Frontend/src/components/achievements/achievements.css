@@ -1,5 +1,58 @@
-.achievementContainer{
-    height: 8rem;
-    width: 10rem;
-    border: 2px solid black;
+.achievementContentSection {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.achievementContainer {
+    height: auto;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+.achievementContainer:hover {
+    transform: scale(1.05); /* Scales the container slightly on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adds shadow effect on hover */
+}
+
+.achievementContainerPhoto {
+    border-radius: 20px;
+    height: 10rem;
+    width: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.3s ease; /* Smooth transition for photo scaling */
+}
+
+.achievementContainer:hover .achievementContainerPhoto {
+    transform: scale(1.1); /* Slightly scales the photo on hover */
+}
+
+.achievementContainerTitle {
+    text-align: center;
+    width: 90%;
+    transition: color 0.3s ease; /* Smooth transition for text color */
+}
+
+.achievementContainer:hover .achievementContainerTitle {
+    color: #4299e1; /* Changes text color on hover */
+}
+
+.achievementContainerDescription {
+    text-align: center;
+    width: 85%;
+    font-size: smaller;
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+.achievementContainer:hover .achievementContainerDescription {
+    opacity: 0.9; /* Slightly changes opacity on hover */
 }

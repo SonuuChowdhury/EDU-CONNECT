@@ -1,15 +1,20 @@
+import './achievements.css'
+
+
 function Achievements({params=[]}){
 
     return<>
+        <div className="achievementContentSection">
         {params.map((data)=>(
             <div className="achievementContainer" key={data.serial}>
-                <h3 className="achievementContainerTitle">{data.title}</h3>
+                <div className="achievementContainerPhoto" style={{backgroundImage:`url(${data.photo})`}}></div>
+                <h2 className="achievementContainerTitle">{data.tittle}</h2>
+                <p className='achievementContainerDescription'>{data.description}</p>
+                
+                
             </div>
-
-
         ))}
-        
-    
+        </div>
     </>
 
 

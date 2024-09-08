@@ -57,6 +57,7 @@ export default function HomePage() {
           <div className="achievementSectionArea">
             <Achievements params={HomeData.achievements}></Achievements>
           </div>
+          
 
 
 
