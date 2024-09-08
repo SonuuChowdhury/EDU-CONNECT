@@ -1,0 +1,37 @@
+.facilitiesContentAreaMain {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.facilitiesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+.facilitiesContainer:hover {
+    transform: scale(1.05); /* Scales the container slightly on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adds shadow effect on hover */
+}
+
+.facilitiesContainerPhoto {
+    margin-top: 2rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 80%;
+    width: 80%;
+    border-radius: 20px;
+    transition: transform 0.3s ease; /* Smooth transition for photo scaling */
+}
+
+.facilitiesContainer:hover .facilitiesContainerPhoto {
+    transform: scale(1.1); /* Slightly scales the photo on hover */
+}

@@ -89,3 +89,24 @@
     height: auto;
     /* background-color: #a2d2ff; */
 }
+
+
+.facilitiesSection{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.facilitiesSectionHeader{
+    margin: 3rem;
+}
+
+.facilitiesSectionContentArea{
+    margin-bottom: 3rem;
+    width: 80%;
+    height: 18rem;
+    background-color: #d7d7d7;
+    border-radius: 20px;
+}
