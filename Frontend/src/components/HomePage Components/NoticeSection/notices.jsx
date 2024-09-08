@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import './notices.css'
 import { useState,useEffect } from 'react'
-import { formatDate } from '../../utils/fomatDate'
+import { formatDate } from '../../../utils/fomatDate.js'; // Import the date formatting function
 
 import Aos from 'aos';
 import 'aos/dist/aos.css';
@@ -15,7 +16,6 @@ function NoticeSection({ params = [] }) {
             mirror: false,
             offset: 5,
         });
-        console.log('AOS initialized');
     }, []);
 
     useEffect(() => {

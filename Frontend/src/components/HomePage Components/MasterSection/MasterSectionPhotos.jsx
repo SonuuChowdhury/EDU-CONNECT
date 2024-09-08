@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import './MasterSectionPhotos.css'

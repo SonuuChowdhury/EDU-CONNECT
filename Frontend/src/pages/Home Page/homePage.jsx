@@ -5,18 +5,16 @@ import './homePage.css'
 import { useState, useEffect, lazy, Suspense } from 'react';
 
 // home apis 
-import { FetchAllHomePageData } from '../api/GetHomeData';
+import { FetchAllHomePageData } from '../../api/GetHomeData';
 
 // importing components
-const MasterPhotos = lazy(() => import('../components/MasterSection/MasterSectionPhotos'));
-import NoticeSection from '../components/NoticeSection/notices';
-import Loader from '../components/loader/loader'; 
-import EventSection from '../components/eventSection/eventSection';
-import Achievements from '../components/achievements/achievements';
+const MasterPhotos = lazy(() => import('../../components/HomePage Components/MasterSection/MasterSectionPhotos'));
+import NoticeSection from '../../components/HomePage Components/NoticeSection/notices';
+import Loader from '../../components/loader/loader'; 
+import EventSection from '../../components/HomePage Components/eventSection/eventSection';
+import Achievements from '../../components/HomePage Components/achievements/achievements';
 
-export default function HomePage() {
-
-
+export default function HomePage() {                                                            
 
   // Getting the home page data 
   const [HomeData, SetHomeData] = useState({});
@@ -57,12 +55,10 @@ export default function HomePage() {
           <div className="achievementSectionArea">
             <Achievements params={HomeData.achievements}></Achievements>
           </div>
-          
-
-
-
-
         </div>
+
+
+
 
       </Suspense>
     </>
