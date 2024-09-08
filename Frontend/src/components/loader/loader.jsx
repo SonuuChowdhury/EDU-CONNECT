@@ -4,6 +4,7 @@ import './loader.css'
 export default function Loader(){
     return<>
     <div className="loader-container">
+    <h1 className="loader-title">Academy of Technology</h1>
 <div className="loader">
   <div>
     <ul>
@@ -39,6 +40,7 @@ export default function Loader(){
       </li>
     </ul>
   </div></div>
+  <span className="loader-subtitle">Loading...</span>
 
   </div>
     

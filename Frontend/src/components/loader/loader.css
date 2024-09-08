@@ -11,6 +11,8 @@
     backdrop-filter: blur(8px); /* Background blur effect */
     background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background for a better blur effect */
     z-index: 9999; /* Ensures the loader is on top */
+    display: flex;
+    flex-direction: column;
   }
   
   /* Loader styles */
@@ -197,3 +199,20 @@
     }
   }
   
+
+  /* Title and subtitle */
+.loader-title {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.loader-subtitle {
+  display: block;
+  text-align: center;
+  font-size:larger;
+  margin-top: 20px;
+  color: black;
+}

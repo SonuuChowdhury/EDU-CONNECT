@@ -8,7 +8,10 @@ import './styles/App.css';
 // Components
 import HeadNav from './components/HomePage Components/HeadNav/headNav';
 import Navbar from './components/Navbar/navbar';
+
+// importing loaders 
 import Loader from './components/loader/loader';
+
 
 
 // Lazy load the HomePage component
