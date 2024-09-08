@@ -14,6 +14,7 @@ import EventSection from '../../components/HomePage Components/eventSection/even
 import Achievements from '../../components/HomePage Components/achievements/achievements';
 import FacilitiesSection from '../../components/HomePage Components/facilitiesSection/facilities';
 import DetailsSection from '../../components/HomePage Components/details/details';
+import Faqs from '../../components/HomePage Components/faqs/faqs';
 
 // importing loaders 
 import Loader from '../../components/loader/loader'; 
@@ -79,6 +80,14 @@ export default function HomePage() {
           <div className="detailsSection">
             <DetailsSection params={HomeData.details}></DetailsSection>
           </div>
+
+          <div className="faqsSection">
+            <h1>FAQs</h1>
+            <Faqs params={HomeData.faqs}></Faqs>
+
+          </div>
+
+
         </Suspense>
       )}
     </>

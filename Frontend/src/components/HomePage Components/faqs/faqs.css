@@ -1,0 +1,44 @@
+.faqsArea {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.faqQuestionContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    height: 3rem;
+    margin-top: 1rem;
+    background-color: #d9d9d9;
+    border: 1px solid black;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.faqQuestionContainer:hover {
+    background-color: #c0c0c0; /* Change background color on hover */
+    transform: scale(1.03);    /* Slightly enlarge the container on hover */
+}
+
+.faqQuestions {
+    margin-left: 1rem;
+}
+
+.downArrow {
+    width: 2rem;
+    height: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 1rem;
+    transition: transform 0.3s ease; /* Add transition for the down arrow */
+}
+
+.faqQuestionContainer:hover .downArrow {
+    transform: rotate(180deg);  /* Rotate the arrow on hover */
+}
