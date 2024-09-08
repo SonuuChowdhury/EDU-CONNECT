@@ -1,0 +1,86 @@
+/* Container Area */
+.DeatilsArea {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; /* Changed from contain to cover for full coverage */
+    position: relative; /* To help with child elements positioning */
+}
+
+/* Overlay with subtle opacity */
+.detailsOverlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for better text contrast */
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: background-color 0.3s ease-in-out; /* Smooth transition on hover */
+}
+
+/* Details container for each stat box */
+.detailsContainer {
+    height: 80%;
+    width: 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent; /* Transparent border for hover effect */
+    background: rgba(255, 255, 255, 0.2); /* Soft transparent background */
+    border-radius: 15px; /* Rounded corners for a modern look */
+    transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Indicates that this area is interactive */
+}
+
+/* Number Style */
+.detailsNumber {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffffff; /* White text for numbers */
+    transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
+}
+
+/* Title text below the number */
+.detailsTitle {
+    font-size: 1.2rem;
+    color: #f0f0f0; /* Soft gray for title text */
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+/* Hover effect for the details container */
+.detailsContainer:hover {
+    transform: scale(1.1); /* Scale up on hover */
+    border: 2px solid #4FD1C5; /* Aqua border when hovering */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow for a floating effect */
+}
+
+/* Hover effect for the number */
+.detailsContainer:hover .detailsNumber {
+    transform: scale(1.2); /* Larger scaling effect for the number */
+    color: #4FD1C5; /* Aqua text color for number on hover */
+}
+
+/* Overlay Hover Effect */
+.DeatilsArea:hover .detailsOverlay {
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay when hovering over the section */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .detailsContainer {
+        width: 40%; /* Larger boxes on mobile */
+        height: 70%; /* Adjusted height */
+    }
+
+    .detailsNumber {
+        font-size: 2.5rem; /* Smaller number size */
+    }
+
+    .detailsTitle {
+        font-size: 1rem; /* Smaller title size */
+    }
+}

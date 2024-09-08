@@ -14,6 +14,7 @@ import Loader from '../../components/loader/loader';
 import EventSection from '../../components/HomePage Components/eventSection/eventSection';
 import Achievements from '../../components/HomePage Components/achievements/achievements';
 import FacilitiesSection from '../../components/HomePage Components/facilitiesSection/facilities';
+import DetailsSection from '../../components/HomePage Components/details/details';
 
 export default function HomePage() {                                                            
 
@@ -62,10 +63,12 @@ export default function HomePage() {
           <h1 className='facilitiesSectionHeader'>Facilities @AOT</h1>
           <div className="facilitiesSectionContentArea">
             <FacilitiesSection params={HomeData.facilities}></FacilitiesSection>
-
-
           </div>
+        </div>
 
+        <div className="detailsSection">
+          <DetailsSection params={HomeData.details}></DetailsSection>
+          
         </div>
 
 

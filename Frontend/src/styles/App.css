@@ -6,3 +6,7 @@ body{
 button{
     user-select: none;
 }
+
+h1,h2,h3{
+    user-select: none;
+}
