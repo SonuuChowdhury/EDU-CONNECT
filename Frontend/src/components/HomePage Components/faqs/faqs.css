@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem; /* Reduced gap for a more compact layout */
     margin-bottom: 2rem;
 }
 
@@ -15,19 +15,20 @@
     height: auto;
     background-color: #e1e1e1;
     border: 2px solid #6f42c1;
-    border-radius: 15px;
-    padding: 0.75rem 1rem;
+    border-radius: 10px; /* Slightly smaller border-radius for a sleeker look */
+    padding: 0.5rem 1rem; /* Reduced padding for smaller height */
     cursor: pointer;
-    transition: background-color 0.4s ease, transform 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Slightly reduced shadow for a lighter feel */
     overflow: hidden;
     position: relative;
+    max-height: 55px; /* Decreased height for a more compact view */
 }
 
 .faq-question-container:hover {
     background-color: #BDE0FE;
-    transform: scale(1.04);
-    max-height: none;
+    transform: scale(1.02); /* Smaller hover scale for a subtle effect */
+    max-height: 100%; /* Allow full height expansion on hover */
 }
 
 /* FAQ question and arrow */
@@ -38,7 +39,7 @@
 }
 
 .faq-title {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Slightly smaller font size */
     color: #000; /* Black font when not hovered */
     transition: color 0.3s ease;
 }
@@ -48,8 +49,8 @@
 }
 
 .arrow-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.2rem; /* Reduced arrow size */
+    height: 1.2rem;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -62,25 +63,25 @@
 
 /* FAQ answer container */
 .faq-answer {
-    border-radius: 15px;
+    border-radius: 10px;
     max-height: 0;
     overflow: hidden;
     padding: 0;
     margin-top: 0.5rem;
     background-color: #ffffff;
     border-top: 1px solid #ddd;
-    transition: max-height 0.5s ease, padding 0.5s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Slightly lighter shadow for a modern feel */
 }
 
 .faq-answer.visible {
-    max-height: 250px;
-    padding: 1rem;
+    max-height: 220px; /* Adjusted max height for content */
+    padding: 0.8rem; /* Reduced padding */
 }
 
 /* Text styling for answers */
 .faq-answer p {
     color: #333;
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Slightly smaller font for answers */
     text-align: center;
 }
