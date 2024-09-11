@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 import "./headNav.css";
 
 export default function HeadNav() {
@@ -25,7 +25,7 @@ export default function HeadNav() {
         <div className="extraLogo1"></div>
         <div className="extraLogo2"></div>
         </div>
-
+        
         
 
     </nav>

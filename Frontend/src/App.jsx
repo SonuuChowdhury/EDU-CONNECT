@@ -28,6 +28,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
         </Routes>
 
+
+
         </Suspense>
 
     </Router>

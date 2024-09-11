@@ -18,6 +18,7 @@ import Faqs from '../../components/HomePage Components/faqs/faqs';
 
 // importing loaders 
 import Loader from '../../components/loader/loader'; 
+import Footer from '../../components/footer/footer';
 
 export default function HomePage() {                                                            
 
@@ -84,9 +85,10 @@ export default function HomePage() {
           <div className="faqsSection">
             <h1>FAQs</h1>
             <Faqs params={HomeData.faqs}></Faqs>
-
           </div>
 
+          <Footer params={HomeData.footerinfos}></Footer>
+          
 
         </Suspense>
       )}
