@@ -1,12 +1,12 @@
 
 .FooterArea{
     width: auto;
-    height: 25rem;
+    height: auto;
 }
 
 .FooterAreaTop{
     width: 100%;
-    height: 85%;
+    height:auto;
     background-color: #363636;
 }
 
@@ -84,14 +84,6 @@
 
 
 
-
-.ImpLinksSections{
-    width: 20%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
 .QuickLinksSection{
     width: 20%;
     height: 100%;
@@ -100,13 +92,106 @@
 }
 
 
+.QuickLinksSectionHeading,.ImpLinksSectionsHeading{
+    margin-top: 1rem;
+    margin-left: 3rem;
+}
+
+.QuickLinksSectionLinksSection,.ImpLinksSectionsSection{
+    margin-left: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.QuickLinksSectionLinks,.ImpLinksSectionsLinks{
+    margin-bottom: 0.6rem;
+    cursor: pointer;
+}
+
+.ImpLinksSections{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
 .FeedbackSections{
     width: 30%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
+}
 
+.feedbakcEmailBox{
+    width: 75%;
+    height: 2.5rem;
+    border-radius: 10px;
+    padding-left: 0.3rem;
+}
+.feedbackMessageBox{
+    margin-top: 0.5rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    width: 75%;
+    height: 6rem;
+    padding-left: 0.3rem;
+    text-align:left;
+}
+
+.SubmitFeedback{
+    font-size:medium ;
+    border-radius: 10px;
+    height:2rem;
+    width: 5rem;
+}
+
+input:focus {
+    outline: none; /* Removes the outline */
+    border: none; /* Removes the border */
+    box-shadow: none; /* Removes any default focus shadow */
+}
+
+
+
+
+
+.VisitorCountSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.VisitorCountSection h3 {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.VisitorCountContainer {
+    display: flex;
+    gap: 0.5rem; /* Space between the digits */
+    padding: 0.5rem 1rem;
+    border: 2px solid #888;
+    border-radius: 10px;
+    background-color: #444;
+}
+
+.VisitorCountDigit {
+    background-color: #333;
+    border: 1px solid #888;
+    border-radius: 5px;
+    padding: 0.5rem 0.8rem;
+    color: #4aa3ff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    width: 2rem;
 }
 
 
@@ -117,11 +202,7 @@
 
 
 
-
-
-
-
-.FooterAreaBottom{
+.FooterAreaBottom {
     height: 15%;
     background-color: #525252;
     display: flex;
@@ -129,25 +210,40 @@
     justify-content: center;
     align-items: center;
     color: white;
-    font-size:small ;
-
+    font-size: small;
+    padding: 1rem 0;
 }
-.FooterAreaBottomDevelopedBySection{
+
+.FooterAreaBottomDevelopedBySection {
     display: flex;
-
+    align-items: center;
+    gap: 0.5rem; /* Adds some space between the text and name */
+    font-weight: bold;
+    margin-top: 0.4rem;
 }
-.FooterPortfolioLink{
-    text-decoration: none;
-    text-decoration: underline;
-    background-color: aliceblue;
-    color: black;
+
+.FooterPortfolioLink {
     cursor: pointer;
+    font-size: 1rem;
+    color: #ffffff; /* White color */
+    text-decoration: none;
+    background: linear-gradient(to right, #4a00e0, #8e2de2); /* Gradient effect */
+    padding: 0.2rem 0.5rem; /* Adds some padding for emphasis */
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Smooth transition on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
-.redirectPhoto{
+.FooterPortfolioLink:hover {
+    background: linear-gradient(to right, #8e2de2, #4a00e0); /* Reverse gradient on hover */
+    color: #ffffff; /* Keep text color white on hover */
+    transform: scale(1.1); /* Slightly enlarge the name on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}
+
+.redirectPhoto {
     cursor: pointer;
     height: 1rem;
     width: 1rem;
     margin-left: 0.3rem;
-
 }

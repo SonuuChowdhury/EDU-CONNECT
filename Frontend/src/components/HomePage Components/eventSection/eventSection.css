@@ -12,7 +12,26 @@
     background-position: center;
     background-size: cover;
     cursor: pointer;
+    transition: transform 0.5s ease; /* Smooth transition for hover effect */
 }
+
+.EventContainers:hover {
+    animation: hoverAnimation 0.5s forwards; /* Play animation on hover */
+}
+
+@keyframes hoverAnimation {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+.EventContainers:hover:after {
+    animation-direction: reverse; /* Reverse animation when hover is removed */
+}
+
 
 .EventContainerstitle {
     margin-left: 2rem;
