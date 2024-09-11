@@ -1,44 +1,86 @@
-.faqsArea {
+/* General FAQ container styling */
+.faqs-area {
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
-.faqQuestionContainer {
+/* Individual question container */
+.faq-question-container {
+    width: 75%;
+    height: auto;
+    background-color: #e1e1e1;
+    border: 2px solid #6f42c1;
+    border-radius: 15px;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.4s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.faq-question-container:hover {
+    background-color: #BDE0FE;
+    transform: scale(1.04);
+    max-height: none;
+}
+
+/* FAQ question and arrow */
+.faq-question {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 75%;
-    height: 3rem;
-    margin-top: 1rem;
-    background-color: #d9d9d9;
-    border: 1px solid black;
-    border-radius: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
 }
 
-.faqQuestionContainer:hover {
-    background-color: #c0c0c0; /* Change background color on hover */
-    transform: scale(1.03);    /* Slightly enlarge the container on hover */
+.faq-title {
+    font-size: 1rem;
+    color: #000; /* Black font when not hovered */
+    transition: color 0.3s ease;
 }
 
-.faqQuestions {
-    margin-left: 1rem;
+.faq-title.hovered {
+    color: #4a00e0; /* Color change on hover */
 }
 
-.downArrow {
-    width: 2rem;
-    height: 70%;
+.arrow-icon {
+    width: 1.5rem;
+    height: 1.5rem;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    margin-right: 1rem;
-    transition: transform 0.3s ease; /* Add transition for the down arrow */
+    background-size: contain;
+    transition: transform 0.3s ease;
 }
 
-.faqQuestionContainer:hover .downArrow {
-    transform: rotate(180deg);  /* Rotate the arrow on hover */
+.rotate {
+    transform: rotate(180deg);
+}
+
+/* FAQ answer container */
+.faq-answer {
+    border-radius: 15px;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin-top: 0.5rem;
+    background-color: #ffffff;
+    border-top: 1px solid #ddd;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-answer.visible {
+    max-height: 250px;
+    padding: 1rem;
+}
+
+/* Text styling for answers */
+.faq-answer p {
+    color: #333;
+    font-size: 0.9rem;
+    text-align: center;
 }
