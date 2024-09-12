@@ -2,6 +2,11 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+## 🌐 Live Demo
+
+Check out the live version of the project: [Institute Portal Live Demo](https://aoteduproject.vercel.app/)
+
+
 This project is an advanced **Institute Portal** designed to integrate and streamline various academic, administrative, and management features into one robust platform. It includes sophisticated tools like:
 
 - 🆔 **Auto Admit Card Verification System**
