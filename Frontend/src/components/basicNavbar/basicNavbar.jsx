@@ -1,7 +1,7 @@
 
-import './headNav.css'
+import './basicNavbar.css'
 
-export default function HeadNav() {
+export default function BasicNavbar() {
   return<>
     <nav className="navbarTop">
 
@@ -26,5 +26,6 @@ export default function HeadNav() {
         <div className="extraLogo2"></div>
         </div>
     </nav>
+    <div className="BasicNavBootomborder"></div>
   </>
 }

@@ -8,6 +8,9 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { FetchAllHomePageData } from '../../api/GetHomeData';
 
 // importing components
+// Components
+import HeadNav from '../../components/HomePage Components/HeadNav/headNav'
+import Navbar from '../../components/Navbar/navbar';
 const MasterPhotos = lazy(() => import('../../components/HomePage Components/MasterSection/MasterSectionPhotos'));
 import NoticeSection from '../../components/HomePage Components/NoticeSection/notices';
 import EventSection from '../../components/HomePage Components/eventSection/eventSection';
@@ -39,6 +42,8 @@ export default function HomePage() {
 
   return (
     <>
+      <HeadNav/>
+      <Navbar/>
       {loading ? (
         <Loader />  // Show loader until data is fetched and components are loaded
       ) : (
