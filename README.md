@@ -39,7 +39,7 @@ The **Annual Report Portal** aggregates reports from all departments and allows 
 
 - **👑 Leader & Developer**: [Sonu Chowdhury](https://github.com/SonuuChowdhury) | [Portfolio](https://portfolio-sonuuchowdhury.vercel.app/)
 - **👨‍💻 Developer**: [Anit Sarkar](https://github.com/AnitSarkar123)
-- **🎨 Designer**: [Swaraj Sarkar](https://github.com/swaraj-das)
+- **🎨 Designer**: [Swaraj Das](https://github.com/swaraj-das)
 
 ## 🚀 Installation
 
