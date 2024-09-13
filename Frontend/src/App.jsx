@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Styles
 import './styles/App.css';
 
-
 // importing loaders 
 import Loader from './components/loader/loader';
 
