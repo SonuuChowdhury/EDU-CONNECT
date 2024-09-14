@@ -1,10 +1,17 @@
-import './LoginAndSignUP.css'
-
+// modules importing 
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap,faChalkboardUser,faUserTie} from '@fortawesome/free-solid-svg-icons';
 
+// stylings 
+import './LoginAndSignUP.css'
+
+
+// components 
 import BasicNavbar from '../../components/basicNavbar/basicNavbar'
-import { useState } from 'react';
+import StudentLoginComponent from '../../components/loginComponents/StudentLoginComponent/StudentLoginComponent'
+import FacultyLoginComponent from '../../components/loginComponents/FacultyLoginComponent/FacultyLoginComponent'
+import AdminLoginComponent from '../../components/loginComponents/AdminLoginComponent/AdminLoginComponent'
 
 function LoginAndSignUP(){
     const [RoleSelectValue,SetRoleSelectValue]=useState(0);
@@ -14,6 +21,19 @@ function LoginAndSignUP(){
         SetRoleSelectValue(RoleVal);
         console.log(RoleSelectValue);
     }
+
+    const renderLoginComponent = () => {
+        switch (RoleSelectValue) {
+            case 0:
+                return <StudentLoginComponent />;
+            case 1:
+                return <FacultyLoginComponent />;
+            case 2:
+                return <AdminLoginComponent />;
+            default:
+                return <StudentLoginComponent />; // default to student login
+        }
+    };
 
     return <>
         <BasicNavbar/>
@@ -37,14 +57,18 @@ function LoginAndSignUP(){
         <div className="LoginAndHelpkineArea">
             <div className="LoginArea">
                 <div className="LoginAreaContainerMain">
-
+                    {renderLoginComponent()}
                 </div>
-
             </div>
 
             <div className='HelplineBox'>
                 <h3 className='HelplineBoxHeader'>Technical Help Desk</h3>
                 <span className='HelplineBoxDevider'></span>
+                <div className="HelplineBoxInfo">
+                    <div className='HelplineBoxInfoContainer'>Mail: Chowdhurysonu047@gmail.com</div>
+                    <div className='HelplineBoxInfoContainer'>Mobile: 4573XXXX85</div>
+                    <div className='HelplineBoxInfoContainer'>landline: 045-923-4X78</div>
+                </div>
 
             </div>
 
