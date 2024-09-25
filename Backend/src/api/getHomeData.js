@@ -38,7 +38,7 @@ homeRouter.get('/api/home', async (req, res) => {
       };
       res.json(responseData);
     } catch (error) {
-      res.status(500).json({ message: 'Error retrieving announcements', error });
+      res.status(500).json({ message: 'Error retrieving HomeData', error });
     }
   });
 

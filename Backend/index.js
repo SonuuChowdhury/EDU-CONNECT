@@ -2,19 +2,24 @@
 import express from 'express';
 import cors from 'cors';
 
+
+
+
+// database connection
 import connectDB from './src/db/index.js';
-import homeRouter from './src/api/homeAPI.js';
+
+connectDB()
+
+import router from './src/routes/routes.js';
 
 const app = express();
 app.use(cors());
 
 app.use(cors({ origin: '*' }));
+app.use(express.json());
 
-// Connect the Database
-connectDB()
-
-// routers for home page 
-app.use('/',homeRouter)
+// Routes for the server
+app.use('/',router)
 
 
 // Start Server

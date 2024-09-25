@@ -1,17 +1,27 @@
-import mongoose from "mongoose";
-import { DB_NAME } from "../../constants.js";
-import dotenv from 'dotenv'
-dotenv.config()
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const uri=`${process.env.MONGODB_URI}/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`
+dotenv.config();
+
 const connectDB = async () => {
     try {
-        const connectionInstance = await mongoose.connect(uri)
-        console.log(`\n MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`);
-    } catch (error) {
-        console.log("MONGODB connection FAILED ", error);
-        process.exit(1)
-    }
-}
+        // Primary connection (admininfo)
+        const mainConnection = await mongoose.connect(`${process.env.MONGODB_URI}/admininfo?retryWrites=true&w=majority&appName=Cluster0`);
 
-export default connectDB
+        // Secondary connection (logincredentials)
+        const loginConnection = await mongoose.createConnection(`${process.env.MONGODB_URI}/logincredentials?retryWrites=true&w=majority&appName=Cluster0`);
+
+        console.log("Connection established for all the databases!")
+        // Return both connections for reuse in other files
+        return {
+            mainConnection,
+            loginConnection
+        };
+    } catch (error) {
+        console.error("MONGODB connection FAILED", error);
+        process.exit(1); // Exit process with failure
+    }
+};
+
+// Export the function so it can be called elsewhere
+export default connectDB;

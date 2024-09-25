@@ -3,9 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Welcome to Advanced Institute Management-Portal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            max-width: 90vw; /* Adjust to fit in smaller screens */
+            max-height: 90vh;
+            overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .links {
+            margin: 1rem 0;
+        }
+
+        .links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+            display: inline-block;
+        }
+
+        .links a:hover {
+            background: white;
+            color: #4facfe;
+        }
+
+        .github-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/25/25231.png');
+            background-size: cover;
+            margin-top: 20px;
+        }
+
+        .button-portfolio {
+            background-color: #ffcc00;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .button-portfolio:hover {
+            background-color: #ff9900;
+        }
+
+        iframe {
+            max-width: 100%;
+            max-height: 40vh; /* Adjust the iframe to fit viewport height */
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .links a {
+                font-size: 0.9rem;
+                margin: 0.25rem;
+            }
+
+            .button-portfolio {
+                padding: 8px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>This is the main file</h1>
+    <div class="container">
+        <iframe src="https://giphy.com/embed/XR9Dp54ZC4dji" frameBorder="0" allowFullScreen></iframe>
+        <h3>Welcome to the Server of</h3>
+        <h1>ADVANCED INSTITUTE MANAGEMENT PORTAL</h1>
+        <p>Developed by <strong>Sonu Chowdhury</strong></p>
+        <div class="links">
+            <a href="https://aoteduproject.vercel.app/" target="_blank">Live Link</a>
+            <a href="https://github.com/SonuuChowdhury/ADVANCED-INSTITUTE-MANAGEMENT-PORTAL" target="_blank">
+                GitHub Repository
+            </a>
+        </div>
+        <a href="https://github.com/SonuuChowdhury/ADVANCED-INSTITUTE-MANAGEMENT-PORTAL" target="_blank">
+            <div class="github-icon"></div>
+        </a>
+        <br>
+        <button class="button-portfolio" onclick="window.location.href='https://portfolio-sonuuchowdhury.vercel.app/'">
+            Visit Sonu's Portfolio
+        </button>
+    </div>
 </body>
 </html>
