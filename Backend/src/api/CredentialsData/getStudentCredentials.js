@@ -14,7 +14,6 @@ getStudentCredentials.post('/login/student', async (req, res) => {
     }
 
     const studentRoll = Number(roll); 
-    console.log(studentRoll);
 
     try {
         // Find student with matching roll
