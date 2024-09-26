@@ -5,17 +5,19 @@ dotenv.config();
 
 const connectDB = async () => {
     try {
-        // Primary connection (admininfo)
+        // Home Page connection (admininfo)
         const mainConnection = await mongoose.connect(`${process.env.MONGODB_URI}/admininfo?retryWrites=true&w=majority&appName=Cluster0`);
 
-        // Secondary connection (logincredentials)
+        // Login connection (logincredentials)
         const loginConnection = await mongoose.createConnection(`${process.env.MONGODB_URI}/logincredentials?retryWrites=true&w=majority&appName=Cluster0`);
 
-        console.log("Connection established for all the databases!")
-        // Return both connections for reuse in other files
+        // Student details connection (logincredentials)
+        const studentDetailsConnection = await mongoose.createConnection(`${process.env.MONGODB_URI}/studentdetails?retryWrites=true&w=majority&appName=Cluster0`);
+
         return {
             mainConnection,
-            loginConnection
+            loginConnection,
+            studentDetailsConnection
         };
     } catch (error) {
         console.error("MONGODB connection FAILED", error);

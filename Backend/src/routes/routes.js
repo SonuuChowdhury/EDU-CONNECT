@@ -1,7 +1,7 @@
 import { Router } from "express";
 import path from "path";
 import homeRouter from "../api/getHomeData.js";
-import getStudentCredentials from "../api/getStudentCredentials.js";
+import getStudentCredentials from "../api/CredentialsData/getStudentCredentials.js";
 
 const router = Router();
 
