@@ -1,25 +1,48 @@
-/* TopBarPopup.css */
 .top-bar-popup {
-    position: fixed;
-    top: -50px;
-    left: 0;
-    right: 0;
-    background-color: #ff4d4f;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    font-weight: bold;
-    font-size: 18px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: top 0.5s ease-in-out;
-    z-index: 1000;
+  position: fixed;
+  top: -50px; /* Start slightly above the top */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+  width: 30%; /* Set the width to 30% of the screen */
+  background-color: #ff4d4f;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 8px; /* Add border radius for rounded corners */
+  opacity: 0; /* Start invisible */
+  animation: slideDown 0.5s forwards, slideUp 0.5s forwards 3s; /* Slide down, then slide up after 3 seconds */
+}
+
+@keyframes slideDown {
+  0% {
+    top: -50px; /* Start above */
+    opacity: 0;
   }
-  
-  .top-bar-popup.show {
-    top: 0;
+  100% {
+    top: 0; /* Slide down to 0 */
+    opacity: 1;
   }
-  
-  .top-bar-popup.hide {
-    top: -50px;
+}
+
+@keyframes slideUp {
+  0% {
+    top: 0; /* Start at 0 */
+    opacity: 1;
   }
-  
+  100% {
+    top: -50px; /* Slide back up to -50px */
+    opacity: 0;
+  }
+}
+
+.top-bar-popup.show {
+  animation: slideDown 0.5s forwards; /* Trigger the slide down animation */
+}
+
+.top-bar-popup.hide {
+  animation: slideUp 0.5s forwards; /* Trigger the slide up animation */
+}
