@@ -7,7 +7,7 @@ function GetPopUpMessage(status){
     case 500:
       return "Oops! An Error Occured"
     case 404:
-      return "Invalid Roll Number!"
+      return "Invalid Roll/UID Number!"
     case 400:
       return "Invalid Password!"
     default:

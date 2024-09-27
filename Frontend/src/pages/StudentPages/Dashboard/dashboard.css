@@ -1,0 +1,112 @@
+.MainArea {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+}
+
+.ProfileSection {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ProfilePhoto {
+    margin-top: 1.5rem;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100%;
+    border: 5px solid black;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.profileName {
+    margin-top: 0.5rem;
+    font-size: 2rem;
+}
+
+.profileDepartment {
+    font-size: larger;
+}
+
+.YearAndSem {
+    margin-top: 0.3rem;
+}
+
+.ButtonSection {
+    margin-top: 1.8rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.FullProfileButton,
+.LogOutButton {
+    width: 7rem;
+    height: 3rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.FullProfileButton {
+    margin-right: 1rem;
+    background-color: #43A047; /* Shiny green color */
+    font-size: smaller;
+    color: white;
+}
+
+.LogOutButton {
+    margin-left: 1rem;
+    background-color: #E53935; /* Shiny red color */
+    font-size: smaller;
+    color: white;
+}
+
+.FullProfileButton:hover,
+.LogOutButton:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.FullProfileButton:active,
+.LogOutButton:active {
+    transform: translateY(0px);
+    box-shadow: none;
+}
+
+.divider {
+    height: 100%;
+    width: 4px;
+    background-color: black;
+}
+
+.ContentAreaSection {
+    height: calc(100vh - 60px);
+    width: 70%;
+    overflow-y: auto;
+}
+
+.ContentAreaSection::-webkit-scrollbar {
+    width: 10px;
+}
+
+.ContentAreaSection::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 10px;
+}
+
+.ContentAreaSection::-webkit-scrollbar-thumb {
+    background-color: #439DF0;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+}
+
+.ContentAreaSection::-webkit-scrollbar-thumb:hover {
+    background-color: #367cbc;
+}

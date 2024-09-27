@@ -5,6 +5,7 @@
     justify-content: space-between;
 }
 .leftArea{
+    cursor: pointer;
     height: auto;
     width: auto;
     display: flex;

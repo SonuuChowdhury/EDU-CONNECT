@@ -1,10 +1,14 @@
 import { useState,useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import './StudentLoginComponent.css';
 import GetStudentData from '../../../api/getStudentdata.js';
 import TryAgainTopBarPopup from '../../tryAgain/tryAgain.jsx';
+import Loader from '../../loader/loader.jsx'
+import { useDashboardContext } from '../../../context/StudentDashboardContext.jsx';
 
 
 export default function StudentLoginComponent() {
@@ -13,9 +17,10 @@ export default function StudentLoginComponent() {
     const [showTopPopUp,setShowTopPopUp]=useState(false)
     const [TopPopUPValue,setTopPopUPValue]=useState(500)
     const [showPassword, setShowPassword] = useState(false);
+    const [loading,SetLoading]=useState(false);
+    const { setDashboardData, setOpenDash } = useDashboardContext();
 
-    
-    
+    const navigate=useNavigate();
 
     // Handler to toggle password visibility
     const togglePasswordVisibility = () => {
@@ -31,12 +36,12 @@ export default function StudentLoginComponent() {
     }
 
     const submitButtonHandeller=async ()=>{
+        SetLoading(true);
         try{
             const fetchedStudentData= await GetStudentData(rollNumber,password);
             if(fetchedStudentData.status==500){
                 setTopPopUPValue(500)
                 setShowTopPopUp(true)
-                
             }
             else if (fetchedStudentData.status==404){
                 setTopPopUPValue(404)
@@ -47,11 +52,15 @@ export default function StudentLoginComponent() {
                 setShowTopPopUp(true)
             }
             else if(fetchedStudentData.status==200){
-                console.log(fetchedStudentData.data)
+                setDashboardData(fetchedStudentData.data)
+                setOpenDash(true);
+                navigate('/student-dashboard');
             }
         }catch(error){
             setTopPopUPValue(500)
             setShowTopPopUp(true)
+        }finally{
+            SetLoading(false)
         }
     }
 
@@ -92,5 +101,8 @@ export default function StudentLoginComponent() {
                 </div>
             </div>
         </div>
+        {loading && <Loader/>}
     </>;
 }
+
+

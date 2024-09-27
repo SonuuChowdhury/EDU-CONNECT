@@ -1,11 +1,15 @@
-
+import { useNavigate } from 'react-router-dom'
 import './basicNavbar.css'
 
 export default function BasicNavbar() {
+  const navigate=useNavigate();
+  const HomeHandeller=()=>{
+    navigate('/')
+  }
   return<>
     <nav className="navbarTop">
 
-        <div className="leftArea">
+        <div className="leftArea" onClick={HomeHandeller}>
           <div className="collegeLogo"></div>
           <div className="nameArea">
             <span className="nameAreaEng">ACADEMY OF TECHNOLOGY</span>
@@ -14,14 +18,6 @@ export default function BasicNavbar() {
         </div>
 
         <div className="rightArea">
-        <div className="SearchAndLangSec">
-          <select className="LanguageSelector">
-            <option value="ENG">English</option>
-            <option value="HIN">Hindi</option>
-            <option value="BNG">Bengali</option>
-          </select>
-          <input type="text" placeholder="🔍 Search Anything Here" className="mainSearchBar"/>
-        </div>
         <div className="extraLogo1"></div>
         <div className="extraLogo2"></div>
         </div>
