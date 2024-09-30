@@ -1,7 +1,6 @@
 // Modules
 import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { StudentDashboardProvider } from './context/StudentDashboardContext';
 
 // Styles
 import './styles/App.css';
@@ -18,7 +17,6 @@ import StudentDashboardPage from './pages/StudentPages/Dashboard/dashboard.jsx'
 function App() {
   return (
     <Router>
-      <StudentDashboardProvider>
         <Suspense fallback={<Loader />}>
         
         <Routes>
@@ -36,7 +34,6 @@ function App() {
 
 
         </Suspense>
-        </StudentDashboardProvider>
     </Router>
   )
 }

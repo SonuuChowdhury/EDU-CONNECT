@@ -1,8 +1,15 @@
-import './dashboard.css'
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import './dashboard.css';
 
 import BasicNavbar from '../../../components/basicNavbar/basicNavbar'
+import Loader from '../../../components/loader/loader';
+import GetStudentDashBoardData from '../../../api/Dashboard Data/Student/GetStudentData';
+import Unauthorized from '../../../components/Errors/Unauthorized';
+
+
+import { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
 
 function getOrdinalSuffix(number) {
     // Get the last digit of the number
@@ -26,24 +33,52 @@ function getOrdinalSuffix(number) {
 }
 
 export default function StudentDashboardPage(){
+    const navigate= useNavigate();
+    const [data,setData]=useState({})
+    const [isLoading,setisLoading]=useState(true)
+    const [Authorized,setAuthorized]=useState(true)
+
+    const LogOutHandeller=async ()=>{
+        setisLoading(true)
+        localStorage.removeItem('aot-student-login-authorization-token')
+        navigate('/login')
+    }
+
+    useEffect(()=>{
+        async function FetchData() {
+            try{
+                const fetchdata=await GetStudentDashBoardData();
+                setData(fetchdata)
+                if(fetchdata.status==403){
+                    setAuthorized(false)
+                }
+            }catch(error){
+                console.log('Error:', error)
+            }finally{
+                setisLoading(false)
+            }
+        }
+        FetchData()
+    },[])
+
     
-
-
     return <>
+    {isLoading? <Loader/>:null}
     <BasicNavbar/>
+    {Authorized?null:<Unauthorized/>}
     <div className='MainArea'>
         <div className="ProfileSection">
             <div className="ProfilePhoto" style={{ backgroundImage: `url('defaultProfile.jpg')` }} />
 
             <span className='profileName'>{(data.name)}</span>
-            <span style={{fontSize:"small", marginTop:"0.3rem"}}>Departmen Of</span>
+            <span style={{fontSize:"small", marginTop:"0.8rem"}}>Departmen Of</span>
             <span className='profileDepartment'>{data.department}</span>
             <span className="YearAndSem">{getOrdinalSuffix(data.year)} Year , {getOrdinalSuffix(data.semester)} Semester</span>
             <span style={{marginTop:"0.5rem"}}>{data.mobile}</span>
             <span>{data.email}</span>
             <div className="ButtonSection">
                 <button className='FullProfileButton'>FULL PROFILE</button>
-                <button className='LogOutButton'>LOG OUT</button>
+                <button className='LogOutButton' onClick={LogOutHandeller}>LOG OUT</button>
             </div>
 
         </div>
@@ -56,7 +91,4 @@ export default function StudentDashboardPage(){
     
     
     </>
-
-
-
 }

@@ -50,8 +50,23 @@ export default function StudentLoginComponent() {
                 setShowTopPopUp(true)
             }
             else if(fetchedStudentData.status==200){
-                localStorage.setItem('AOT_LOGIN_AUTH_TOKEN',fetchedStudentData.token)
-                navigate('/student-dashboard');
+                try{
+                    // Ensure token is saved first before navigating
+                    const token = fetchedStudentData.data.token;
+                    localStorage.setItem('aot-student-login-authorization-token', token);
+
+                    // Log token and navigate
+                    if (localStorage.getItem('aot-student-login-authorization-token')) {
+                        console.log('Token saved:', token);
+                        navigate('/student-dashboard');
+                    } else {
+                        console.error('Token not saved. Navigation halted.');
+                    }
+                }catch(error){
+                    console.log('An Error Occured')
+                }finally{
+                    navigate('/student-dashboard');
+                }
             }
         }catch(error){
             setTopPopUPValue(500)
