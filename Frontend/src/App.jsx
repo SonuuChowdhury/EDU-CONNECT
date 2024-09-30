@@ -21,13 +21,7 @@ function App() {
         
         <Routes>
           <Route path="/" element={<HomePage />} />
-        </Routes>
-
-        <Routes>
           <Route path="/login" element={<LoginAndSignUP />} />
-        </Routes>
-
-        <Routes>
           <Route path="/student-dashboard" element={<StudentDashboardPage />} />
         </Routes>
 
