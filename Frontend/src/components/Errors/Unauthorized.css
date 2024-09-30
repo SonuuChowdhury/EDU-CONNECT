@@ -1,14 +1,7 @@
-* {
+.unauthorized-container {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif; /* You can import this font from Google Fonts */
-}
-
-.unauthorized-container {
     width: 100%;
     height: calc(100vh - 70px);
     display: flex;

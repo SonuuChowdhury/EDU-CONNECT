@@ -1,5 +1,4 @@
-import studentcredentials from '../../models/students/studentCredentials.js'; 
-import GetStudentDeatils from '../StudentData/GetStudentData.js';
+import studentcredentials from '../../../models/students/studentCredentials.js';
 import express from 'express';
 import jwt from  'jsonwebtoken'
 import dotenv from 'dotenv'
