@@ -5,7 +5,7 @@ dotenv.config()
 
 const VerifyToken=(req,res,next)=>{
 
-    const token = req.headers['authorization'];
+    const token = req.headers['aot-student-login-authorization-token'];
     if (!token) return res.status(403).json({ msg: 'Unauthorized' });
 
     try{

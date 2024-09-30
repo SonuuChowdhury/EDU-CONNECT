@@ -5,10 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import './StudentLoginComponent.css';
-import GetStudentData from '../../../api/getStudentdata.js';
+import GetStudentData from '../../../api/Tokens/StudentLoginToken.js';
 import TryAgainTopBarPopup from '../../tryAgain/tryAgain.jsx';
 import Loader from '../../loader/loader.jsx'
-import { useDashboardContext } from '../../../context/StudentDashboardContext.jsx';
 
 
 export default function StudentLoginComponent() {
@@ -18,7 +17,6 @@ export default function StudentLoginComponent() {
     const [TopPopUPValue,setTopPopUPValue]=useState(500)
     const [showPassword, setShowPassword] = useState(false);
     const [loading,SetLoading]=useState(false);
-    const { setDashboardData, setOpenDash } = useDashboardContext();
 
     const navigate=useNavigate();
 
@@ -52,8 +50,7 @@ export default function StudentLoginComponent() {
                 setShowTopPopUp(true)
             }
             else if(fetchedStudentData.status==200){
-                setDashboardData(fetchedStudentData.data)
-                setOpenDash(true);
+                localStorage.setItem('AOT_LOGIN_AUTH_TOKEN',fetchedStudentData.token)
                 navigate('/student-dashboard');
             }
         }catch(error){

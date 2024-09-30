@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import BasicNavbar from '../../../components/basicNavbar/basicNavbar'
-import { useDashboardContext } from '../../../context/StudentDashboardContext'
 
 function getOrdinalSuffix(number) {
     // Get the last digit of the number
@@ -27,26 +26,7 @@ function getOrdinalSuffix(number) {
 }
 
 export default function StudentDashboardPage(){
-    const navigate=useNavigate();
-    const {dashboardData,OpenDash}=  useDashboardContext();
-    useEffect(() => {
-        if (OpenDash !== undefined && !OpenDash) {
-            navigate('/login');
-        }
-    }, [OpenDash, navigate]);
     
-    const [data, setData] = useState(() => {
-        // Try to load data from local storage on initial load
-        const savedData = localStorage.getItem('dashboardData');
-        return savedData ? JSON.parse(savedData) : dashboardData;
-    });
-
-    useEffect(() => {
-        if (dashboardData) {
-            localStorage.setItem('dashboardData', JSON.stringify(dashboardData));
-            setData(dashboardData); // Sync state with updated context data
-        }
-    }, [dashboardData]);
 
 
     return <>
