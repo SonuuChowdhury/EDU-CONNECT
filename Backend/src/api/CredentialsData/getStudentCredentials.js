@@ -23,7 +23,6 @@ getStudentCredentials.post('/login/student', async (req, res) => {
     try {
         // Find student with matching roll
         const student = await studentcredentials.findOne({ roll: studentRoll });
-        console.log('working')
         if (!student) {
             return res.status(404).send('Student not found');
         }
