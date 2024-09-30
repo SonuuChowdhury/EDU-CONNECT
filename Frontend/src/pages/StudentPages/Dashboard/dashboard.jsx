@@ -26,7 +26,6 @@ function getOrdinalSuffix(number) {
     }
 }
 
-
 export default function StudentDashboardPage(){
     const navigate=useNavigate();
     const {dashboardData,OpenDash}=  useDashboardContext();

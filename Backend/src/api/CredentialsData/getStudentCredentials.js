@@ -1,6 +1,11 @@
 import studentcredentials from '../../models/students/studentCredentials.js'; 
 import GetStudentDeatils from '../StudentData/GetStudentData.js';
 import express from 'express';
+import jwt from  'jsonwebtoken'
+import dotenv from 'dotenv'
+import bcrypt from 'bcrypt'
+
+dotenv.config()
 
 const getStudentCredentials = express.Router();
 getStudentCredentials.use(express.json());
@@ -18,16 +23,18 @@ getStudentCredentials.post('/login/student', async (req, res) => {
     try {
         // Find student with matching roll
         const student = await studentcredentials.findOne({ roll: studentRoll });
+        console.log('working')
         if (!student) {
             return res.status(404).send('Student not found');
-        } else {
-            // Password Validation logic 
-            if(student.password!=password){
-                return res.status(400).send("Invalid Password")
-            }
-            const StudentBasicDetails=await GetStudentDeatils({studentRoll});
-            return res.status(200).send(StudentBasicDetails);
         }
+        const isMatched = await bcrypt.compare(password,student.password)
+
+        if(!isMatched){
+            return res.status(400).send("Invalid Password")
+        }
+        const token = jwt.sign({_id:student._id},process.env.JWT_SECRET,{expiresIn:'1h'})
+        res.status(200).json({token})
+    
     } catch (error) {
         return res.status(500).send('Server error');
     }

@@ -2,6 +2,8 @@ import { Router } from "express";
 import path from "path";
 import homeRouter from "../api/getHomeData.js";
 import getStudentCredentials from "../api/CredentialsData/getStudentCredentials.js";
+import VerifyToken from "../middlewares/VerifyToken.js";
+import GetStudentDeatils from "../api/StudentData/GetStudentData.js";
 
 const router = Router();
 
@@ -12,6 +14,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/api/home', homeRouter); 
+router.get('/api/student-dashboard', VerifyToken, GetStudentDeatils)
 router.post('/login/student',getStudentCredentials);
 
 export default router;
