@@ -14,7 +14,7 @@ export default function FacultyLoginComponent() {
 
     return <>
         <div className='FacultyLoginContainer'>
-            <h1>FACULTY LOGIN</h1>
+            <h1 className='HeadingBar'>FACULTY LOGIN</h1>
             <span className="FacultyLoginHeaderBorder"></span>
             <div className="FacultyLoginFormArea">
                 <div className="FacultyLoginFormDoodle" style={{backgroundImage:'url(LoginPageDoodleForFacultyPage.svg)'}}></div>

@@ -90,7 +90,7 @@ export default function StudentLoginComponent() {
     return <>
         {showTopPopUp && <TryAgainTopBarPopup status={TopPopUPValue}/>}
         <div className='StudentLoginContainer'>
-            <h1>STUDENT LOGIN</h1>
+            <h1 className='HeadingBar'>STUDENT LOGIN</h1>
             <span className="StudentLoginHeaderBorder"></span>
             <div className="StudentLoginFormArea">
                 <div className="StudentLoginFormDoodle" style={{ backgroundImage: 'url(LoginPageDoodleForStudentPage.svg)' }}></div>

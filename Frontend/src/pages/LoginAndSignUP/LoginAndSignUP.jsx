@@ -19,7 +19,6 @@ function LoginAndSignUP(){
 
     const RoleSelectionHandeller=(RoleVal)=>{
         SetRoleSelectValue(RoleVal);
-        console.log(RoleSelectValue);
     }
 
     const renderLoginComponent = () => {

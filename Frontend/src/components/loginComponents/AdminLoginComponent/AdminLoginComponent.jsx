@@ -15,7 +15,7 @@ export default function AdminLoginComponent() {
     return (
         <>
             <div className="AdminLoginContainer">
-                <h1>ADMIN LOGIN</h1>
+                <h1 className='HeadingBar'>ADMIN LOGIN</h1>
                 <span className="AdminLoginHeaderBorder"></span>
                 <div className="AdminLoginFormArea">
                     <div className="AdminLoginFormDoodle" style={{ backgroundImage: 'url(LoginPageDoodleForAdminPage.svg)' }}></div>
