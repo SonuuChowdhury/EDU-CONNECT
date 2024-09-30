@@ -1,9 +1,18 @@
+.coverBack{
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  
+}
 .top-bar-popup {
   position: fixed;
-  top: -50px; /* Start slightly above the top */
+  top: -10px; /* Start slightly above the top */
   left: 50%;
   transform: translateX(-50%); /* Center horizontally */
-  width: 30%; /* Set the width to 30% of the screen */
+  width: 14rem;
   background-color: #ff4d4f;
   color: white;
   text-align: center;
@@ -11,38 +20,42 @@
   font-weight: bold;
   font-size: 18px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  border-radius: 8px; /* Add border radius for rounded corners */
+  z-index:100;
+  border-radius: 8px; 
   opacity: 0; /* Start invisible */
-  animation: slideDown 0.5s forwards, slideUp 0.5s forwards 3s; /* Slide down, then slide up after 3 seconds */
+  transition: opacity 0.5s, top 0.5s; /* Smooth transitions */
 }
 
-@keyframes slideDown {
+@keyframes PopUpSlideDown {
   0% {
-    top: -50px; /* Start above */
+    top: -50px;
     opacity: 0;
   }
   100% {
-    top: 0; /* Slide down to 0 */
+    top: 20px; /* Adjust this to fit better on smaller screens */
     opacity: 1;
   }
 }
 
-@keyframes slideUp {
+@keyframes PopUpSlideUp {
   0% {
-    top: 0; /* Start at 0 */
+    top: 20px;
     opacity: 1;
   }
   100% {
-    top: -50px; /* Slide back up to -50px */
+    top: -50px;
     opacity: 0;
   }
 }
 
 .top-bar-popup.show {
-  animation: slideDown 0.5s forwards; /* Trigger the slide down animation */
+  top: 20px; /* Adjust the final position when shown */
+  opacity: 1; /* Ensure it's visible */
+  animation: PopUpSlideDown 0.5s forwards;
 }
 
 .top-bar-popup.hide {
-  animation: slideUp 0.5s forwards; /* Trigger the slide up animation */
+  top: -50px;
+  opacity: 0; /* Fade out */
+  animation: PopUpSlideUp 0.5s forwards;
 }

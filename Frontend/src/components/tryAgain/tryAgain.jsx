@@ -1,21 +1,21 @@
-// TryAgainTopBarPopup.js
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
-import './tryAgain.css'
+import './tryAgain.css';
 
-function GetPopUpMessage(status){
+function GetPopUpMessage(status) {
   switch (status) {
     case 500:
-      return "Oops! An Error Occured"
+      return "Oops! An Error Occurred";
     case 404:
-      return "Invalid Roll/UID Number!"
+      return "Invalid Roll/UID Number!";
     case 400:
-      return "Invalid Password!"
+      return "Invalid Password!";
     default:
-      break;
+      return "Something went wrong!";
   }
 }
 
-function TryAgainTopBarPopup(params) {
+function TryAgainTopBarPopup({ status }) {
   const [show, setShow] = useState(true);
 
   // Automatically hide the popup after 3 seconds
@@ -24,14 +24,15 @@ function TryAgainTopBarPopup(params) {
       setShow(false);
     }, 3000); // Hide after 3 seconds
 
-    // Cleanup the timer when the component is unmounted or on re-render
+    // Cleanup the timer on unmount
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className={`top-bar-popup ${show ? 'show' : 'hide'}`}>
-      {GetPopUpMessage(params.status)}
-      
+    <div className="coverBack">
+      <div className={`top-bar-popup ${show ? 'show' : 'hide'}`}>
+        {GetPopUpMessage(status)}
+      </div>
     </div>
   );
 }
