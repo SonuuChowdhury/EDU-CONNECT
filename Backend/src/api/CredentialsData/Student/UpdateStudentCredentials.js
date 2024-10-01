@@ -6,13 +6,17 @@ const UpdateStudentCredentials = express.Router();
 UpdateStudentCredentials.use(express.json());
 
 UpdateStudentCredentials.put('/api/student/change-password', async (req, res) => {
-    const { _id , NewPassword } = req.user;
+    const { _id } = req.user;
+    const { NewPassword } = req.body;
     const hashedNewPassword=await HashPassword(NewPassword);
 
     try{
-        studentcredentials.findByIdAndUpdate(_id,{ $set: { password: `${hashedNewPassword}` } }, { new: true })
-        .then(res.status(200).json('New Password Updated'))
-        .catch(res.status(400).json({msg:'Failed to update the password'}))
+        const updatedStudent = await studentcredentials.findByIdAndUpdate(_id,{ $set: { password: `${hashedNewPassword}` } }, { new: true })
+        if (!updatedStudent) {
+            return res.status(400).json({ msg: 'Failed to update the password' });
+        }
+
+        res.status(200).json('New Password Updated');
     }catch(error){
         res.status(500).json({msg:'Internal Server Error'})
         console.log('Error Occured in changing password')
