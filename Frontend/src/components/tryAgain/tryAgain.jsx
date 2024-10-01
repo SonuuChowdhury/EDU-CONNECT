@@ -10,6 +10,10 @@ function GetPopUpMessage(status) {
       return "Invalid Roll/UID Number!";
     case 400:
       return "Invalid Password!";
+    case 1:
+      return "Password Mismatched!"
+    case 2:
+      return "Please Enter the New Password!"
     default:
       return "Something went wrong!";
   }
