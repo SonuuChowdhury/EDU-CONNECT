@@ -25,46 +25,60 @@
 
 .profileName {
     margin-top: 0.5rem;
-    font-size: 2rem;
+    font-size: 2.2rem; /* Increased font size for better visibility */
 }
 
 .profileDepartment {
-    font-size: 1rem;
+    font-size: 1.2rem; /* Slightly increased for better balance */
 }
 
 .YearAndSem {
     margin-top: 0.3rem;
+    font-size: 1rem; /* Consistent font size */
 }
 
 .ButtonSection {
-    margin-top: 1.8rem;
+    margin-top: 2rem; /* Increased margin for better spacing */
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
+.ChangePasswordButton,
 .FullProfileButton,
 .LogOutButton {
-    width: 7rem;
-    height: 3rem;
+    width: 6rem; /* Increased button width */
+    height: 3.5rem; /* Increased height */
     font-weight: bold;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1rem; /* Increased font size for better readability */
+}
+
+.ChangePasswordButton {
+    background-color: #FFA726; /* Shiny orange color */
+    color: white;
+}
+
+.ChangePasswordButton:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.ChangePasswordButton:active {
+    transform: translateY(0px);
+    box-shadow: none;
 }
 
 .FullProfileButton {
-    margin-right: 1rem;
     background-color: #43A047; /* Shiny green color */
-    font-size: smaller;
     color: white;
 }
 
 .LogOutButton {
-    margin-left: 1rem;
     background-color: #E53935; /* Shiny red color */
-    font-size: smaller;
     color: white;
 }
 

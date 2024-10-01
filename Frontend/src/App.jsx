@@ -13,6 +13,7 @@ import Loader from './components/loader/loader';
 const HomePage = lazy(() => import('./pages/Home Page/homePage'));
 import LoginAndSignUP from './pages/LoginAndSignUP/LoginAndSignUP';
 import StudentDashboardPage from './pages/StudentPages/Dashboard/dashboard.jsx'
+import StudentChangePassword from './pages/StudentPages/Password Change/ChangePassword.jsx';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginAndSignUP />} />
           <Route path="/student-dashboard" element={<StudentDashboardPage />} />
+          <Route path="/student-dashboard/change-password" element={<StudentChangePassword/>}/>
         </Routes>
 
 

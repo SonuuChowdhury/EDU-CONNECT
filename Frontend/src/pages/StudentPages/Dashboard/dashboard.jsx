@@ -61,10 +61,15 @@ export default function StudentDashboardPage(){
         FetchData()
     },[])
 
+    const ChangePasswordHandeller=async()=>{
+        setisLoading(true)
+        navigate('/student-dashboard/change-password')
+    }
+
     
     return <>
-    {isLoading? <Loader/>:null}
     <BasicNavbar/>
+    {isLoading? <Loader/>:null}
     {Authorized?null:<Unauthorized/>}
     <div className='MainArea'>
         <div className="ProfileSection">
@@ -77,6 +82,7 @@ export default function StudentDashboardPage(){
             <span style={{marginTop:"0.5rem"}}>{data.mobile}</span>
             <span>{data.email}</span>
             <div className="ButtonSection">
+                <button className='ChangePasswordButton' onClick={ChangePasswordHandeller}>Change Password</button>
                 <button className='FullProfileButton'>FULL PROFILE</button>
                 <button className='LogOutButton' onClick={LogOutHandeller}>LOG OUT</button>
             </div>
