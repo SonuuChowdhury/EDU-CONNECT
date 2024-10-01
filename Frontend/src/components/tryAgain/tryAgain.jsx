@@ -29,10 +29,8 @@ function TryAgainTopBarPopup({ status }) {
   }, []);
 
   return (
-    <div className="coverBack">
       <div className={`top-bar-popup ${show ? 'show' : 'hide'}`}>
         {GetPopUpMessage(status)}
-      </div>
     </div>
   );
 }
