@@ -96,7 +96,7 @@ export default function StudentChangePassword(){
                 </div>
                 
                 <div className="StudentChangePasswordButtonArea">
-                    <button className='StudentChangePasswordButtons StudentChangePasswordCancelButton' onClick={()=>navigate('/student-dashboard')}>Cancel</button>
+                    <button className='StudentChangePasswordButtons StudentChangePasswordCancelButton' onClick={()=>navigate('/student-dashboard')}>Back to Dashboard</button>
                     <button className='StudentChangePasswordButtons StudentChangePasswordChangePasswordButton' onClick={ChangePasswordHandler}>Change Password</button>
 
                 </div>
