@@ -19,6 +19,8 @@ export default function StudentChangePassword(){
     const [Authorized,setAuthorized]=useState(true)
     const [NewPassword1,SetNewPassword1]=useState('')
     const [NewPassword2,SetNewPassword2]=useState('')
+    const [errorStatus, setErrorStatus] = useState(null);
+    const [ShowTopUp,SetShowTopUp]=useState(false)
 
 
     useEffect(()=>{
@@ -38,26 +40,35 @@ export default function StudentChangePassword(){
         FetchData()
     },[])
 
-    const ChnagePasswordHandeller=async()=>{
-        if(NewPassword1==''|| NewPassword2==''){
-            TryAgainTopBarPopup(2)
+    useEffect(() => {
+        if (ShowTopUp) {
+            const timer = setTimeout(() => {
+                SetShowTopUp(false);
+            }, 3000); 
+            return () => clearTimeout(timer);
         }
-        else if(NewPassword1!=NewPassword2){
-            TryAgainTopBarPopup(1)
-        }
-        else if(NewPassword1===NewPassword2){
-            const response = await StudentPasswordChangeAPI(NewPassword1)
-            console.log(response)
+    }, [ShowTopUp]);
 
-
+    const ChangePasswordHandler = async () => {
+        if (NewPassword1 === '' || NewPassword2 === '') {
+            SetShowTopUp(true)
+            setErrorStatus(2); 
+        } else if (NewPassword1 !== NewPassword2) {
+            SetShowTopUp(true)
+            setErrorStatus(1);
+        } else {
+            console.log(NewPassword1)
+            const response = await StudentPasswordChangeAPI(NewPassword1);
+            console.log(response);
+            setErrorStatus(null);
         }
     }
-
 
     return <>
         <BasicNavbar/>
         {isLoading?<Loader/>:null}
         {Authorized?null:<Unauthorized/>}
+        {ShowTopUp ? <TryAgainTopBarPopup status={errorStatus} /> : null}
 
         <div className='StudentChangePasswordMainArea'>
             <div className="StudentChangePasswordContainer">
@@ -71,7 +82,7 @@ export default function StudentChangePassword(){
                 
                 <div className="StudentChangePasswordButtonArea">
                     <button className='StudentChangePasswordButtons StudentChangePasswordCancelButton' onClick={()=>navigate('/student-dashboard')}>Cancel</button>
-                    <button className='StudentChangePasswordButtons StudentChangePasswordChangePasswordButton' onClick={ChnagePasswordHandeller}>Change Password</button>
+                    <button className='StudentChangePasswordButtons StudentChangePasswordChangePasswordButton' onClick={ChangePasswordHandler}>Change Password</button>
 
                 </div>
 
