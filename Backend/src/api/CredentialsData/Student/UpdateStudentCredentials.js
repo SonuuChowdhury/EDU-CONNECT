@@ -10,7 +10,6 @@ UpdateStudentCredentials.put('/api/student/change-password', async (req, res) =>
     const { NewPassword } = req.body;
     console.log("ID: ",_id,"Password: ",NewPassword)
     const hashedNewPassword=await HashPassword(NewPassword);
-
     try{
         const updatedStudent = await studentcredentials.findByIdAndUpdate(_id,{ $set: { password: `${hashedNewPassword}` } }, { new: true })
         if (!updatedStudent) {
