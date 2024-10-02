@@ -8,6 +8,7 @@ UpdateStudentCredentials.use(express.json());
 UpdateStudentCredentials.put('/api/student/change-password', async (req, res) => {
     const { _id } = req.user;
     const { NewPassword } = req.body;
+    console.log("ID: ",_id,"Password: ",NewPassword)
     const hashedNewPassword=await HashPassword(NewPassword);
 
     try{
