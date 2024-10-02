@@ -57,7 +57,6 @@ export default function StudentLoginComponent() {
 
                     // Log token and navigate
                     if (localStorage.getItem('aot-student-login-authorization-token')) {
-                        console.log('Token saved:', token);
                         navigate('/student-dashboard');
                     } else {
                         console.error('Token not saved. Navigation halted.');

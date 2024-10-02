@@ -50,18 +50,33 @@ export default function StudentChangePassword(){
     }, [ShowTopUp]);
 
     const ChangePasswordHandler = async () => {
-        if (NewPassword1 === '' || NewPassword2 === '') {
+        SetisLoading(true)
+        try{
+            if (NewPassword1 === '' || NewPassword2 === '') {
+                SetShowTopUp(true)
+                setErrorStatus(2); 
+            } else if (NewPassword1 !== NewPassword2) {
+                SetShowTopUp(true)
+                setErrorStatus(1);
+            } else {
+                const response = await StudentPasswordChangeAPI(NewPassword1);
+                if(response.status==(403 || 200 || 500)){
+                    setErrorStatus(3)
+                    SetShowTopUp(true)
+                }else if(response.status==200){
+                    setErrorStatus(4)
+                    SetShowTopUp(true)
+                    SetNewPassword1('')
+                    SetNewPassword2('')
+                }
+            }
+        }catch(err){
+            setErrorStatus(3)
             SetShowTopUp(true)
-            setErrorStatus(2); 
-        } else if (NewPassword1 !== NewPassword2) {
-            SetShowTopUp(true)
-            setErrorStatus(1);
-        } else {
-            console.log(NewPassword1)
-            const response = await StudentPasswordChangeAPI(NewPassword1);
-            console.log(response);
-            setErrorStatus(null);
+        }finally{
+            SetisLoading(false)
         }
+        
     }
 
     return <>

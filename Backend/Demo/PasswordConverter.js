@@ -13,3 +13,11 @@ export default async function HashPassword(password){
         throw new Error("Password hashing failed");
     }
 }
+
+// async function hlo(){
+//     const str=await HashPassword('kanka@password')
+//     console.log(str)
+// }
+
+
+// hlo()

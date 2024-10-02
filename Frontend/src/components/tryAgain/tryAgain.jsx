@@ -4,7 +4,7 @@ import './tryAgain.css';
 
 function GetPopUpMessage(status) {
   switch (status) {
-    case 500:
+    case 500 || 3:
       return "Oops! An Error Occurred";
     case 404:
       return "Invalid Roll/UID Number!";
@@ -14,6 +14,8 @@ function GetPopUpMessage(status) {
       return "Password Mismatched!"
     case 2:
       return "Please Enter the New Password!"
+    case 4:
+      return "Password Changed Succesfully!"
     default:
       return "Something went wrong!";
   }
