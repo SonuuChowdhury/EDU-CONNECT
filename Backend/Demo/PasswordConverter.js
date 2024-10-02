@@ -15,7 +15,7 @@ export default async function HashPassword(password){
 }
 
 // async function hlo(){
-//     const str=await HashPassword('kanka@password')
+//     const str=await HashPassword('')
 //     console.log(str)
 // }
 
