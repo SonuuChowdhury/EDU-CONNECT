@@ -7,8 +7,7 @@ const RedisConnectionPort=`${process.env.REDIS_PORT}`
 
 
 const RedisClient = redis.createClient({
-  host: RedisConnectionString,
-  port: RedisConnectionPort,
+    url: `redis://${RedisConnectionString}:${RedisConnectionPort}`,
 });
 
 
