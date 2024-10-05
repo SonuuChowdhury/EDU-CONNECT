@@ -4,9 +4,11 @@ dotenv.config();
 
 const RedisConnectionString = process.env.REDIS_HOST;
 const RedisConnectionPort = process.env.REDIS_PORT;
+const RedisPassword = process.env.REDIS_PASSWORD;
 
 const RedisClient = redis.createClient({
     url: `redis://${RedisConnectionString}:${RedisConnectionPort}`,
+    password: RedisPassword,
 });
 
 // Function to connect to Redis
