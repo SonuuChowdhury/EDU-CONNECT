@@ -1,15 +1,13 @@
 import redis from 'redis';
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from 'dotenv';
+dotenv.config();
 
-const RedisConnectionString=`${process.env.REDIS_HOST}`
-const RedisConnectionPort=`${process.env.REDIS_PORT}`
-
+const RedisConnectionString = process.env.REDIS_HOST;
+const RedisConnectionPort = process.env.REDIS_PORT;
 
 const RedisClient = redis.createClient({
     url: `redis://${RedisConnectionString}:${RedisConnectionPort}`,
 });
-
 
 // Function to connect to Redis
 const connectRedis = async () => {
@@ -17,6 +15,7 @@ const connectRedis = async () => {
     await RedisClient.connect();
     console.log('Connected to Redis Successfully!🐱‍🏍');
   } catch (err) {
+
     console.error('Redis connection error:', err);
   }
 };
