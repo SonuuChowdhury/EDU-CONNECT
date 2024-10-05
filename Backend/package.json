@@ -18,6 +18,8 @@
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
-    "mongoose": "^8.5.4"
+    "mongoose": "^8.5.4",
+    "nodemailer": "^6.9.15",
+    "redis": "^4.7.0"
   }
 }

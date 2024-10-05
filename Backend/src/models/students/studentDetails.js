@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import connectDB from '../../db/index.js'
+import connectDB from '../../db/ConnectMongoDB.js'
 
 const { studentDetailsConnection } = await connectDB();
 

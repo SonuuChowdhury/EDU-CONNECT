@@ -2,9 +2,13 @@
 import express from 'express';
 import cors from 'cors';
 
+
 // database connection
-import connectDB from './src/db/index.js';
+import connectDB from './src/db/ConnectMongoDB.js';
+import { connectRedis } from './src/db/ConnectRedis.js';
+
 connectDB()
+connectRedis()
 
 const app = express();
 app.use(cors());
@@ -18,6 +22,7 @@ app.use(express.json());
 // Routes for the server
 import router from './src/routes/routes.js';
 app.use('/',router)
+
 
 
 // Start Server
