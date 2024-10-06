@@ -81,7 +81,7 @@ ForgotPasswordHandeller.post('/login/student/forgot-password', async (req, res) 
     if(reqType==1){
         try{
             if (!roll || !otp) {
-                return res.status(500).json({msg:"Roll number and OTP are required"})
+                return res.status(404).json({msg:"Roll number and OTP are required"})
             }
 
             const StudentRollString=String(roll)
@@ -90,7 +90,7 @@ ForgotPasswordHandeller.post('/login/student/forgot-password', async (req, res) 
               const otps = await RedisClient.lRange(StudentRollString, 0, -1);
 
                 if (!otps || otps.length === 0) {
-                    return res.status(400).json({ msg: "No OTPs found or they expired" });
+                    return res.status(404).json({ msg: "No OTPs found or they expired" });
                 }
 
                 // Check if the entered OTP is in the list
