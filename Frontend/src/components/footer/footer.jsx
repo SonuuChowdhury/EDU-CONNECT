@@ -175,7 +175,7 @@ function Footer({ params = [] }) {
                         <a
                             className='FooterPortfolioLink'
                             onClick={() => openLink(data.designerLink)}
-                        > Swaraj Sarkar {(<FontAwesomeIcon icon={faArrowUpRightFromSquare} />)}</a>
+                        > Swaraj Das {(<FontAwesomeIcon icon={faArrowUpRightFromSquare} />)}</a>
 
                     </span>
                 </div>
