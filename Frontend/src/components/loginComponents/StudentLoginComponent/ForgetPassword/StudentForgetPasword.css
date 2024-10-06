@@ -4,7 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .StudentForgetPasswordForm {
@@ -30,6 +31,7 @@
     margin-bottom: 0.5rem;
     align-self: flex-start;
 }
+
 
 .StudentForgetPasswordInput {
     width: 100%;

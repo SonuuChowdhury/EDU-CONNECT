@@ -19,7 +19,7 @@ function GetPopUpMessage(status) {
     case 4:
       return "Password Changed Successfully!";
     case 5:
-      return "OTP Verified Successfully!";
+      return "OTP Verified Successfully! Redirecting...";
     case 6:
       return "Wrong OTP Entered!";
     case 7:

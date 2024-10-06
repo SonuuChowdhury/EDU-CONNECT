@@ -45,15 +45,20 @@ export default function StudentForgetPassword() {
         }
     };
 
+
     const handleVerifyOtpClick = async() => {
         setIsLoading(true)
         try{
             const VerifyOTPResponse = await StudentForgetPasswordAPI(rollNumber,1,otp)
             setVerifyOTPResponseVar(VerifyOTPResponse.data)
-            console.log(VerifyOTPResponse)
 
             if (VerifyOTPResponse.status == 200) {
-                SetTopUpBarStatus(5); 
+                localStorage.setItem('aot-student-login-authorization-token', VerifyOTPResponse.data.token);
+                SetTopUpBarStatus(5);
+                setTimeout(() => {
+                    navigate('/student-dashboard/change-password');
+                }, 2000);
+
             } else if (VerifyOTPResponse.status == 500) {
                 SetTopUpBarStatus(500); 
             } else if (VerifyOTPResponse.status == 400) {
@@ -100,7 +105,7 @@ export default function StudentForgetPassword() {
                         <>
                         <span className="StudentForgetPasswordInfo">Hello, {SendOTPResponseVar.name}</span>
                         <span className="StudentForgetPasswordInfo">OTP sent to : {SendOTPResponseVar.email}</span>
-                        <label className="StudentForgetPasswordLabel" htmlFor="otp">OTP</label>
+                        <label className="StudentForgetPasswordLabel StudentForgetPasswordLabelOTPText" htmlFor="otp">OTP</label>
                         <input type="text" className="StudentForgetPasswordInput" onChange={handleOtpChange}/>
                         </>
                     )}

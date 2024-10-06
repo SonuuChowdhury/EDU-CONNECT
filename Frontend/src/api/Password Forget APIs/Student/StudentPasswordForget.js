@@ -22,7 +22,6 @@ export default async function StudentForgetPasswordAPI(roll,reqType,otp){
                 "reqType":reqType,
                 "otp":otp
             })
-            console.log(VerifyOTPResponse)
             return VerifyOTPResponse
         }catch(err){
             return {"status":err.status}
