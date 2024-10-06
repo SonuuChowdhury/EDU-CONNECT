@@ -37,6 +37,10 @@ ForgotPasswordHandeller.post('/login/student/forgot-password', async (req, res) 
 
         if(reqType==0){
             try{
+                const student = await studentcredentials.findOne({ roll: studentRoll })
+                if(!student){
+                    res.status(404).json({msg:"Invalid Roll Number."})
+                }
                 const GenOTP = GenerateOTP()
                 const StudentData = await studentbasicdetails.findOne({roll: studentRoll})
                 const StudentEmail = StudentData.email
