@@ -50,6 +50,7 @@ ForgotPasswordHandeller.post('/login/student/forgot-password', async (req, res) 
                 const StudentGenOTP=String(GenOTP)
                 try {
                     await RedisClient.rPush(StudentRollString, StudentGenOTP);
+                    await RedisClient.expire(StudentRollString,300);
                 } catch (err) {
                     console.error('Unable to store OTP in Redis:', err);
                     return res.status(500).json({ msg: "Unable to Store the OTP in Redis" });
