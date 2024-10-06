@@ -37,10 +37,16 @@ export default function StudentForgetPassword() {
         try{
             const SendOTPResponse=await StudentForgetPasswordAPI(rollNumber,0,otp)
             setSendOTPResponseVar(SendOTPResponse.data)
+            console.log(SendOTPResponse)
+            if(SendOTPResponse.status==200){
+                setReqType(1)
+            }else if(SendOTPResponse.status==500){
+                SetTopUpBarStatus(8);
+                setShowTopUPBar(true);
+            }
         }catch(err){
             console.log(err)
         }finally{
-            setReqType(1)
             setIsLoading(false)
         }
     };

@@ -24,6 +24,8 @@ function GetPopUpMessage(status) {
       return "Wrong OTP Entered!";
     case 7:
       return "OTP Expired.";
+    case 8:
+      return "Invalid Roll Number.";
     default:
       return "Something went wrong!";
   }
