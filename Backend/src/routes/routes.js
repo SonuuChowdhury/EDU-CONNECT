@@ -1,6 +1,6 @@
 import { Router } from "express";
 import path from "path";
-import homeRouter from "../api/getHomeData.js";
+import homeRouter from "../api/HomeData/getHomeData.js";
 import getStudentCredentials from "../api/CredentialsData/Student/getStudentCredentials.js";
 import VerifyToken from "../middlewares/VerifyToken.js";
 import GetStudentDeatils from "../api/StudentData/GetStudentData.js";

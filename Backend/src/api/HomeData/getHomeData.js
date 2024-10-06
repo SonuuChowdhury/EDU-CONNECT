@@ -1,14 +1,14 @@
 import express from 'express';
 
-import { masterphoto } from '../models/home/masterPhotosModel.js';
-import { notice } from '../models/home/noticemodel.js';
-import {event} from '../models/home/eventsmodel.js'
-import { achievement } from '../models/home/achievementModel.js';
-import { facility } from '../models/home/facilityModel.js';
-import { detail } from '../models/home/detailsModel.js';
-import { message } from '../models/home/messageModel.js';
-import { faq } from '../models/home/faq.js';
-import { footerinfo } from '../models/home/footerDataModel.js';
+import { masterphoto } from '../../models/home/masterPhotosModel.js';
+import { notice } from '../../models/home/noticemodel.js';
+import {event} from '../../models/home/eventsmodel.js'
+import { achievement } from '../../models/home/achievementModel.js';
+import { facility } from '../../models/home/facilityModel.js';
+import { detail } from '../../models/home/detailsModel.js';
+import { message } from '../../models/home/messageModel.js';
+import { faq } from '../../models/home/faq.js';
+import { footerinfo } from '../../models/home/footerDataModel.js';
 
 const homeRouter = express.Router();
 
