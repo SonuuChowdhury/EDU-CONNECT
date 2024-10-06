@@ -31,8 +31,6 @@ function App() {
           <Route path="/student-dashboard/change-password" element={<StudentChangePassword/>}/>
         </Routes>
 
-
-
         </Suspense>
     </Router>
   )

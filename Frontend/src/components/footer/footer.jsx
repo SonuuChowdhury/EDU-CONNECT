@@ -170,6 +170,14 @@ function Footer({ params = [] }) {
                         > Sonu Chowdhury {(<FontAwesomeIcon icon={faArrowUpRightFromSquare} />)}</a>
 
                     </span>
+                    <span className="FooterAreaBottomDevelopedBySection">
+                        Designed By |
+                        <a
+                            className='FooterPortfolioLink'
+                            onClick={() => openLink(data.designerLink)}
+                        > Swaraj Sarkar {(<FontAwesomeIcon icon={faArrowUpRightFromSquare} />)}</a>
+
+                    </span>
                 </div>
             </footer>
         </>
