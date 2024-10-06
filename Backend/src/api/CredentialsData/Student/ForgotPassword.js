@@ -83,7 +83,6 @@ ForgotPasswordHandeller.post('/login/student/forgot-password', async (req, res) 
             if (!roll || !otp) {
                 return res.status(404).json({msg:"Roll number and OTP are required"})
             }
-
             const StudentRollString=String(roll)
             
               // Get all OTPs for this roll number from the list
@@ -95,7 +94,12 @@ ForgotPasswordHandeller.post('/login/student/forgot-password', async (req, res) 
 
                 // Check if the entered OTP is in the list
                 if (otps.includes(String(otp))) {
-                    return res.status(200).send('OTP verified successfully');
+                    const student = await studentcredentials.findOne({ roll: studentRoll })
+                    const token = await jwt.sign({_id:student._id},process.env.JWT_SECRET,{expiresIn:'1h'})
+                    return res.status(200).json({
+                        msg:"OTP verified successfully",
+                        token:token
+                    });
                 } else {
                     return res.status(400).send('Invalid OTP');
                 }
