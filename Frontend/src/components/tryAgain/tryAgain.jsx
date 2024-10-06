@@ -2,24 +2,33 @@
 import { useState, useEffect } from 'react';
 import './tryAgain.css';
 
+
 function GetPopUpMessage(status) {
   switch (status) {
-    case 500 || 3:
+    case 500:
+    case 3:
       return "Oops! An Error Occurred";
     case 404:
-      return "Invalid Roll/UID Number!";
+      return "No OTPs found or they expired.";
     case 400:
-      return "Invalid Password!";
+      return "Invalid OTP!";
     case 1:
-      return "Password Mismatched!"
+      return "Password Mismatched!";
     case 2:
-      return "Please Enter the New Password!"
+      return "Please Enter the New Password!";
     case 4:
-      return "Password Changed Succesfully!"
+      return "Password Changed Successfully!";
+    case 5:
+      return "OTP Verified Successfully!";
+    case 6:
+      return "Wrong OTP Entered!";
+    case 7:
+      return "OTP Expired.";
     default:
       return "Something went wrong!";
   }
 }
+
 
 function TryAgainTopBarPopup({ status }) {
   const [show, setShow] = useState(true);
@@ -28,7 +37,7 @@ function TryAgainTopBarPopup({ status }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow(false);
-    }, 3000); // Hide after 3 seconds
+    }, 3000);
 
     // Cleanup the timer on unmount
     return () => clearTimeout(timer);

@@ -25,6 +25,10 @@ export default function StudentLoginComponent() {
         setShowPassword(!showPassword);
     };
 
+    const StudentForgetPasswordHandeller=()=>{
+        navigate('/login/student/forget-password')
+    }
+
     const rollNumberChangeHandeller=(event)=>{
         setRollNumber(event.target.value)
     }
@@ -100,13 +104,21 @@ export default function StudentLoginComponent() {
 
                     <div className='StudentLoginFormInputHeaders StudentLoginFormInputHeadersPassword'>PASSWORD</div>
                     <input type={showPassword ? "text" : "password"} className='StudentLoginFormInputInputs' value={password} onChange={passwordChangeHandeller}/>
-                    <div className='PasswordVisibilityDiv' onClick={togglePasswordVisibility}>
-                        {showPassword ? "HIDE PASSWORD" : "SHOW PASSWORD"}
-                        <FontAwesomeIcon
-                            icon={showPassword ? faEyeSlash : faEye}
-                            className="PasswordToggleIcon"
-                        />
+                    <div className="PasswordVisiblityAndForgetPasswordArea">
+                        <div className='PasswordVisibilityDiv' onClick={togglePasswordVisibility}>
+                            {showPassword ? "HIDE PASSWORD" : "SHOW PASSWORD"}
+                            <FontAwesomeIcon
+                                icon={showPassword ? faEyeSlash : faEye}
+                                className="PasswordToggleIcon"
+                            />
+                        </div>
+
+                        <div className='StudentForgetPasswordDiv' onClick={StudentForgetPasswordHandeller}>Forget Password?</div>
+                            
+
+
                     </div>
+                    
 
                     <button className='StudentLoginFormSubmitButton' onClick={submitButtonHandeller}>SUBMIT</button>
                 </div>
