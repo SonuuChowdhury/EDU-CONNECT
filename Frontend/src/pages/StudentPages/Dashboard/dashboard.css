@@ -4,6 +4,40 @@
     display: flex;
 }
 
+/* Modal overlay covers the entire screen with a blurred background */
+.ModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;  /* Ensures it's on top of everything */
+    backdrop-filter: blur(5px);  /* Background blur */
+}
+
+/* The actual modal content (the upload component) */
+.ModalContent {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1001;  /* Ensure it's above the blur */
+}
+
+/* Ensures that the main content (except the modal) is blurred when modal is active */
+.MainArea {
+    filter: blur(0px);  /* No blur by default */
+}
+
+.ModalOverlay .MainArea {
+    filter: blur(5px);  /* Add blur when modal is active */
+}
+
+
+
+
 .ProfileSection {
     height: 100%;
     width: 30%;
@@ -13,6 +47,7 @@
 }
 
 .ProfilePhoto {
+    position: relative; /* Necessary for positioning the overlay */
     margin-top: 1.5rem;
     width: 10rem;
     height: 10rem;
@@ -21,7 +56,35 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    overflow: hidden; /* Ensures the overlay stays inside the circle */
 }
+
+.StudentUploadOrChangeProfilePIcture {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Black semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.StudentUploadOrChangeProfilePIcture::before {
+    content: 'Upload/Change'; /* Text inside the overlay */
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.ProfilePhoto:hover .StudentUploadOrChangeProfilePIcture {
+    opacity: 1; /* Show the overlay on hover */
+}
+
 
 .profileName {
     margin-top: 0.5rem;

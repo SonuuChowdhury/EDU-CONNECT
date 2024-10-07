@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './styles/App.css';
 
 // importing loaders 
+
+
 import Loader from './components/loader/loader';
 
 
@@ -24,11 +26,13 @@ function App() {
         
         <Routes>
           <Route path="/" element={<HomePage />} />
+
           <Route path="/login" element={<LoginAndSignUP />} />
           <Route path="/login/student/forget-password" element={<StudentForgetPassword />} />
 
           <Route path="/student-dashboard" element={<StudentDashboardPage />} />
           <Route path="/student-dashboard/change-password" element={<StudentChangePassword/>}/>
+
         </Routes>
 
         </Suspense>

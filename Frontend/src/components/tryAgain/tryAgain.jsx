@@ -17,15 +17,17 @@ function GetPopUpMessage(status) {
     case 2:
       return "Please Enter the New Password!";
     case 4:
-      return "Password Changed Successfully!";
+      return "Password Changed Succesfully!";
     case 5:
-      return "OTP Verified Successfully! Redirecting...";
+      return "OTP Verified Succesfully! Redirecting...";
     case 6:
       return "Wrong OTP Entered!";
     case 7:
       return "OTP Expired.";
     case 8:
       return "Invalid Roll Number.";
+    case 9:
+      return "Profile Photo Updated Succesfully ! Updating...";
     default:
       return "Something went wrong!";
   }

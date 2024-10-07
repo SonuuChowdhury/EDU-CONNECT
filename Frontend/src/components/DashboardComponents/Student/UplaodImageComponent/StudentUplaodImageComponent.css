@@ -1,0 +1,66 @@
+/* StudentUploadImageComponent.css */
+
+.studentUploadBox.dragging {
+    background-color: #f0f8ff; /* Light blue background when dragging */
+    border: 2px dashed #4CAF50; /* Green dashed border when dragging */
+  }
+  
+
+
+.studentUploadPopup {
+    height: 20rem;
+    width: 30rem;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .studentUploadBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ddd;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  
+  .studentUploadIcon {
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .studentUploadBtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .studentUploadBtn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .studentUploadBtn:hover:not(:disabled) {
+    transform: scale(1.1);
+  }
+  
+  .studentFileError {
+    color: red;
+    font-size: 14px;
+  }
+  
