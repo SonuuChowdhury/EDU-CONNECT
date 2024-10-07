@@ -6,6 +6,7 @@ import VerifyToken from "../middlewares/VerifyToken.js";
 import GetStudentDeatils from "../api/StudentData/GetStudentData.js";
 import UpdateStudentCredentials from "../api/CredentialsData/Student/UpdateStudentCredentials.js";
 import ForgotPasswordHandeller from "../api/CredentialsData/Student/ForgotPassword.js";
+import StudentUplaodProfile from "../api/UploadProfile/Student/StudentUplaodProfile.js";
 
 const router = Router();
 
@@ -16,9 +17,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/api/home', homeRouter); 
+
 router.post('/login/student',getStudentCredentials);
 router.post('/login/student/forgot-password',ForgotPasswordHandeller)
-router.get('/api/student-dashboard', VerifyToken, GetStudentDeatils);
+router.get('/api/student-dashboard', VerifyToken, GetStudentDeatils)
 router.put('/api/student/change-password',VerifyToken,UpdateStudentCredentials)
+router.get('/api/student/change-photo',VerifyToken,StudentUplaodProfile)
 
 export default router;
