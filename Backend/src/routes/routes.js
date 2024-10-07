@@ -22,6 +22,6 @@ router.post('/login/student',getStudentCredentials);
 router.post('/login/student/forgot-password',ForgotPasswordHandeller)
 router.get('/api/student-dashboard', VerifyToken, GetStudentDeatils)
 router.put('/api/student/change-password',VerifyToken,UpdateStudentCredentials)
-router.get('/api/student/change-photo',VerifyToken,StudentUplaodProfile)
+router.get('/api/student/change-photo',StudentUplaodProfile)
 
 export default router;
