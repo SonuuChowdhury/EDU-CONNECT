@@ -7,6 +7,7 @@ import GetStudentDeatils from "../api/StudentData/GetStudentData.js";
 import UpdateStudentCredentials from "../api/CredentialsData/Student/UpdateStudentCredentials.js";
 import ForgotPasswordHandeller from "../api/CredentialsData/Student/ForgotPassword.js";
 import StudentUplaodProfile from "../api/UploadProfile/Student/StudentUplaodProfile.js";
+import StudentUpdateURLProfile from "../api/UploadProfile/Student/StudentUpdateURLProfile.js";
 
 const router = Router();
 
@@ -23,5 +24,7 @@ router.post('/login/student/forgot-password',ForgotPasswordHandeller)
 router.get('/api/student-dashboard', VerifyToken, GetStudentDeatils)
 router.put('/api/student/change-password',VerifyToken,UpdateStudentCredentials)
 router.get('/api/student/change-photo',StudentUplaodProfile)
+router.put('/api/student/change-photo/update-or-delete',VerifyToken,StudentUpdateURLProfile)
+
 
 export default router;
