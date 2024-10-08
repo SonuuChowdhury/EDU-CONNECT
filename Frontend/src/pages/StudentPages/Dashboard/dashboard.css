@@ -1,11 +1,12 @@
-.MainArea {
+/* Main area styling */
+.studentMainArea {
     width: 100%;
     height: calc(100vh - 60px);
     display: flex;
 }
 
 /* Modal overlay covers the entire screen with a blurred background */
-.ModalOverlay {
+.studentModalOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -20,25 +21,23 @@
 }
 
 /* The actual modal content (the upload component) */
-.ModalContent {
+.studentModalContent {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1001;  /* Ensure it's above the blur */
 }
 
 /* Ensures that the main content (except the modal) is blurred when modal is active */
-.MainArea {
+.studentMainArea {
     filter: blur(0px);  /* No blur by default */
 }
 
-.ModalOverlay .MainArea {
+.studentModalOverlay .studentMainArea {
     filter: blur(5px);  /* Add blur when modal is active */
 }
 
-
-
-
-.ProfileSection {
+/* Profile section styling */
+.studentProfileSection {
     height: 100%;
     width: 30%;
     display: flex;
@@ -46,7 +45,8 @@
     align-items: center;
 }
 
-.ProfilePhoto {
+/* Profile photo styling */
+.studentProfilePhoto {
     position: relative; /* Necessary for positioning the overlay */
     margin-top: 1.5rem;
     width: 10rem;
@@ -59,7 +59,8 @@
     overflow: hidden; /* Ensures the overlay stays inside the circle */
 }
 
-.StudentUploadOrChangeProfilePIcture {
+/* Upload or change profile picture button */
+.studentUploadOrChangeProfilePIcture {
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -74,42 +75,47 @@
     transition: opacity 0.3s ease; /* Smooth transition for hover effect */
 }
 
-.StudentUploadOrChangeProfilePIcture::before {
+.studentUploadOrChangeProfilePIcture::before {
     content: 'Upload/Change'; /* Text inside the overlay */
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
-.ProfilePhoto:hover .StudentUploadOrChangeProfilePIcture {
+/* Hover effect on profile photo */
+.studentProfilePhoto:hover .studentUploadOrChangeProfilePIcture {
     opacity: 1; /* Show the overlay on hover */
 }
 
-
-.profileName {
+/* Profile name styling */
+.studentProfileName {
     margin-top: 0.5rem;
     font-size: 2.2rem; /* Increased font size for better visibility */
 }
 
-.profileDepartment {
+/* Profile department styling */
+.studentProfileDepartment {
     font-size: 1.2rem; /* Slightly increased for better balance */
 }
 
-.YearAndSem {
+/* Year and semester styling */
+.studentYearAndSem {
     margin-top: 0.3rem;
     font-size: 1rem; /* Consistent font size */
 }
 
-.ButtonSection {
+/* Button section styling */
+.studentButtonSection {
     margin-top: 2rem; /* Increased margin for better spacing */
     width: 100%;
     display: flex;
     justify-content: space-evenly;
 }
 
-.ChangePasswordButton,
-.FullProfileButton,
-.LogOutButton {
+/* Buttons styling */
+.studentChangePasswordButton,
+.studentFullProfileButton,
+.studentLogOutButton {
     width: 6rem; /* Increased button width */
     height: 3.5rem; /* Increased height */
     font-weight: bold;
@@ -120,70 +126,102 @@
     font-size: 1rem; /* Increased font size for better readability */
 }
 
-.ChangePasswordButton {
+.studentChangePasswordButton {
     background-color: #FFA726; /* Shiny orange color */
     color: white;
 }
 
-.ChangePasswordButton:hover {
+.studentChangePasswordButton:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.ChangePasswordButton:active {
+.studentChangePasswordButton:active {
     transform: translateY(0px);
     box-shadow: none;
 }
 
-.FullProfileButton {
+.studentFullProfileButton {
     background-color: #43A047; /* Shiny green color */
     color: white;
 }
 
-.LogOutButton {
+.studentLogOutButton {
     background-color: #E53935; /* Shiny red color */
     color: white;
 }
 
-.FullProfileButton:hover,
-.LogOutButton:hover {
+.studentFullProfileButton:hover,
+.studentLogOutButton:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.FullProfileButton:active,
-.LogOutButton:active {
+.studentFullProfileButton:active,
+.studentLogOutButton:active {
     transform: translateY(0px);
     box-shadow: none;
 }
 
-.divider {
+/* Divider styling */
+.studentDivider {
     height: 100%;
     width: 4px;
     background-color: black;
 }
 
-.ContentAreaSection {
+/* Content area section styling */
+.studentContentAreaSection {
     height: calc(100vh - 60px);
     width: 70%;
     overflow-y: auto;
 }
 
-.ContentAreaSection::-webkit-scrollbar {
+/* Custom scrollbar styling */
+.studentContentAreaSection::-webkit-scrollbar {
     width: 10px;
 }
 
-.ContentAreaSection::-webkit-scrollbar-track {
+.studentContentAreaSection::-webkit-scrollbar-track {
     background: #e0e0e0;
     border-radius: 10px;
 }
 
-.ContentAreaSection::-webkit-scrollbar-thumb {
+.studentContentAreaSection::-webkit-scrollbar-thumb {
     background-color: #439DF0;
     border-radius: 10px;
     border: 2px solid #e0e0e0;
 }
 
-.ContentAreaSection::-webkit-scrollbar-thumb:hover {
+.studentContentAreaSection::-webkit-scrollbar-thumb:hover {
     background-color: #367cbc;
+}
+
+/* Styling for the Student Offline Page */
+.studentOfflinePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    background-color: #f5f5f5; /* Light background color */
+    color: #333; /* Text color */
+}
+
+.studentOfflineImage {
+    width: 200px; /* Adjust size of SVG image */
+    height: auto;
+    margin-bottom: 20px; /* Space between image and text */
+}
+
+.studentOfflineHeading {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.studentOfflineText {
+    font-size: 1.2rem;
+    color: #666; /* Slightly lighter text color */
 }

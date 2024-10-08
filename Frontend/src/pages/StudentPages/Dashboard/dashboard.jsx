@@ -3,7 +3,6 @@ import BasicNavbar from '../../../components/basicNavbar/basicNavbar';
 import Loader from '../../../components/loader/loader';
 import GetStudentDashBoardData from '../../../api/Dashboard Data/Student/GetStudentData';
 import Unauthorized from '../../../components/Errors/Unauthorized';
-
 import StudentUplaodImageComponent from '../../../components/DashboardComponents/Student/UplaodImageComponent/StudentUplaodImageComponent';
 
 import { useState, useEffect } from 'react';
@@ -32,11 +31,12 @@ export default function StudentDashboardPage() {
     const [data, setData] = useState({});
     const [isLoading, setisLoading] = useState(true);
     const [Authorized, setAuthorized] = useState(true);
-    const [showProfile,setShowProfile]=useState(false)
-    const [profilePictureUrl ,setProfilePictureUrl] = useState('')
+    const [showProfile, setShowProfile] = useState(false);
+    const [profilePictureUrl, setProfilePictureUrl] = useState('');
 
     // State to manage modal visibility
     const [isModalOpen, setIsModalOpen] = useState(false); // <-- Modal state
+    const [isOffline, setIsOffline] = useState(!navigator.onLine); // <-- Check initial offline status
 
     const LogOutHandeller = async () => {
         setisLoading(true);
@@ -50,18 +50,21 @@ export default function StudentDashboardPage() {
                 const fetchdata = await GetStudentDashBoardData();
                 setData(fetchdata);
                 setShowProfile(fetchdata.isProfile);
-
-                if (fetchdata.status == 403) {
+                if (fetchdata.status === 403) {
                     setAuthorized(false);
                 }
             } catch (error) {
-                console.log('Error:', error);
+                if (error.status === 403) {
+                    setAuthorized(false);
+                }
             } finally {
                 setisLoading(false);
             }
         }
-        FetchData();
-    }, [showProfile]);
+        if (!isOffline) {
+            FetchData();
+        }
+    }, [showProfile, isOffline]);
 
     const ChangePasswordHandeller = async () => {
         setisLoading(true);
@@ -70,12 +73,12 @@ export default function StudentDashboardPage() {
 
     // Function to close modal when clicking outside the modal box
     const handleOutsideClick = (e) => {
-        if (e.target.className === 'ModalOverlay') {
+        if (e.target.className === 'studentModalOverlay') {
             setIsModalOpen(false);  // <-- Close the modal
         }
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         if (showProfile && data.profile) {
             // Append a timestamp to the URL to prevent caching issues
             const updatedProfileUrl = `${data.profile}?updatedAt=${new Date().getTime()}`;
@@ -83,42 +86,71 @@ export default function StudentDashboardPage() {
         } else {
             setProfilePictureUrl('defaultProfile.jpg');
         }
-    },[showProfile,data])
+    }, [showProfile, data]);
 
-    return <>
-        <BasicNavbar />
-        {isLoading ? <Loader /> : null}
-        {Authorized ? null : <Unauthorized />}
-        <div className='MainArea'>
-            <div className="ProfileSection">
-                <div className="ProfilePhoto" style={{ backgroundImage:  `url(${profilePictureUrl})` }}>
-                    <div className="StudentUploadOrChangeProfilePIcture" onClick={() => setIsModalOpen(true)}>
+    // Listen for online/offline events
+    useEffect(() => {
+        const handleOnline = () => setIsOffline(false);
+        const handleOffline = () => setIsOffline(true);
+
+        window.addEventListener('online', handleOnline);
+        window.addEventListener('offline', handleOffline);
+
+        return () => {
+            window.removeEventListener('online', handleOnline);
+            window.removeEventListener('offline', handleOffline);
+        };
+    }, []);
+
+    // Function to render the "You are offline" page
+    const renderOfflinePage = () => (
+        <div className="studentOfflinePage">
+            <img src="/offlineSVG.svg" alt="You are offline" className="studentOfflineImage" />
+            <h2 className="studentOfflineHeading">You are offline</h2>
+            <p className="studentOfflineText">Please check your internet connection and try again.</p>
+        </div>
+    );
+
+    return (
+        <>
+            <BasicNavbar />
+            {isLoading && !isOffline ? <Loader /> : null}
+            {!Authorized && !isOffline ? <Unauthorized /> : null}
+            {isOffline ? (
+                renderOfflinePage() // Display offline message if user is offline
+            ) : (
+                <div className='studentMainArea'>
+                    <div className="studentProfileSection">
+                        <div className="studentProfilePhoto" style={{ backgroundImage: `url(${profilePictureUrl})` }}>
+                            <div className="studentUploadOrChangeProfilePIcture" onClick={() => setIsModalOpen(true)}>
+                            </div>
+                        </div>
+
+                        <span className='studentProfileName'>{data.name}</span>
+                        <span style={{ fontSize: "small", marginTop: "0.8rem" }}>Department Of</span>
+                        <span className='studentProfileDepartment'>{data.department}</span>
+                        <span className="studentYearAndSem">{getOrdinalSuffix(data.year)} Year , {getOrdinalSuffix(data.semester)} Semester</span>
+                        <span style={{ marginTop: "0.5rem" }}>{data.mobile}</span>
+                        <span>{data.email}</span>
+                        <div className="studentButtonSection">
+                            <button className='studentChangePasswordButton' onClick={ChangePasswordHandeller}>Change Password</button>
+                            <button className='studentFullProfileButton'>FULL PROFILE</button>
+                            <button className='studentLogOutButton' onClick={LogOutHandeller}>LOG OUT</button>
+                        </div>
+                    </div>
+                    <div className="studentDivider"></div>
+                    <div className="studentContentAreaSection">
                     </div>
                 </div>
+            )}
 
-                <span className='profileName'>{(data.name)}</span>
-                <span style={{ fontSize: "small", marginTop: "0.8rem" }}>Department Of</span>
-                <span className='profileDepartment'>{data.department}</span>
-                <span className="YearAndSem">{getOrdinalSuffix(data.year)} Year , {getOrdinalSuffix(data.semester)} Semester</span>
-                <span style={{ marginTop: "0.5rem" }}>{data.mobile}</span>
-                <span>{data.email}</span>
-                <div className="ButtonSection">
-                    <button className='ChangePasswordButton' onClick={ChangePasswordHandeller}>Change Password</button>
-                    <button className='FullProfileButton'>FULL PROFILE</button>
-                    <button className='LogOutButton' onClick={LogOutHandeller}>LOG OUT</button>
+            {isModalOpen && (
+                <div className="studentModalOverlay" onClick={handleOutsideClick}>
+                    <div className="studentModalContent">
+                        <StudentUplaodImageComponent StudentData={data} />
+                    </div>
                 </div>
-            </div>
-            <div className="divider"></div>
-            <div className="ContentAreaSection">
-            </div>
-        </div>
-
-        {isModalOpen && (
-            <div className="ModalOverlay" onClick={handleOutsideClick}>
-                <div className="ModalContent">
-                    <StudentUplaodImageComponent StudentData={data}/>
-                </div>
-            </div>
-        )}
-    </>
+            )}
+        </>
+    );
 }
