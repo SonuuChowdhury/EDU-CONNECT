@@ -76,7 +76,13 @@ export default function StudentDashboardPage() {
     };
 
     useEffect(()=>{
-        showProfile ? setProfilePictureUrl(data.profile) : setProfilePictureUrl('defaultProfile.jpg')
+        if (showProfile && data.profile) {
+            // Append a timestamp to the URL to prevent caching issues
+            const updatedProfileUrl = `${data.profile}?updatedAt=${new Date().getTime()}`;
+            setProfilePictureUrl(updatedProfileUrl);
+        } else {
+            setProfilePictureUrl('defaultProfile.jpg');
+        }
     },[showProfile,data])
 
     return <>
