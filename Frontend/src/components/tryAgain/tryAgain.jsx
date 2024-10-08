@@ -11,7 +11,7 @@ function GetPopUpMessage(status) {
     case 404:
       return "No OTPs found or they expired.";
     case 400:
-      return "Invalid OTP!";
+      return "Invalid Password";
     case 1:
       return "Password Mismatched!";
     case 2:
