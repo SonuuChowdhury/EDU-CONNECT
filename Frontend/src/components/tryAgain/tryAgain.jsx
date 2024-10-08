@@ -27,7 +27,9 @@ function GetPopUpMessage(status) {
     case 8:
       return "Invalid Roll Number.";
     case 9:
-      return "Profile Photo Updated Succesfully ! Updating...";
+      return "Profile Photo Changed! Finishing...";
+    case 10:
+      return "Profile Photo Removed! Finishing..."
     default:
       return "Something went wrong!";
   }

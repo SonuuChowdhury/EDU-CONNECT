@@ -1,8 +1,33 @@
 import ImageKit from 'imagekit-javascript';
 import axios from 'axios';
 
-export default async function UploadStudentProfilePhoto(FileData, StudentData) {
+export default async function UploadStudentProfilePhoto(FileData, StudentData, RemoveProfile) {
     try {
+        const token=localStorage.getItem('aot-student-login-authorization-token')
+        if (!token) {
+            console.error('No token found in localStorage.');
+            return {'status':500}; 
+        }
+
+        if(RemoveProfile){
+            try{
+                const UpdateOnDataBaseStatus = await axios.put('https://institute-site-az-bug-busters.onrender.com/api/student/change-photo/update-or-delete',{
+                    update:false
+                },{
+                    headers: {
+                        'aot-student-login-authorization-token':token
+                    }})
+                if(UpdateOnDataBaseStatus.status==200){
+                    return { status: 200 };
+                }else{
+                    console.log(UpdateOnDataBaseStatus)
+                    return { status: 500};
+                }
+            }catch(err){
+                return { status: 500 };
+            }
+
+        }
         // Fetch authentication details from your backend
         const authResponse = await fetch("https://institute-site-az-bug-busters.onrender.com/api/student/change-photo");
 
@@ -13,12 +38,6 @@ export default async function UploadStudentProfilePhoto(FileData, StudentData) {
         const authData = await authResponse.json();
 
         if (!authData.token || !authData.signature || !authData.expire) {
-            return {'status':500}; 
-        }
-
-        const token=localStorage.getItem('aot-student-login-authorization-token')
-        if (!token) {
-            console.error('No token found in localStorage.');
             return {'status':500}; 
         }
 
@@ -46,7 +65,6 @@ export default async function UploadStudentProfilePhoto(FileData, StudentData) {
         });
 
         const imageURL = UploadStatus.url;
-        console.log(UploadStatus)
 
         if(UploadStatus.$ResponseMetadata.statusCode===200){
             const UpdateOnDataBaseStatus = await axios.put('https://institute-site-az-bug-busters.onrender.com/api/student/change-photo/update-or-delete',{

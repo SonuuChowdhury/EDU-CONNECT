@@ -53,7 +53,7 @@
     height: 10rem;
     border-radius: 100%;
     border: 5px solid black;
-    background-size: contain;
+    background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
     overflow: hidden; /* Ensures the overlay stays inside the circle */
@@ -76,7 +76,7 @@
 }
 
 .studentUploadOrChangeProfilePIcture::before {
-    content: 'Upload/Change'; /* Text inside the overlay */
+    content: 'Upload/Remove'; /* Text inside the overlay */
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
