@@ -1,10 +1,17 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import connectDB from '../../db/ConnectMongoDB.js';
 
-const loginSchema = new mongoose.Schema({
-    mail: String,
-    pass: String
+const { loginConnection } = await connectDB();
+
+
+const adminCredentialsSchema = new mongoose.Schema({
+  role:String,
+  uid:Number,
+  password:String,
+  email:String
 });
 
-const Login = mongoose.model('Login', loginSchema);
+const admincredentials = loginConnection.model('admincredentials', adminCredentialsSchema); 
+export default admincredentials;
 
-export default Login;
+

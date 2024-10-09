@@ -2,6 +2,7 @@ import { Router } from "express";
 import path from "path";
 import homeRouter from "../api/HomeData/getHomeData.js";
 import getStudentCredentials from "../api/CredentialsData/Student/getStudentCredentials.js";
+import getAdminCredentials from "../api/CredentialsData/Admin/AdminLogin.js";
 import VerifyToken from "../middlewares/VerifyToken.js";
 import GetStudentDeatils from "../api/StudentData/GetStudentData.js";
 import UpdateStudentCredentials from "../api/CredentialsData/Student/UpdateStudentCredentials.js";
@@ -19,7 +20,8 @@ router.get('/', (req, res) => {
 
 router.get('/api/home', homeRouter); 
 
-router.post('/login/student',getStudentCredentials);
+router.post('/login/student',getStudentCredentials)
+router.post('/login/admin',getAdminCredentials)
 router.post('/login/student/forgot-password',ForgotPasswordHandeller)
 router.get('/api/student-dashboard', VerifyToken, GetStudentDeatils)
 router.put('/api/student/change-password',VerifyToken,UpdateStudentCredentials)
