@@ -127,6 +127,7 @@ export default function StudentDashboardPage() {
                         </div>
 
                         <span className='studentProfileName'>{data.name}</span>
+                        <span className="StudentRollNumber">{data.roll}</span>
                         <span style={{ fontSize: "small", marginTop: "0.8rem" }}>Department Of</span>
                         <span className='studentProfileDepartment'>{data.department}</span>
                         <span className="studentYearAndSem">{getOrdinalSuffix(data.year)} Year , {getOrdinalSuffix(data.semester)} Semester</span>
