@@ -19,6 +19,8 @@ import StudentDashboardPage from './pages/StudentPages/Dashboard/dashboard.jsx'
 import StudentChangePassword from './pages/StudentPages/Password Change/ChangePassword.jsx';
 import StudentForgetPassword from './components/loginComponents/StudentLoginComponent/ForgetPassword/StudentForgetPasword.jsx';
 
+import SuperAdminDashboard from './pages/AdminPages/SuperAdmin/Dashboard/Dashboard.jsx';
+
 function App() {
   return (
     <Router>
@@ -32,6 +34,8 @@ function App() {
 
           <Route path="/student-dashboard" element={<StudentDashboardPage />} />
           <Route path="/student-dashboard/change-password" element={<StudentChangePassword/>}/>
+
+          <Route path="/super-admin/admin-dashboard" element={<SuperAdminDashboard/>}/>
 
         </Routes>
 

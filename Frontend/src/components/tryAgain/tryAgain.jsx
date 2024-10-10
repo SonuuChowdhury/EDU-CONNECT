@@ -30,6 +30,10 @@ function GetPopUpMessage(status) {
       return "Profile Photo Changed! Finishing...";
     case 10:
       return "Profile Photo Removed! Finishing..."
+    case 11:
+      return "OTP Sent to the registered mail..."
+    case 12:
+      return "Invalid UID Number..."
     default:
       return "Something went wrong!";
   }
