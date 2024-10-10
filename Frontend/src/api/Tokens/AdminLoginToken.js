@@ -11,7 +11,6 @@ export default async function GetAdminData(uid, password,otp,reqType) {
     try {
         // Use await to wait for the Axios post request to complete
         const response = await axios.post('https://institute-site-az-bug-busters.onrender.com/login/admin', adminPostData);
-        
         return {
             status: response.status,
             data: response.data

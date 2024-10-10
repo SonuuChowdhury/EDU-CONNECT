@@ -9,6 +9,7 @@ import GetAdminData from '../../../api/Tokens/AdminLoginToken.js';
 import Loader from '../../loader/loader.jsx';
 import TryAgainTopBarPopup from '../../tryAgain/tryAgain.jsx';
 
+
 export default function AdminLoginComponent() {
     const navigate=useNavigate()
     const [showPassword, setShowPassword] = useState(false);
@@ -35,11 +36,15 @@ export default function AdminLoginComponent() {
 
     const AdminLoginButtoHandeller=async()=>{
         SetLoading(true)
+
         try{
-            if(reqType==0){
+            if(idNumber=="" || password==""){
+                setTopPopUPValue(13)
+                setShowTopPopUp(true)
+            }
+            else if(reqType==0){
                 const ResponseData=await GetAdminData(idNumber,password,otp,reqType);
                 if(ResponseData.status==200){
-                    console.log(ResponseData)
                     setRole(ResponseData.data.role)
                     setTopPopUPValue(11)
                     setShowTopPopUp(true)
@@ -150,7 +155,7 @@ export default function AdminLoginComponent() {
                             className="AdminLoginFormSubmitButton"
                             onClick={AdminLoginButtoHandeller}
                         >
-                            SUBMIT
+                            {!isOtpAllowed?"GET OTP":"SUBMIT"}
                         </button>
                     </div>
                 </div>

@@ -114,6 +114,9 @@
     margin-bottom: 0.5rem;
 }
 
+.AdminLoginFormInputHeadersPassword{
+    margin-top: 0.3rem;
+}
 /* Disabled OTP Styling */
 .AdminLoginFormInputInputsOTP:disabled {
     background-color: #f0f0f0;

@@ -34,6 +34,8 @@ function GetPopUpMessage(status) {
       return "OTP Sent to the registered mail..."
     case 12:
       return "Invalid UID Number..."
+    case 13:
+      return "Enter the credentials"
     default:
       return "Something went wrong!";
   }
