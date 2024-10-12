@@ -1,0 +1,107 @@
+/* Body settings to prevent overflow */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Main dashboard container */
+.DashboardMainArea {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Set to 100% to avoid overflow issues */
+    height: auto;
+}
+
+/* Top area of the dashboard */
+.TopAreaDashboard {
+    width: 100%; /* Set to 100% to avoid overflow issues */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Log out button */
+.SuperAdminLogOutFeature {
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    background-color: #ff4d4d;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.SuperAdminLogOutFeature:hover {
+    background-color: #e60000;
+}
+
+/* Super Admin Headers */
+.SuperAdminHeaders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SuperAdminHeader {
+    font-size: 2.5rem;
+    margin-top: 0.2rem;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.SuperAdminSubHeader {
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+    text-align: center;
+}
+
+
+
+.HomePageModificationControlOptionsArea,
+.StudentControlsSectionOptionsArea,
+.FacultyControlsSectionOptionsArea,
+.ReprotsAnalyticsControlsSectionOptionsArea{
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.HomePageModificationControlOptions,
+.StudentControlsSectionOptions,
+.FacultyControlsSectionOptions,
+.ReprotsAnalyticsControlsSectionOptions{
+    margin-bottom: 1rem;
+    width: 26%;
+    height: 6rem;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    background-color: #439DF0;
+    cursor: pointer;
+    text-align: center;
+}
+
+.StudentControlsSectionArea,
+.FacultyControlsSectionArea,
+.HomePageModificationArea,
+.ReprotsAnalyticsControlsSectionArea{
+    width: 100%; /* Set to 100% to avoid overflow issues */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.StudentControlsSectionHeader,
+.FacultyControlsSectionHeader,
+.HomePageModificationAreaHeader,
+.ReprotsAnalyticsControlsSectionHeader{
+    align-self: center;
+    border-bottom: 2px solid black;
+}

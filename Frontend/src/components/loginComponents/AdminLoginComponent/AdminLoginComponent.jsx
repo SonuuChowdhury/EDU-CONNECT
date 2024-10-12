@@ -64,7 +64,7 @@ export default function AdminLoginComponent() {
             }else if(reqType==1){
                 const ResponseData=await GetAdminData(idNumber,password,otp,reqType);
                 if(ResponseData.status==200){
-                    const token = ResponseData.token;
+                    const token = ResponseData.data.token;
                     localStorage.setItem('aot-student-login-authorization-token', token);
 
                     // Log token and navigate
