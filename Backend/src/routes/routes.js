@@ -9,6 +9,7 @@ import UpdateStudentCredentials from "../api/CredentialsData/Student/UpdateStude
 import ForgotPasswordHandeller from "../api/CredentialsData/Student/ForgotPassword.js";
 import StudentUplaodProfile from "../api/UploadProfile/Student/StudentUplaodProfile.js";
 import StudentUpdateURLProfile from "../api/UploadProfile/Student/StudentUpdateURLProfile.js";
+import ResponseVerifyToken from "../middlewares/ResponseVerifyToken.js";
 
 const router = Router();
 
@@ -27,6 +28,9 @@ router.get('/api/student-dashboard', VerifyToken, GetStudentDeatils)
 router.put('/api/student/change-password',VerifyToken,UpdateStudentCredentials)
 router.get('/api/student/change-photo',StudentUplaodProfile)
 router.put('/api/student/change-photo/update-or-delete',VerifyToken,StudentUpdateURLProfile)
+
+// Auth for the dashboards
+router.post('/auth/superadmin',ResponseVerifyToken)
 
 
 export default router;
