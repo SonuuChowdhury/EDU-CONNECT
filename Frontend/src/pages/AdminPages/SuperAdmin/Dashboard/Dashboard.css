@@ -88,6 +88,15 @@ body {
     text-align: center;
 }
 
+
+.HomePageModificationControlOptions:hover,
+.StudentControlsSectionOptions:hover,
+.FacultyControlsSectionOptions:hover,
+.ReprotsAnalyticsControlsSectionOptions:hover {
+    background-color: #2d82c7; /* Darker shade of blue for the hover effect */
+    transition: background-color 0.3s ease; /* Smooth transition for the color change */
+}
+
 .StudentControlsSectionArea,
 .FacultyControlsSectionArea,
 .HomePageModificationArea,
