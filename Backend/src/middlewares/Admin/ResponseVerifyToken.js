@@ -3,7 +3,7 @@ import jwt, { decode } from 'jsonwebtoken'
 
 dotenv.config()
 
-const ResponseVerifyToken=(req,res,next)=>{
+const AdminVerifyToken=(req,res,next)=>{
 
     const token = req.headers['aot-student-login-authorization-token'];
     if (!token) return res.status(403).json({ msg: 'Token Not Found' });
@@ -20,4 +20,4 @@ const ResponseVerifyToken=(req,res,next)=>{
     }
 }
 
-export default ResponseVerifyToken;
+export default AdminVerifyToken;
