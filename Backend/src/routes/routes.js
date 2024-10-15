@@ -34,8 +34,7 @@ import GetFaqs from "../api/Admins/Super Admin/Fetch Data/Home Page/GetFaqs.js";
 import GetFooterInfo from "../api/Admins/Super Admin/Fetch Data/Home Page/GetFooterInfo.js";
 
 // Updating Home data 
-import UpdateMasterSectionDetails from "../api/Admin Editor/Super Admin/Home Content/Master Section/UpdateMasterSection.js";
-
+import UpdateMasterSectionDetails from "../../../Frontend/src/api/Home Page contents/Change/UpdateMasterSectionDetails.js";
 const router = Router();
 
 // Serving the index.html when someone requests '/'
