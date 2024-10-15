@@ -12,15 +12,17 @@ import getAdminCredentials from "../api/CredentialsData/Admin/AdminLogin.js";
 import GetStudentDeatils from "../api/StudentData/GetStudentData.js";
 import UpdateStudentCredentials from "../api/CredentialsData/Student/UpdateStudentCredentials.js";
 import ForgotPasswordHandeller from "../api/CredentialsData/Student/ForgotPassword.js";
-import StudentUplaodProfile from "../api/UploadProfile/Student/StudentUplaodProfile.js";
 import StudentUpdateURLProfile from "../api/UploadProfile/Student/StudentUpdateURLProfile.js";
+
+// Image kit authenticationj parameters
+import ImageKitGetAuthParams from "../api/Image Kit Token/ImageKitGetAuthenticationParameters.js";
 
 // Tokens 
 import VerifyToken from "../middlewares/Student/VerifyToken.js";
 import AdminVerifyToken from "../middlewares/Admin/ResponseVerifyToken.js";
 import AdminVerifyTokenPass from "../middlewares/Admin/ResponseVerifyTokenPass.js";
 
-// Content Handellers 
+//Fetching Home data
 import GetMasterPhotos from "../api/Admins/Super Admin/Fetch Data/Home Page/GetMasterPhotosData.js";
 import GetNotices from "../api/Admins/Super Admin/Fetch Data/Home Page/GetNotices.js";
 import GetEvent from "../api/Admins/Super Admin/Fetch Data/Home Page/GetEvents.js";
@@ -30,6 +32,9 @@ import GetFacultyDetails from "../api/Admins/Super Admin/Fetch Data/Home Page/Ge
 import GetMessages from "../api/Admins/Super Admin/Fetch Data/Home Page/GetMessages.js";
 import GetFaqs from "../api/Admins/Super Admin/Fetch Data/Home Page/GetFaqs.js";
 import GetFooterInfo from "../api/Admins/Super Admin/Fetch Data/Home Page/GetFooterInfo.js";
+
+// Updating Home data 
+import UpdateMasterSectionDetails from "../api/Admin Editor/Super Admin/Home Content/Master Section/UpdateMasterSection.js";
 
 const router = Router();
 
@@ -47,14 +52,17 @@ router.post('/login/student/forgot-password',ForgotPasswordHandeller)
 // Studet routes 
 router.get('/api/student-dashboard', VerifyToken, GetStudentDeatils)
 router.put('/api/student/change-password',VerifyToken,UpdateStudentCredentials)
-router.get('/api/student/change-photo',StudentUplaodProfile)
 router.put('/api/student/change-photo/update-or-delete',VerifyToken,StudentUpdateURLProfile)
+
+// Authentication parameter for image kit
+router.get('/api/get-authentication-parameters',ImageKitGetAuthParams)
 
 // admin login 
 router.post('/login/admin',getAdminCredentials)
 // Speradmin Routes
 router.post('/auth/superadmin',AdminVerifyToken)
-// apis 
+
+// apis to get home data
 router.get('/api/super-admin/masterphotos',AdminVerifyTokenPass,GetMasterPhotos)
 router.get('/api/super-admin/notices',AdminVerifyTokenPass,GetNotices)
 router.get('/api/super-admin/events',AdminVerifyTokenPass,GetEvent)
@@ -65,6 +73,7 @@ router.get('/api/super-admin/messages',AdminVerifyTokenPass,GetMessages)
 router.get('/api/super-admin/faqs',AdminVerifyTokenPass,GetFaqs)
 router.get('/api/super-admin/footer-info',AdminVerifyTokenPass,GetFooterInfo)
 
-
+// apis to update home data 
+router.get('/api/update/mastersecetion',AdminVerifyToken,UpdateMasterSectionDetails)
 
 export default router;

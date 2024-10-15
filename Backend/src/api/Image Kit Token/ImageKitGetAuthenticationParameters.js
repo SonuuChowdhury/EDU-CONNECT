@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const StudentUploadProfile = express.Router();
-StudentUploadProfile.use(express.json());
+const ImageKitGetAuthParams = express.Router();
+ImageKitGetAuthParams.use(express.json());
 
-StudentUploadProfile.get('/api/student/change-photo', async (req, res) => {
+ImageKitGetAuthParams.get('/api/get-authentication-parameters', async (req, res) => {
 
     const ImageKitInstance = new ImageKit({
         publicKey: process.env.IMAGE_KIT_PUBLIC_KEY,
@@ -31,4 +31,4 @@ StudentUploadProfile.get('/api/student/change-photo', async (req, res) => {
     }
 });
 
-export default StudentUploadProfile;
+export default ImageKitGetAuthParams;
