@@ -13,10 +13,15 @@ import TryAgainTopBarPopup from '../../../../../components/tryAgain/tryAgain'
 import Unauthorized from '../../../../../components/Errors/Unauthorized'
 import MasterPhotoViewPopUp from './Master Section Componenets/View Image/MasterSectionViewPopUp'
 
-import GetHomePageContent from '../../../../../api/Home Page contents/Get/GetHomePageContent'
+import GetHomePageContent from '../../../../../api/Home Page contents/Get/GetHomePageContent.js'
+
+import MasterSectionUploadAndEditPopUP from './Master Section Componenets/Edit Photo/MasterSectionUploadAndEditPopUp'
 
 export default function MasterSectionEditor(){
     const navigate=useNavigate()
+
+    const [selectedData,setSelectedData]=useState('')
+    const [isUploaderOpen,setIsUploaderOpen]=useState(false)
 
     const [isLoading,setIsLoading]=useState(false)
     const [MasterSectionData , setMasterSectionData] = useState([])
@@ -27,6 +32,10 @@ export default function MasterSectionEditor(){
     const [selectedPopUpLink,setSelectedPopUpLink]=useState('')
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    const handleCloseEditorPopup = () => {
+        setIsUploaderOpen(false);
+      }
 
     const openPopup = (link) => {
         setSelectedPopUpLink(link)
@@ -78,6 +87,7 @@ export default function MasterSectionEditor(){
         {isLoading ? <Loader/> :null}
         {Authorized?null:<Unauthorized/>}
         {ShowTopUp ? <TryAgainTopBarPopup status={errorStatus} /> : null}
+        {isUploaderOpen?<MasterSectionUploadAndEditPopUP itemData={selectedData} onClose={handleCloseEditorPopup}/>:null}
 
 
         <div className="TopAreaDashboard">
@@ -112,7 +122,10 @@ export default function MasterSectionEditor(){
                                 </a>
                             </td>
                             <td className='MasterSectionTableData anchorCentre'>
-                                <a target="_blank" rel="noopener noreferrer" className='MastersectionTablesIcon'>
+                                <a target="_blank" rel="noopener noreferrer" className='MastersectionTablesIcon' onClick={()=>{
+                                    setSelectedData(data)
+                                    setIsUploaderOpen(true)
+                                }}>
                                     <FontAwesomeIcon icon={faPenToSquare} />
                                 </a>
                             </td>
@@ -121,9 +134,6 @@ export default function MasterSectionEditor(){
                     }
                 </tbody>
             </table>
-
-
-
         </div>
 
         <MasterPhotoViewPopUp isOpen={isPopupOpen} onClose={closePopup} link={selectedPopUpLink} />

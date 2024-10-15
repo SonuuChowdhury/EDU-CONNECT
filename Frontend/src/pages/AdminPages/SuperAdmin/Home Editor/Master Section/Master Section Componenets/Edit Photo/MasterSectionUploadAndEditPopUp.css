@@ -1,86 +1,99 @@
-.studentUploadBox.dragging {
-    background-color: #f0f8ff; /* Light blue background when dragging */
-    border: 2px dashed #4CAF50; /* Green dashed border when dragging */
-  }
-  
-  .studentUploadPopup {
-    height: 20rem;
-    width: 30rem;
-    background-color: white;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .studentUploadBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed #ddd;
-    padding: 30px;
-    border-radius: 10px;
-    width: 80%;
-    margin-bottom: 20px;
-  }
-  
-  .studentUploadIcon {
-    cursor: pointer;
-    margin-bottom: 10px;
-  }
-  
-  .studentUploadBtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    margin-top: 10px;
-  }
-  
-  .studentUploadBtn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .studentUploadBtn:hover:not(:disabled) {
-    transform: scale(1.1);
-  }
-  
-  .studentFileError {
-    color: red;
-    font-size: 14px;
-  }
-  
-  /* Additional CSS for Remove Button */
-  .studentRemoveBtn {
-    background-color: #ff4d4d; /* Shiny red background */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    margin-top: 10px;
-    margin-left: 20px; /* Adds space between upload and remove buttons */
-  }
-  
-  .studentRemoveBtn:hover {
-    transform: scale(1.1);
-    background-color: #ff3333; /* Darker red on hover */
-  }
-  
-  .studentRemoveBtn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+.MasterSectionUpdaterOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  backdrop-filter: blur(5px); /* Blurs the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure it's on top */
+}
+
+.MasterSectionUpdaterPopup {
+  height: auto;
+  width: 30rem;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  z-index: 1000; /* Ensure it's on top of the overlay */
+}
+
+.MasterSectionUpdaterUploadBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ddd;
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.MasterSectionUpdaterUploadIcon {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.MasterSectionUpdaterUploadBtn,
+.MasterSectionUpdaterRemoveBtn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-top: 10px;
+}
+
+.MasterSectionUpdaterUploadBtn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.MasterSectionUpdaterUploadBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.MasterSectionUpdaterUploadBtn:hover:not(:disabled),
+.MasterSectionUpdaterRemoveBtn:hover {
+  transform: scale(1.1);
+}
+
+.MasterSectionUpdaterRemoveBtn {
+  background-color: #ff4d4d;
+  color: white;
+  margin-left: 20px;
+}
+
+.MasterSectionUpdaterRemoveBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.MasterSectionUpdaterFileError {
+  color: red;
+  font-size: 14px;
+}
+
+
+.MasterPhotoTitleInput{
+  width: 80%;
+  height: 2rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.MasterSectionEditItemID{
+  margin-bottom: 0.5rem;
+}

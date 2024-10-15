@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import './MasterPhotoViewPopUp.css'
+import './MasterSectionViewPopUp.css'
 
 export default function MasterPhotoViewPopUp({ isOpen, onClose, link }) {
     if (!isOpen) return null; // Do not render the popup if it is not open
