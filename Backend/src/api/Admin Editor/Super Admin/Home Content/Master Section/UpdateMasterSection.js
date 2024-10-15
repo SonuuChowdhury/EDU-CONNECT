@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { masterphoto } from '../../../../../models/home/masterPhotosModel';
+import { masterphoto } from '../../../../../models/home/masterPhotosModel.js';
 
 const UpdateMasterSectionDetails = express.Router();
 UpdateMasterSectionDetails.use(express.json());

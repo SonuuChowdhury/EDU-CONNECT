@@ -11,6 +11,7 @@ import BasicNavbar from '../../../../../components/basicNavbar/basicNavbar'
 import Loader from '../../../../../components/loader/loader'
 import TryAgainTopBarPopup from '../../../../../components/tryAgain/tryAgain'
 import Unauthorized from '../../../../../components/Errors/Unauthorized'
+import MasterPhotoViewPopUp from './Master Section Componenets/View Image/MasterSectionViewPopUp'
 
 import GetHomePageContent from '../../../../../api/Home Page contents/Get/GetHomePageContent'
 
@@ -23,7 +24,15 @@ export default function MasterSectionEditor(){
     const [ShowTopUp,SetShowTopUp]=useState(false)
     const [Authorized,setAuthorized]=useState(true)
     const [refresh,setRefresh]=useState(false)
-    const [dataChanged,setDataChanged]=useState(false)
+    const [selectedPopUpLink,setSelectedPopUpLink]=useState('')
+
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    const openPopup = (link) => {
+        setSelectedPopUpLink(link)
+        setIsPopupOpen(true)
+    }
+    const closePopup = () => setIsPopupOpen(false);
     
 
     useEffect(() => {
@@ -53,9 +62,7 @@ export default function MasterSectionEditor(){
     
         getData();
     }, [refresh]);
-    
-
-
+ 
     useEffect(() => {
         if (ShowTopUp) {
             const timer = setTimeout(() => {
@@ -76,7 +83,7 @@ export default function MasterSectionEditor(){
         <div className="TopAreaDashboard">
             <span className="SuperAdminHeaders">
                 <span className="SuperAdminHeader">WELCOME SUPER ADMIN</span>
-                <span className="SuperAdminSubHeader">DASHBOARD CONTROL</span>
+                <span className="SuperAdminSubHeader">MASTER SECTION</span>
             </span>
             <button className="SuperAdminLogOutFeature" onClick={()=>navigate('/super-admin/admin-dashboard')}>{<FontAwesomeIcon icon={faArrowUpRightFromSquare}/>} Dashboard</button>
         </div>
@@ -89,7 +96,7 @@ export default function MasterSectionEditor(){
                         <th className='MasterSectionTableHeader'>Serial</th>
                         <th className='MasterSectionTableHeader'>Tittle</th>
                         <th className='MasterSectionTableHeader'>View Photo</th>
-                        <th className='MasterSectionTableHeader'>Edit Photo</th>
+                        <th className='MasterSectionTableHeader'>Edit Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,13 +105,14 @@ export default function MasterSectionEditor(){
                             <td className='MasterSectionTableData'>{data._id}</td>
                             <td className='MasterSectionTableData'>{data.serial}</td>
                             <td className='MasterSectionTableData'>{data.title}</td>
-                            <td className='MasterSectionTableData'>
-                                <a href={data.link} target="_blank" rel="noopener noreferrer" className='MastersectionTablesIcon'>
+                            
+                            <td className='MasterSectionTableData anchorCentre'>
+                                <a onClick={()=>openPopup(data.link)} target="_blank" rel="noopener noreferrer" className='MastersectionTablesIcon'>
                                     <FontAwesomeIcon icon={faEye} />
                                 </a>
                             </td>
-                            <td className='MasterSectionTableData'>
-                                <a href={data.link} target="_blank" rel="noopener noreferrer" className='MastersectionTablesIcon'>
+                            <td className='MasterSectionTableData anchorCentre'>
+                                <a target="_blank" rel="noopener noreferrer" className='MastersectionTablesIcon'>
                                     <FontAwesomeIcon icon={faPenToSquare} />
                                 </a>
                             </td>
@@ -114,18 +122,11 @@ export default function MasterSectionEditor(){
                 </tbody>
             </table>
 
-            <button className={`MasterSectionEditorButton ${dataChanged ? 'active' : 'disabled'}`} disabled={!dataChanged}
-                    onClick={() => {
-                        console.log("clicked")
-                        setDataChanged(true); 
-                    }}
-                >
-                    SUBMIT CHANGES
-            </button>
-
 
 
         </div>
+
+        <MasterPhotoViewPopUp isOpen={isPopupOpen} onClose={closePopup} link={selectedPopUpLink} />
 
     </>
 }

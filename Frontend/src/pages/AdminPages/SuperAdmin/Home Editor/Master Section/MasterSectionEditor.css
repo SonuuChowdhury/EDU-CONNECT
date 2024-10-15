@@ -21,66 +21,10 @@
     background-color: #f2f2f2;
   }
 
-  .MasterSectionEditorButton{
-    width: 8rem;
-    height: 3rem;
-    background-color: greenyellow;
-  }
+ .anchorCentre{
+  text-align: center;
+ }
 
-  /* MasterSectionEditor.css */
-.MasterSectionEditorButton {
-    margin-top: 1rem;
-    margin-right: 2rem;
-    background-color: #32cd32; /* Lime green */
-    color: black;
-    font-weight: bolder;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(50, 205, 50, 0.4);
-    align-self: flex-end; /* Align the button to the right */
-    text-align: center;
-
-}
-
-/* Add a shiny effect */
-.MasterSectionEditorButton::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 50%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: skewX(-25deg);
-    transition: left 0.5s;
-}
-
-
-.MasterSectionEditorButton.active {
-    background-color: #32cd32; /* Lime green */
-}
-
-.MasterSectionEditorButton.disabled {
-    background-color: gray;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-
-.MasterSectionEditorButton.active:hover {
-    background-color: #28a745; /* Darker green for hover effect */
-    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
-    transform: translateY(-3px);
-}
-
-
-
-.MasterSectionEditorButton.active:hover {
-    background-color: #28a745; /* Darker green for hover effect */
-    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
-    transform: translateY(-3px);
-}
-
- 
+ .MastersectionTablesIcon{
+  cursor: pointer;
+ }
