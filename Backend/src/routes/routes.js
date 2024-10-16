@@ -75,6 +75,6 @@ router.get('/api/super-admin/faqs',AdminVerifyTokenPass,GetFaqs)
 router.get('/api/super-admin/footer-info',AdminVerifyTokenPass,GetFooterInfo)
 
 // apis to update home data 
-router.put('/api/update/mastersecetion',AdminVerifyToken,UpdateMasterSectionDetails)
+router.put('/api/update/mastersecetion',AdminVerifyTokenPass,UpdateMasterSectionDetails)
 
 export default router;
