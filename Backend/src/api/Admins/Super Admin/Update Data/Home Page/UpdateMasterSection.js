@@ -13,10 +13,10 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
     try{
         if(deleteItem){
             const DeleteStatus = await masterphoto.findByIdAndDelete(itemID)
-            if(!DeleteStatus){
-                res.status(400).json({msg:"Item can not be Deleted"})
-            }else{
+            if(DeleteStatus){
                 res.status(200).json({msg:"Item Deleted Succesfully"})
+            }else{
+                res.status(400).json({msg:"Item can not be Deleted"})
             }
 
         }else{
