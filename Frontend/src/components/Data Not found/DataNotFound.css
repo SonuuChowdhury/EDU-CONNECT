@@ -1,0 +1,22 @@
+.dataNotFoundContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .dataNotFoundIcon {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1rem;
+    color: #555;
+  }
+  
+  .dataNotFoundMessage {
+    font-size: 1.5rem;
+    color: #555;
+    margin: 0;
+  }
+  

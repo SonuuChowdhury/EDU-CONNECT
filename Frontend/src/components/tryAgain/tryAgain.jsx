@@ -36,6 +36,14 @@ function GetPopUpMessage(status) {
       return "Invalid UID Number..."
     case 13:
       return "Enter the credentials"
+    case 14:
+      return "Item Deleted Succesfully"
+    case 15:
+      return "Failed to Delete Item"
+    case 16:
+      return "Item Updated Succesfully"
+    case 17:
+      return "Failed to Update Item"
     default:
       return "Something went wrong!";
   }

@@ -41,6 +41,8 @@ export default function MasterSectionUploadAndEditPopUP(params) {
       setSelectedFile(file);
       setFileError('');
       setDisplayFileName(shortenLog(file.name));
+      setDataChanged(true)
+
     } else {
       setSelectedFile(null);
       setFileError('File must be less than 10MB.');
@@ -79,7 +81,7 @@ export default function MasterSectionUploadAndEditPopUP(params) {
   useEffect(() => {
     setTimeout(() => {
       reload ? window.location.reload() : null;
-    }, 3000);
+    }, 1000);
   }, [reload]);
 
   const handelUpdateItem = async () => {
@@ -87,10 +89,11 @@ export default function MasterSectionUploadAndEditPopUP(params) {
     try {
       const UploadStatus = await UpdateMasterSectionDetails(selectedFile, itemData);
       if (UploadStatus.status === 500) {
-        setTopMessageBarStatus(500);
+        console.log(UploadStatus)
+        setTopMessageBarStatus(17);
         setShowTopMessageBar(true);
       } else if (UploadStatus.status === 200) {
-        setTopMessageBarStatus(9);
+        setTopMessageBarStatus(16);
         setShowTopMessageBar(true);
         SetReload(true);
       }
@@ -106,9 +109,9 @@ export default function MasterSectionUploadAndEditPopUP(params) {
   const handleDeleteItem = async () => {
     SetIsLoading(true);
     try {
-      const RemoveStatus = await UpdateMasterSectionDetails(selectedFile, params.StudentData, true);
+      const RemoveStatus = await UpdateMasterSectionDetails(selectedFile, itemData, true);
       if (RemoveStatus.status == 200) {
-        setTopMessageBarStatus(10);
+        setTopMessageBarStatus(14);
         setShowTopMessageBar(true);
         SetReload(true);
       }

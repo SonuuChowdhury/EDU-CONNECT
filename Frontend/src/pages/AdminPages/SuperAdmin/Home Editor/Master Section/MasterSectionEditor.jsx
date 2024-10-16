@@ -12,6 +12,7 @@ import Loader from '../../../../../components/loader/loader'
 import TryAgainTopBarPopup from '../../../../../components/tryAgain/tryAgain'
 import Unauthorized from '../../../../../components/Errors/Unauthorized'
 import MasterPhotoViewPopUp from './Master Section Componenets/View Image/MasterSectionViewPopUp'
+import DataNotFound from '../../../../../components/Data Not found/DataNotFound.jsx'
 
 import GetHomePageContent from '../../../../../api/Home Page contents/Get/GetHomePageContent.js'
 
@@ -30,6 +31,7 @@ export default function MasterSectionEditor(){
     const [Authorized,setAuthorized]=useState(true)
     const [refresh,setRefresh]=useState(false)
     const [selectedPopUpLink,setSelectedPopUpLink]=useState('')
+    const [dataEmpty,setDataEmpty]=useState(false)
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -53,6 +55,9 @@ export default function MasterSectionEditor(){
                     setAuthorized(false);
                 } else if (data.status === 200) {
                     setMasterSectionData(data.data);
+                    if(((data.data).length)==0){
+                        setDataEmpty(true)
+                    }
                 } else {
                     setErrorStatus(500);
                     SetShowTopUp(true)
@@ -135,6 +140,7 @@ export default function MasterSectionEditor(){
                 </tbody>
             </table>
         </div>
+        {dataEmpty? <DataNotFound/> : null}
 
         <MasterPhotoViewPopUp isOpen={isPopupOpen} onClose={closePopup} link={selectedPopUpLink} />
 
