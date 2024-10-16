@@ -24,11 +24,13 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
             if(!item){
                 res.status(404).json({msg:"item NOT found"})
             }else{
+                console.log(tittle)
              const UpdatedItem = await masterphoto.findByIdAndUpdate(item._id,{
                     $set:{
+                        title :tittle,
                         link:url,
-                        tittle :tittle
-                    }
+                        
+                    },
                 },{ new: true })
     
                 if(!UpdatedItem){
