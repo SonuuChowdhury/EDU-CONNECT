@@ -8,10 +8,10 @@ UpdateMasterSectionDetails.use(express.json());
 
 UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) => {
     const { _id } = req.user;
-    const {itemID, url, tittle, update } = req.body;
+    const {itemID, url, tittle, deleteItem } = req.body;
 
     try{
-        if(update){
+        if(deleteItem){
             const DeleteStatus = await masterphoto.findByIdAndDelete(itemID)
             if(!DeleteStatus){
                 res.status(400).json({msg:"Item can not be Deleted"})
