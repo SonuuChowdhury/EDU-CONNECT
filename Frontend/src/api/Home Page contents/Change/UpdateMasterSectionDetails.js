@@ -67,7 +67,7 @@ export default async function UpdateMasterSectionDetails(FileData, ItemData, Del
                 signature: authData.signature,
                 expire: authData.expire
             });
-            UploadedimageURL = UploadStatus.url;
+            UploadedimageURL = `${UploadStatus.url}?updatedAt=${Date.now()}`;
 
         }else{
             fileUpdating = false;

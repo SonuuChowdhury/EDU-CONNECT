@@ -34,13 +34,13 @@ export default function StudentUploadImageComponent(params) {
   };
 
   const validateFile = (file) => {
-    if (file && file.size < 2 * 1024 * 1024) {
+    if (file && file.size < 10 * 1024 * 1024) {
       setSelectedFile(file);
       setFileError('');
       setDisplayFileName(shortenLog(file.name))
     } else {
       setSelectedFile(null);
-      setFileError('File must be less than 2MB.');
+      setFileError('File must be less than 10MB.');
     }
   };
 

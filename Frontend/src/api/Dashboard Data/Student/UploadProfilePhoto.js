@@ -64,7 +64,7 @@ export default async function UploadStudentProfilePhoto(FileData, StudentData, R
             expire: authData.expire
         });
 
-        const imageURL = UploadStatus.url;
+        const imageURL = `${UploadStatus.url}?updateAt=${Date.now()}`;
 
         if(UploadStatus.$ResponseMetadata.statusCode===200){
             const UpdateOnDataBaseStatus = await axios.put('https://institute-site-az-bug-busters.onrender.com/api/student/change-photo/update-or-delete',{

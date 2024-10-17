@@ -81,7 +81,7 @@ export default function StudentDashboardPage() {
     useEffect(() => {
         if (showProfile && data.profile) {
             // Append a timestamp to the URL to prevent caching issues
-            const updatedProfileUrl = `${data.profile}?updatedAt=${new Date().getTime()}`;
+            const updatedProfileUrl = data.profile;
             setProfilePictureUrl(updatedProfileUrl);
         } else {
             setProfilePictureUrl('defaultProfile.jpg');
