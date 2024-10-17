@@ -29,7 +29,7 @@ export default async function UploadStudentProfilePhoto(FileData, StudentData, R
 
         }
         // Fetch authentication details from your backend
-        const authResponse = await fetch("https://institute-site-az-bug-busters.onrender.com/api/student/change-photo");
+        const authResponse = await fetch("https://institute-site-az-bug-busters.onrender.com/api/get-authentication-parameters");
 
         if (!authResponse.ok) {
             return {'status':500}; 
@@ -44,7 +44,7 @@ export default async function UploadStudentProfilePhoto(FileData, StudentData, R
         const ImageKitInstance = new ImageKit({
             publicKey: "public_t9hfh2XHEFiWJT3/VxAchbic9EQ=",
             urlEndpoint: "https://ik.imagekit.io/azzbbadmin/",
-            authenticationEndpoint: "https://institute-site-az-bug-busters.onrender.com/api/student/change-photo/"
+            authenticationEndpoint: "https://institute-site-az-bug-busters.onrender.com/api/get-authentication-parameters"
         });
 
         const FileName = `${StudentData.roll}_Profile_Picture`;

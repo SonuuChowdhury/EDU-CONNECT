@@ -46,7 +46,7 @@ export default function StudentLoginComponent() {
                 setShowTopPopUp(true)
             }
             else if (fetchedStudentData.status==404){
-                setTopPopUPValue(404)
+                setTopPopUPValue(8)
                 setShowTopPopUp(true)
             }
             else if(fetchedStudentData.status==400){
