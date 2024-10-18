@@ -3,6 +3,7 @@
 import mongoose from 'mongoose';
 
 const detailsSchema = new mongoose.Schema({
+  backgroundPhoto:String,
   profCount:Number,
   courseCount:Number,
   currentStudentCount:Number,

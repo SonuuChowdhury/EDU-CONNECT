@@ -1,18 +1,20 @@
 import express from 'express';
 
-import { masterphoto } from '../../../../../models/home/masterPhotosModel.js';
+import { notice } from '../../../../../models/home/noticemodel';
 
-const UpdateMasterSectionDetails = express.Router();
-UpdateMasterSectionDetails.use(express.json());
+const UpdateNoticeSectionDetails = express.Router();
+UpdateNoticeSectionDetails.use(express.json());
 
 
-UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) => {
+UpdateNoticeSectionDetails.put('/api/update/noticesection', async (req, res) => {
+    const currentDate = new Date();
+    const isoStringCurrent = currentDate.toISOString();
     const { _id } = req.user;
-    const {itemID,serial, url, tittle, deleteItem,createNew } = req.body;
+    const {serial,itemID, link, tittle, description, deleteItem ,createNew} = req.body;
 
     try{
         if(deleteItem){
-            const DeleteStatus = await masterphoto.findByIdAndDelete(itemID)
+            const DeleteStatus = await notice.findByIdAndDelete(itemID)
             if(DeleteStatus){
                 res.status(200).json({msg:"Item Deleted Succesfully"})
             }else{
@@ -20,10 +22,12 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
             }
 
         }else if(createNew){
-            const newItem = new masterphoto({
+            const newItem = new notice({
                 serial:serial,
-                title :tittle,
-                link:url,
+                date:isoStringCurrent,
+                tittle:tittle,
+                description:description,
+                link:link
             })
 
             try {
@@ -40,15 +44,18 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
 
 
         } else{
-            const item = await masterphoto.findById(itemID);
+
+            const item = await notice.findById(itemID);
             if(!item){
                 res.status(404).json({msg:"item NOT found"})
             }else{
-             const UpdatedItem = await masterphoto.findByIdAndUpdate(item._id,{
+             const UpdatedItem = await notice.findByIdAndUpdate(item._id,{
                     $set:{
                         serial:serial,
-                        title :tittle,
-                        link:url,
+                        tittle: tittle,
+                        link: link,
+                        description: description,
+                        date: isoStringCurrent,
                     },
                 },{ new: true })
     
@@ -66,4 +73,4 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
     }
 });
 
-export default UpdateMasterSectionDetails;
+export default UpdateNoticeSectionDetails;

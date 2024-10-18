@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 const messageSchema = new mongoose.Schema({
     serial:Number,
     photo:String,
-    tittle:String,
+    title:String,
     name:String,
     description:String,
 });

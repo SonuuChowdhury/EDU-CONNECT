@@ -1,18 +1,18 @@
 import express from 'express';
 
-import { masterphoto } from '../../../../../models/home/masterPhotosModel.js';
+import { facility } from '../../../../../models/home/facilityModel';
 
-const UpdateMasterSectionDetails = express.Router();
-UpdateMasterSectionDetails.use(express.json());
+const UpdatefacilitiesSectionDetails = express.Router();
+UpdatefacilitiesSectionDetails.use(express.json());
 
 
-UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) => {
+UpdatefacilitiesSectionDetails.put('/api/update/facilitiessection', async (req, res) => {
     const { _id } = req.user;
-    const {itemID,serial, url, tittle, deleteItem,createNew } = req.body;
+    const {itemID, tittle, deleteItem ,photoLink,serial,createNew} = req.body;
 
     try{
         if(deleteItem){
-            const DeleteStatus = await masterphoto.findByIdAndDelete(itemID)
+            const DeleteStatus = await facility.findByIdAndDelete(itemID)
             if(DeleteStatus){
                 res.status(200).json({msg:"Item Deleted Succesfully"})
             }else{
@@ -20,10 +20,10 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
             }
 
         }else if(createNew){
-            const newItem = new masterphoto({
+            const newItem = new facility({
                 serial:serial,
-                title :tittle,
-                link:url,
+                photo:photoLink,
+                title:tittle,
             })
 
             try {
@@ -37,18 +37,17 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
             } catch (error) {
                 res.status(400).json({msg:"Item can not be Added"})
             }
+        }else{
 
-
-        } else{
-            const item = await masterphoto.findById(itemID);
+            const item = await facility.findById(itemID);
             if(!item){
                 res.status(404).json({msg:"item NOT found"})
             }else{
-             const UpdatedItem = await masterphoto.findByIdAndUpdate(item._id,{
+             const UpdatedItem = await facility.findByIdAndUpdate(item._id,{
                     $set:{
                         serial:serial,
-                        title :tittle,
-                        link:url,
+                        title: tittle,
+                        photo:photoLink,
                     },
                 },{ new: true })
     
@@ -66,4 +65,4 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
     }
 });
 
-export default UpdateMasterSectionDetails;
+export default UpdatefacilitiesSectionDetails;

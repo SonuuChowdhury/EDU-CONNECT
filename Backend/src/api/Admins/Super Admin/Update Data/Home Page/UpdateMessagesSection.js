@@ -1,18 +1,19 @@
 import express from 'express';
 
-import { masterphoto } from '../../../../../models/home/masterPhotosModel.js';
+import { message } from '../../../../../models/home/messageModel';
 
-const UpdateMasterSectionDetails = express.Router();
-UpdateMasterSectionDetails.use(express.json());
+const UpdateMessagesSectionDetails = express.Router();
+UpdateMessagesSectionDetails.use(express.json());
 
 
-UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) => {
+UpdateMessagesSectionDetails.put('/api/update/messagesection', async (req, res) => {
+
     const { _id } = req.user;
-    const {itemID,serial, url, tittle, deleteItem,createNew } = req.body;
+    const {serial,itemID, name, tittle, description, deleteItem ,photoLink, createNew} = req.body;
 
     try{
         if(deleteItem){
-            const DeleteStatus = await masterphoto.findByIdAndDelete(itemID)
+            const DeleteStatus = await message.findByIdAndDelete(itemID)
             if(DeleteStatus){
                 res.status(200).json({msg:"Item Deleted Succesfully"})
             }else{
@@ -20,10 +21,12 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
             }
 
         }else if(createNew){
-            const newItem = new masterphoto({
+            const newItem = new message({
                 serial:serial,
-                title :tittle,
-                link:url,
+                photo:photoLink,
+                title:tittle,
+                name:name,
+                description:description,
             })
 
             try {
@@ -37,18 +40,19 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
             } catch (error) {
                 res.status(400).json({msg:"Item can not be Added"})
             }
+        }else{
 
-
-        } else{
-            const item = await masterphoto.findById(itemID);
+            const item = await message.findById(itemID);
             if(!item){
                 res.status(404).json({msg:"item NOT found"})
             }else{
-             const UpdatedItem = await masterphoto.findByIdAndUpdate(item._id,{
+             const UpdatedItem = await message.findByIdAndUpdate(item._id,{
                     $set:{
                         serial:serial,
-                        title :tittle,
-                        link:url,
+                        photo:photoLink,
+                        title:tittle,
+                        name:name,
+                        description:description,
                     },
                 },{ new: true })
     
@@ -66,4 +70,4 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
     }
 });
 
-export default UpdateMasterSectionDetails;
+export default UpdateMessagesSectionDetails;

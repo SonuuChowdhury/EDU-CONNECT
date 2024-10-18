@@ -1,18 +1,21 @@
 import express from 'express';
 
-import { masterphoto } from '../../../../../models/home/masterPhotosModel.js';
+import { event } from '../../../../../models/home/eventsmodel';
 
-const UpdateMasterSectionDetails = express.Router();
-UpdateMasterSectionDetails.use(express.json());
+const UpdateEventSectionDetails = express.Router();
+UpdateEventSectionDetails.use(express.json());
 
 
-UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) => {
+UpdateEventSectionDetails.put('/api/update/eventsection', async (req, res) => {
+    const currentDate = new Date();
+    const isoStringCurrent = currentDate.toISOString();
+
     const { _id } = req.user;
-    const {itemID,serial, url, tittle, deleteItem,createNew } = req.body;
+    const {serial,itemID, link, tittle, description, deleteItem ,photoLink, createNew} = req.body;
 
     try{
         if(deleteItem){
-            const DeleteStatus = await masterphoto.findByIdAndDelete(itemID)
+            const DeleteStatus = await event.findByIdAndDelete(itemID)
             if(DeleteStatus){
                 res.status(200).json({msg:"Item Deleted Succesfully"})
             }else{
@@ -20,10 +23,13 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
             }
 
         }else if(createNew){
-            const newItem = new masterphoto({
+            const newItem = new event({
                 serial:serial,
-                title :tittle,
-                link:url,
+                photo:photoLink,
+                tittle:tittle,
+                description:description,
+                link:link,
+                date:isoStringCurrent
             })
 
             try {
@@ -37,18 +43,21 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
             } catch (error) {
                 res.status(400).json({msg:"Item can not be Added"})
             }
+        }else{
+            const currentDate = new Date();
+            const isoStringCurrent = currentDate.toISOString();
 
-
-        } else{
-            const item = await masterphoto.findById(itemID);
+            const item = await event.findById(itemID);
             if(!item){
                 res.status(404).json({msg:"item NOT found"})
             }else{
-             const UpdatedItem = await masterphoto.findByIdAndUpdate(item._id,{
+             const UpdatedItem = await event.findByIdAndUpdate(item._id,{
                     $set:{
-                        serial:serial,
-                        title :tittle,
-                        link:url,
+                        tittle: tittle,
+                        link: link,
+                        description: description,
+                        date: isoStringCurrent,
+                        photo:photoLink,
                     },
                 },{ new: true })
     
@@ -66,4 +75,4 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
     }
 });
 
-export default UpdateMasterSectionDetails;
+export default UpdateEventSectionDetails;

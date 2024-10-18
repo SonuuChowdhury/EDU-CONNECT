@@ -1,18 +1,20 @@
 import express from 'express';
 
-import { masterphoto } from '../../../../../models/home/masterPhotosModel.js';
+import { achievement } from '../../../../../models/home/achievementModel';
 
-const UpdateMasterSectionDetails = express.Router();
-UpdateMasterSectionDetails.use(express.json());
+const UpdateAchievementSectionDetails = express.Router();
+UpdateAchievementSectionDetails.use(express.json());
 
 
-UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) => {
+UpdateAchievementSectionDetails.put('/api/update/achievementsection', async (req, res) => {
+    const currentDate = new Date();
+    const isoStringCurrent = currentDate.toISOString();
     const { _id } = req.user;
-    const {itemID,serial, url, tittle, deleteItem,createNew } = req.body;
+    const {itemID, link, tittle, description, deleteItem ,serial ,photoLink, createNew} = req.body;
 
     try{
         if(deleteItem){
-            const DeleteStatus = await masterphoto.findByIdAndDelete(itemID)
+            const DeleteStatus = await achievement.findByIdAndDelete(itemID)
             if(DeleteStatus){
                 res.status(200).json({msg:"Item Deleted Succesfully"})
             }else{
@@ -20,10 +22,13 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
             }
 
         }else if(createNew){
-            const newItem = new masterphoto({
+            const newItem = new achievement({
                 serial:serial,
-                title :tittle,
-                link:url,
+                date:isoStringCurrent,
+                tittle:tittle,
+                photo:photoLink,
+                description:description,
+                link:link
             })
 
             try {
@@ -39,16 +44,21 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
             }
 
 
-        } else{
-            const item = await masterphoto.findById(itemID);
+        }else{
+            const currentDate = new Date();
+            const isoStringCurrent = currentDate.toISOString();
+
+            const item = await achievement.findById(itemID);
             if(!item){
                 res.status(404).json({msg:"item NOT found"})
             }else{
-             const UpdatedItem = await masterphoto.findByIdAndUpdate(item._id,{
+             const UpdatedItem = await achievement.findByIdAndUpdate(item._id,{
                     $set:{
-                        serial:serial,
-                        title :tittle,
-                        link:url,
+                        tittle: tittle,
+                        link: link,
+                        description: description,
+                        date: isoStringCurrent,
+                        photo:photoLink,
                     },
                 },{ new: true })
     
@@ -66,4 +76,4 @@ UpdateMasterSectionDetails.put('/api/update/mastersecetion', async (req, res) =>
     }
 });
 
-export default UpdateMasterSectionDetails;
+export default UpdateAchievementSectionDetails;
