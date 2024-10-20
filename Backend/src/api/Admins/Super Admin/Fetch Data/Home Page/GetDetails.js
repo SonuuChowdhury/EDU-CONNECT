@@ -1,9 +1,9 @@
 import express from 'express';
 import { detail } from '../../../../../models/home/detailsModel.js';
-const GetFacultyDetails = express.Router();
-GetFacultyDetails.use(express.json());
+const GetDetails = express.Router();
+GetDetails.use(express.json());
 
-GetFacultyDetails.get('/api/super-admin/faculty-details', async (req, res) => {
+GetDetails.get('/api/super-admin/details', async (req, res) => {
     try{
         const GetFacultyDetailsData= await detail.find()
         if(!GetFacultyDetailsData){
@@ -15,7 +15,8 @@ GetFacultyDetails.get('/api/super-admin/faculty-details', async (req, res) => {
     }
 });                
 
-export default GetFacultyDetails;
+
+export default GetDetails;
 
 
 

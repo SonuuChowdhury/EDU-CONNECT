@@ -1,18 +1,21 @@
 import express from 'express';
 
-import { facility } from '../../../../../models/home/facilityModel.js';
+import {faq} from '../../../../../models/home/faq.js'
 
-const UpdatefacilitiesSectionDetails = express.Router();
-UpdatefacilitiesSectionDetails.use(express.json());
+const UpdateFaqsSectionDetails = express.Router();
+UpdateFaqsSectionDetails.use(express.json());
 
 
-UpdatefacilitiesSectionDetails.put('/api/update/facilitiessection', async (req, res) => {
+UpdateFaqsSectionDetails.put('/api/update/faqsection', async (req, res) => {
+    const currentDate = new Date();
+    const isoStringCurrent = currentDate.toISOString();
+
     const { _id } = req.user;
-    const {itemID, tittle, deleteItem ,photoLink,serial,createNew} = req.body;
+    const {serial,itemID, question, answer, deleteItem ,createNew} = req.body;
 
     try{
         if(deleteItem){
-            const DeleteStatus = await facility.findByIdAndDelete(itemID)
+            const DeleteStatus = await faq.findByIdAndDelete(itemID)
             if(DeleteStatus){
                 res.status(200).json({msg:"Item Deleted Succesfully"})
             }else{
@@ -20,10 +23,11 @@ UpdatefacilitiesSectionDetails.put('/api/update/facilitiessection', async (req, 
             }
 
         }else if(createNew){
-            const newItem = new facility({
+            const newItem = new faq({
                 serial:serial,
-                photo:photoLink,
-                title:tittle,
+                question:question,
+                answer:answer,
+                date:isoStringCurrent,
             })
 
             try {
@@ -38,16 +42,16 @@ UpdatefacilitiesSectionDetails.put('/api/update/facilitiessection', async (req, 
                 res.status(400).json({msg:"Item can not be Added"})
             }
         }else{
-
-            const item = await facility.findById(itemID);
+            const item = await faq.findById(itemID);
             if(!item){
                 res.status(404).json({msg:"item NOT found"})
             }else{
-             const UpdatedItem = await facility.findByIdAndUpdate(item._id,{
+             const UpdatedItem = await message.findByIdAndUpdate(item._id,{
                     $set:{
                         serial:serial,
-                        title: tittle,
-                        photo:photoLink,
+                        question:question,
+                        answer:answer,
+                        date:isoStringCurrent,
                     },
                 },{ new: true })
     
@@ -65,4 +69,4 @@ UpdatefacilitiesSectionDetails.put('/api/update/facilitiessection', async (req, 
     }
 });
 
-export default UpdatefacilitiesSectionDetails;
+export default UpdateFaqsSectionDetails;

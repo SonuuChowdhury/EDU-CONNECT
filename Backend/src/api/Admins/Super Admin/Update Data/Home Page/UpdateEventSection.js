@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { event } from '../../../../../models/home/eventsmodel';
+import { event } from '../../../../../models/home/eventsmodel.js';
 
 const UpdateEventSectionDetails = express.Router();
 UpdateEventSectionDetails.use(express.json());

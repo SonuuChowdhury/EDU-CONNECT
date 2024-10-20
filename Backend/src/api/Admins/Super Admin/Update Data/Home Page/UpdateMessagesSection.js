@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { message } from '../../../../../models/home/messageModel';
+import { message } from '../../../../../models/home/messageModel.js';
 
 const UpdateMessagesSectionDetails = express.Router();
 UpdateMessagesSectionDetails.use(express.json());
@@ -41,7 +41,6 @@ UpdateMessagesSectionDetails.put('/api/update/messagesection', async (req, res) 
                 res.status(400).json({msg:"Item can not be Added"})
             }
         }else{
-
             const item = await message.findById(itemID);
             if(!item){
                 res.status(404).json({msg:"item NOT found"})

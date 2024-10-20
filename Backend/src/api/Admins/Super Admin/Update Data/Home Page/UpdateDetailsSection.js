@@ -1,12 +1,12 @@
 import express from 'express';
 
-import { detail } from '../../../../../models/home/detailsModel';
+import { detail } from '../../../../../models/home/detailsModel.js';
 
-const UpdateEventSectionDetails = express.Router();
-UpdateEventSectionDetails.use(express.json());
+const UpdateDetailsSectionDetails = express.Router();
+UpdateDetailsSectionDetails.use(express.json());
  
 
-UpdateEventSectionDetails.put('/api/update/detailsection', async (req, res) => {
+UpdateDetailsSectionDetails.put('/api/update/detailsection', async (req, res) => {
     const { _id } = req.user;
     const {itemID, PhotoLink, profCount, alumniCount,currentStudentCount,courseCount, deleteItem } = req.body;
 
@@ -48,4 +48,4 @@ UpdateEventSectionDetails.put('/api/update/detailsection', async (req, res) => {
     }
 });
 
-export default UpdateEventSectionDetails;
+export default UpdateDetailsSectionDetails;

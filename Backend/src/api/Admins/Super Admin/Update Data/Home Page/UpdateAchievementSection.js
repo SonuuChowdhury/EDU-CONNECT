@@ -1,9 +1,10 @@
 import express from 'express';
 
-import { achievement } from '../../../../../models/home/achievementModel';
+import { achievement } from '../../../../../models/home/achievementModel.js';
 
 const UpdateAchievementSectionDetails = express.Router();
 UpdateAchievementSectionDetails.use(express.json());
+
 
 
 UpdateAchievementSectionDetails.put('/api/update/achievementsection', async (req, res) => {

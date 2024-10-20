@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { notice } from '../../../../../models/home/noticemodel';
+import { notice } from '../../../../../models/home/noticemodel.js';
 
 const UpdateNoticeSectionDetails = express.Router();
 UpdateNoticeSectionDetails.use(express.json());
