@@ -1,7 +1,7 @@
 import ImageKit from 'imagekit-javascript';
 import axios from 'axios';
 
-export default async function UpdateMasterSectionDetails(FileData, ItemData, DeleteItem) {
+export default async function AddMasterSectionDetails(FileData, tittle) {
     try {
         const token=localStorage.getItem('aot-student-login-authorization-token')
         if (!token) {
@@ -9,31 +9,9 @@ export default async function UpdateMasterSectionDetails(FileData, ItemData, Del
             return {'status':500}; 
         }
 
-        if(DeleteItem){
-            try{
-                const UpdateOnDataBaseStatus = await axios.put('https://institute-site-az-bug-busters.onrender.com/api/update/mastersecetion',{
-                    deleteItem:true,
-                    itemID:ItemData._id
-                },{
-                    headers: {
-                        'aot-student-login-authorization-token':token
-                    }})
-                if(UpdateOnDataBaseStatus.status==200){
-                    return { status: 200 };
-                }else{
-                    console.log(UpdateOnDataBaseStatus)
-                    return { status: 500};
-                }
-            }catch(err){
-                console.log(err)
-                return { status: 500 };
-            }
-
-        }
-
         let fileUpdating=true;
         let UploadedimageURL;
-        const FileName = `${ItemData._id}_MasterPhoto`;
+        const FileName = `${tittle}_MasterPhoto`;
         if (FileData) {
             // Fetch authentication details from your backend
             const authResponse = await fetch("https://institute-site-az-bug-busters.onrender.com/api/get-authentication-parameters");
@@ -75,25 +53,9 @@ export default async function UpdateMasterSectionDetails(FileData, ItemData, Del
 
         if(fileUpdating){
             const UpdateOnDataBaseStatus = await axios.put('https://institute-site-az-bug-busters.onrender.com/api/update/mastersecetion',{
-                itemID:ItemData._id,
-                url:UploadedimageURL,
-                tittle:ItemData.title
-            },{
-                headers: {
-                    'aot-student-login-authorization-token':token
-                }})
-            if(UpdateOnDataBaseStatus.status==200){
-                return { status: 200 };
-            }else{
-                console.log(UpdateOnDataBaseStatus)
-                return { status: 500,msg:"Upload error" };
-            }
-        }else if(!fileUpdating){
-
-            const UpdateOnDataBaseStatus = await axios.put('https://institute-site-az-bug-busters.onrender.com/api/update/mastersecetion',{
-                itemID:ItemData._id,
-                url:ItemData.link,
-                tittle:ItemData.title
+                createNew:true,
+                tittle:tittle,
+                url:UploadedimageURL
             },{
                 headers: {
                     'aot-student-login-authorization-token':token
@@ -105,11 +67,8 @@ export default async function UpdateMasterSectionDetails(FileData, ItemData, Del
                 return { status: 500,msg:"Upload error" };
             }
         }else{
-            return { status: 500 };
+            return {status:4041}
         }
-
-
-
 
    
     } catch (err) {

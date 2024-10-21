@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 
-import './MasterSectionUploadAndEditPopUp.css';
+import './MasterSectionAddItem.css';
 
-import UpdateMasterSectionDetails from '../../../../../../../api/Home Page contents/Update/UpdateMasterSectionDetails.js';
+import AddMasterSectionDetails from '../../../../../../../api/Home Page contents/Add/MasterSectionAddItem.js';
 
 import TryAgainTopBarPopup from '../../../../../../../components/tryAgain/tryAgain.jsx';
 import Loader from '../../../../../../../components/loader/loader.jsx';
@@ -15,11 +15,11 @@ function shortenLog(log) {
   return log.substring(0, 30) + '...' + log.substring(log.lastIndexOf('.') - 10, log.lastIndexOf('.')) + ext;
 }
 
-export default function MasterSectionUploadAndEditPopUP(params) {
+export default function MasterSectionAddItem(params) {
 
-  const [itemData,setItemData]=useState(params.itemData)
   const [selectedFile, setSelectedFile] = useState(null);
-  const [dataChanged,setDataChanged]=useState(false)
+  const [tittleInput, setTittleInput] = useState()
+  const [dataAdded,setDataAdded]=useState(false)
   const [fileError, setFileError] = useState('');
   const [isDragging, setIsDragging] = useState(false);
 
@@ -41,7 +41,6 @@ export default function MasterSectionUploadAndEditPopUP(params) {
       setSelectedFile(file);
       setFileError('');
       setDisplayFileName(shortenLog(file.name));
-      setDataChanged(true)
 
     } else {
       setSelectedFile(null);
@@ -67,6 +66,7 @@ export default function MasterSectionUploadAndEditPopUP(params) {
     setIsDragging(false);
     const file = e.dataTransfer.files[0];
     validateFile(file);
+    setDataAdded(true)
   };
 
   useEffect(() => {
@@ -84,42 +84,23 @@ export default function MasterSectionUploadAndEditPopUP(params) {
     }, 1000);
   }, [reload]);
 
-  const handelUpdateItem = async () => {
+  const handelAddItem = async () => {
     SetIsLoading(true);
     try {
-      const UploadStatus = await UpdateMasterSectionDetails(selectedFile, itemData);
+      const UploadStatus = await AddMasterSectionDetails(selectedFile, tittleInput);
       if (UploadStatus.status === 500) {
-        console.log(UploadStatus)
-        setTopMessageBarStatus(17);
+        setTopMessageBarStatus(19);
         setShowTopMessageBar(true);
       } else if (UploadStatus.status === 200) {
-        setTopMessageBarStatus(16);
+        setTopMessageBarStatus(18);
         setShowTopMessageBar(true);
         SetReload(true);
+      } else if(UploadStatus.status==4041){
+        setTopMessageBarStatus(20);
+        setShowTopMessageBar(true);
       }
     } catch (err) {
       console.log(err);
-      setTopMessageBarStatus(9);
-      setShowTopMessageBar(true);
-    } finally {
-      SetIsLoading(false);
-    }
-  };
-
-  const handleDeleteItem = async () => {
-    SetIsLoading(true);
-    try {
-      const RemoveStatus = await UpdateMasterSectionDetails(selectedFile, itemData, true);
-      if (RemoveStatus.status == 200) {
-        setTopMessageBarStatus(14);
-        setShowTopMessageBar(true);
-        SetReload(true);
-      }
-      if (RemoveStatus.status == 500) {
-        setTopMessageBarStatus(500);
-        setShowTopMessageBar(true);
-      }
-    } catch (err) {
       setTopMessageBarStatus(500);
       setShowTopMessageBar(true);
     } finally {
@@ -140,8 +121,7 @@ export default function MasterSectionUploadAndEditPopUP(params) {
       >
         {ShowTopMessageBar ? <TryAgainTopBarPopup status={TopMessageBarStatus} /> : null}
         {isLoading ? <Loader /> : null}
-        <h2>UPDATE HOME SECTION</h2>
-        <span className='MasterSectionEditItemID'>For: {itemData._id}</span>
+        <h2>ADD ITEM FOR MASTER SECTION</h2>
         <div
           className={`MasterSectionUpdaterUploadBox ${isDragging ? 'dragging' : ''}`}
           onDragOver={handleDragOver}
@@ -162,25 +142,25 @@ export default function MasterSectionUploadAndEditPopUP(params) {
         </div>
         {fileError && <p className="MasterSectionUpdaterFileError">{fileError}</p>}
         
-        <input type="text" className='MasterPhotoTitleInput' value={itemData.title} onChange={(e)=>{
-          setItemData({...itemData , title:e.target.value})
-          setDataChanged(true)
+        <input type="text" className='MasterPhotoTitleInput' onChange={(e)=>{
+          setTittleInput(e.target.value)
+          setDataAdded(true)
 
         }} />
         
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <button
             className="MasterSectionUpdaterUploadBtn"
-            disabled={!dataChanged}
-            onClick={handelUpdateItem}
+            disabled={!dataAdded}
+            onClick={handelAddItem}
           >
-            UPDATE
+            ADD
           </button>
           <button
             className="MasterSectionUpdaterRemoveBtn"
-            onClick={handleDeleteItem}
+            onClick={handleClosePopup}
           >
-            DELETE
+            CANCEL
           </button>
         </div>
       </div>

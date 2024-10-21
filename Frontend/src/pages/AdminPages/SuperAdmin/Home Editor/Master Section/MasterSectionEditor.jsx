@@ -17,12 +17,14 @@ import DataNotFound from '../../../../../components/Data Not found/DataNotFound.
 import GetHomePageContent from '../../../../../api/Home Page contents/Get/GetHomePageContent.js'
 
 import MasterSectionUploadAndEditPopUP from './Master Section Componenets/Edit Photo/MasterSectionUploadAndEditPopUp'
+import MasterSectionAddItem from './Master Section Componenets/Add Item/MasterSectionAddItem.jsx'
 
 export default function MasterSectionEditor(){
     const navigate=useNavigate()
 
     const [selectedData,setSelectedData]=useState('')
     const [isUploaderOpen,setIsUploaderOpen]=useState(false)
+    const [isAddItemOpen,setIsAddItemOpen]=useState(false)
 
     const [isLoading,setIsLoading]=useState(false)
     const [MasterSectionData , setMasterSectionData] = useState([])
@@ -37,6 +39,7 @@ export default function MasterSectionEditor(){
 
     const handleCloseEditorPopup = () => {
         setIsUploaderOpen(false);
+        setIsAddItemOpen(false)
       }
 
     const openPopup = (link) => {
@@ -92,7 +95,10 @@ export default function MasterSectionEditor(){
         {isLoading ? <Loader/> :null}
         {Authorized?null:<Unauthorized/>}
         {ShowTopUp ? <TryAgainTopBarPopup status={errorStatus} /> : null}
+
         {isUploaderOpen?<MasterSectionUploadAndEditPopUP itemData={selectedData} onClose={handleCloseEditorPopup}/>:null}
+
+        {isAddItemOpen?<MasterSectionAddItem onClose={handleCloseEditorPopup} />:null}
 
 
         <div className="TopAreaDashboard">
@@ -108,17 +114,15 @@ export default function MasterSectionEditor(){
                 <thead>
                     <tr>
                         <th className='MasterSectionTableHeader'>_id</th>
-                        <th className='MasterSectionTableHeader'>Serial</th>
                         <th className='MasterSectionTableHeader'>Tittle</th>
                         <th className='MasterSectionTableHeader'>View Photo</th>
                         <th className='MasterSectionTableHeader'>Edit Details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {MasterSectionData.map((data)=>(
-                        <tr key={data.serial}>
+                    {MasterSectionData.map((data,index)=>(
+                        <tr key={index}>
                             <td className='MasterSectionTableData'>{data._id}</td>
-                            <td className='MasterSectionTableData'>{data.serial}</td>
                             <td className='MasterSectionTableData'>{data.title}</td>
                             
                             <td className='MasterSectionTableData anchorCentre'>
@@ -142,7 +146,20 @@ export default function MasterSectionEditor(){
         </div>
         {dataEmpty? <DataNotFound/> : null}
 
+        <div className="MastreSectionEditorBorder"/>
+        
+        <div className="masterSectionButtonContainer">
+        <button className="masterSectionCustomButton" onClick={()=>setIsAddItemOpen(true)}>
+            <span className="masterSectionButtonText">Add New Item</span>
+                <svg className="masterSectionCartIcon" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 5v14m7-7H5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+        </button>
+        </div>
+
+
         <MasterPhotoViewPopUp isOpen={isPopupOpen} onClose={closePopup} link={selectedPopUpLink} />
+
 
     </>
 }
