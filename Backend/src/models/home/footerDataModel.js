@@ -9,7 +9,7 @@ const footerinfoSchema = new mongoose.Schema({
   instagramLink:String,
   linkedinLink:String,
   ytLink:String,
-  vsitorCount:Number,
+  visitorCount:Number,
   lastUpdated:String
 });
 

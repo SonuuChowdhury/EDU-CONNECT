@@ -36,8 +36,20 @@ homeRouter.get('/api/home', async (req, res) => {
         faqs,
         footerinfos,
       };
-      res.json(responseData);
+
+      const VisitorCount= footerinfos[0].visitorCount + 1;
+
+      const UpdateVisitorCount = await footerinfo.findByIdAndUpdate(footerinfos[0]._id,{
+        $set:{visitorCount:VisitorCount}
+      },{ new: true})
+
+      if(!UpdateVisitorCount){
+        return res.status(400).json({msg:"Error to update the visitor count"});
+      }
+
+      res.status(200).json(responseData);
     } catch (error) {
+      console.log(error)
       res.status(500).json({ message: 'Error retrieving HomeData', error });
     }
   });
