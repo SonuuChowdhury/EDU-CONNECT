@@ -44,6 +44,9 @@ import UpdateMessagesSectionDetails from "../api/Admins/Super Admin/Update Data/
 import UpdateFaqsSectionDetails from "../api/Admins/Super Admin/Update Data/Home Page/UpdateFaqSection.js";
 import UpdateFooterSectionDetails from "../api/Admins/Super Admin/Update Data/Home Page/UpdateFooterDetails.js";
 
+// Fetching Student Data 
+import GetAllStudentDeatils from "../api/Admins/Super Admin/Fetch Data/Students/GetAllStudentsData.js";
+
 const router = Router();
 
 // Serving the index.html when someone requests '/'
@@ -92,8 +95,11 @@ router.put('/api/update/messagesection',AdminVerifyTokenPass,UpdateMessagesSecti
 router.put('/api/update/faqsection',AdminVerifyTokenPass,UpdateFaqsSectionDetails)
 router.put('/api/update/footersection',AdminVerifyTokenPass,UpdateFooterSectionDetails)
 
-// api to Get student student
-router.put('/api/super-admin/students',AdminVerifyTokenPass)
+// api to Get student
+router.get('/api/super-admin/students',AdminVerifyTokenPass, GetAllStudentDeatils)
+
+// api to Delete student
+router.put('/api/update/students',AdminVerifyTokenPass)
 
 export default router;
 
