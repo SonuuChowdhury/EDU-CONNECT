@@ -3,7 +3,8 @@ import axios from 'axios';
 import sortArrayBySerial from '../../../utils/SortBySerial.js'
 
 export default async function GetHomePageContent(contentChoice) {
-    const token = await localStorage.getItem('aot-student-login-authorization-token');    const headerObj = { 
+    const token = await localStorage.getItem('aot-student-login-authorization-token');    
+    const headerObj = { 
         headers: {
             'aot-student-login-authorization-token': token
         }

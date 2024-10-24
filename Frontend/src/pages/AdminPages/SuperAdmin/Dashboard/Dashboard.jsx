@@ -78,7 +78,7 @@ export default function SuperAdminDashboard() {
                     <h2 className="StudentControlsSectionHeader">STUDENT CONTROL</h2>
                     <div className='StudentControlsSectionOptionsArea'>
                         <div className="StudentControlsSectionOptions">ADD STUDENT</div>
-                        <div className="StudentControlsSectionOptions">VIEW OR EDIT STUDENT</div>
+                        <div className="StudentControlsSectionOptions" onClick={()=> navigate('/super-admin/admin-dashboard/view-or-edit-student')}>VIEW OR EDIT STUDENT</div>
                         <div className="StudentControlsSectionOptions">ATTENDENEC ANALYTICS</div>
                     </div>
                 </div>
