@@ -42,6 +42,8 @@ getAdminCredentials.post('/login/admin', async (req, res) => {
                 if (otps.includes(String(otp))) {
                     const admin = await admincredentials.findOne({ uid: uid })
                     const token = await jwt.sign({_id:admin._id},process.env.JWT_SECRET,{expiresIn:'1h'})
+                    await RedisClient.rPush("AdminLoginSessionID", String(admin._id));
+                    await RedisClient.expire("AdminLoginSessionID",3600);
                     return res.status(200).json({
                         msg:"OTP verified successfully",
                         token:token

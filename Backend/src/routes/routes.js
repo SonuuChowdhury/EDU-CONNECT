@@ -92,8 +92,8 @@ router.put('/api/update/messagesection',AdminVerifyTokenPass,UpdateMessagesSecti
 router.put('/api/update/faqsection',AdminVerifyTokenPass,UpdateFaqsSectionDetails)
 router.put('/api/update/footersection',AdminVerifyTokenPass,UpdateFooterSectionDetails)
 
-// api to add a student
-router.put('/api/addStudent',AdminVerifyTokenPass)
+// api to Get student student
+router.put('/api/super-admin/students',AdminVerifyTokenPass)
 
 export default router;
 
