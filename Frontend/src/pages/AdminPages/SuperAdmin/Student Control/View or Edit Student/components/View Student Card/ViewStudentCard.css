@@ -1,0 +1,116 @@
+/* Background overlay for the popup */
+.viewStudentCardOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup content container */
+.viewStudentCardContent {
+    width: 25rem;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: scale(0.95); /* Initial scale to make zoom-in subtle */
+    transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    animation: zoomIn 0.3s ease-in-out forwards;
+}
+
+/* Zoom-in effect on load */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Zoom-out effect on close */
+@keyframes zoomOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* Profile image container */
+.viewStudentCardImage {
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+    border: 2px solid #4A90E2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Name styling */
+h1 {
+    font-size: 1.6rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Roll and department styling */
+.viewStudentCardRoll, .viewStudentCardDepartment {
+    display: block;
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+
+/* Year and Semester */
+.viewStudentCardYearAndSem {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+}
+
+/* Contact details header */
+.viewStudentCardContactdetailsHeader {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4A90E2;
+}
+
+/* Email and mobile styling */
+.viewStudentCardEmail, .viewStudentCardMobile {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+/* Address styling */
+.viewStudentCardAddress {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #333;
+}

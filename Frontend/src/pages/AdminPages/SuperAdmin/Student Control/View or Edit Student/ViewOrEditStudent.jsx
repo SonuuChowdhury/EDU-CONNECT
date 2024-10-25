@@ -15,6 +15,8 @@ import DataNotFound from '../../../../../components/Data Not found/DataNotFound.
 
 import GetAllStudentsData from '../../../../../api/Student Control APIs/GetAllStudentsData.js'
 
+import ViewStudentCard from './components/View Student Card/ViewStudentCard.jsx'
+
 export default function StudentViewOrEditEditor(){
     const navigate = useNavigate()
 
@@ -28,21 +30,21 @@ export default function StudentViewOrEditEditor(){
     const [ShowTopUp, SetShowTopUp] = useState(false)
     const [Authorized, setAuthorized] = useState(true)
     const [refresh, setRefresh] = useState(false)
-    const [selectedPopUpLink, setSelectedPopUpLink] = useState('')
+    const [SelectedStudentViewPopUpData, setSelectedStudentViewPopUpData] = useState('')
     const [dataEmpty, setDataEmpty] = useState(false)
 
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isViewStudentPopupOpen, setIsViewStudentPopupOpen] = useState(false);
 
     const handleCloseEditorPopup = () => {
         setIsUploaderOpen(false);
         setIsAddItemOpen(false)
     }
 
-    const openPopup = (link) => {
-        setSelectedPopUpLink(link)
-        setIsPopupOpen(true)
+    const openViewStudentPopup = (data) => {
+        setSelectedStudentViewPopUpData(data)
+        setIsViewStudentPopupOpen(true)
     }
-    const closePopup = () => setIsPopupOpen(false);
+    const closePopup = () => setIsViewStudentPopupOpen(false);
 
     useEffect(() => {
         const getData = async () => {
@@ -53,7 +55,6 @@ export default function StudentViewOrEditEditor(){
                     setAuthorized(false);
                 } else if (data.status === 200) {
                     setStudentViewOrEditData(data.data);
-                    console.log(data.data)
                     if (((data.data).length) === 0) {
                         setDataEmpty(true)
                     }
@@ -128,7 +129,7 @@ export default function StudentViewOrEditEditor(){
 
                         <div className="StudentViewOrEditListDetailsControlButtonsArea">
                             <div className="StudentViewOrEditListDetailsControlViewButton">
-                                {<FontAwesomeIcon icon={faEye} className='StudentViewOrEditListDetailsControlButtonIcon'/>}
+                                {<FontAwesomeIcon icon={faEye} className='StudentViewOrEditListDetailsControlButtonIcon' onClick={()=>openViewStudentPopup(data)}/>}
 
                             </div>
                             <div className="StudentViewOrEditListDetailsControlEditButtons">
@@ -150,6 +151,13 @@ export default function StudentViewOrEditEditor(){
         <div className="StudentViewOrEditBorder"/>
 
 
-        {isPopupOpen ? <StudentViewOrEditPhotoViewPopUp closePopup={closePopup} link={selectedPopUpLink}/> : null}
+        {isViewStudentPopupOpen ? (
+        <ViewStudentCard 
+            isOpen={isViewStudentPopupOpen} 
+            onClose={closePopup} 
+            data={SelectedStudentViewPopUpData} 
+        />
+        ) : null}
+
     </>
 }
