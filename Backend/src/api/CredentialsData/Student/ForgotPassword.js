@@ -1,7 +1,7 @@
 import studentcredentials from '../../../models/students/studentCredentials.js';
 import GenerateOTP from '../../../../Demo/GenrateOPT.js';
 import studentbasicdetails from '../../../models/students/studentDetails.js';
-import SendMailForOTP from '../../../mails/SendMailForOTP.js';
+import SendMailForOTP from '../../../mails/Student/SendMailForOTP.js'
 import {RedisClient} from '../../../db/ConnectRedis.js';
 import obfuscateEmail from '../../../../Demo/obfuscateEmail.js';
 
