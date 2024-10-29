@@ -47,8 +47,9 @@ import UpdateFooterSectionDetails from "../api/Admins/Super Admin/Update Data/Ho
 // Fetching Student Data 
 import GetAllStudentDeatils from "../api/Admins/Super Admin/Fetch Data/Students/GetAllStudentsData.js";
 
-// Adding a new Student 
+// Managing student data
 import AddStudent from "../api/Admins/Super Admin/Update Data/Students/Add new Student/AddStudent.js";
+import DeleteStudentByRoll from "../api/Admins/Super Admin/Update Data/Students/Delete Student/DeleteStudent.js";
 
 const router = Router();
 
@@ -101,11 +102,9 @@ router.put('/api/update/footersection',AdminVerifyTokenPass,UpdateFooterSectionD
 // api to Get student
 router.get('/api/super-admin/students',AdminVerifyTokenPass, GetAllStudentDeatils)
 
-// api to add a student 
+// API to manage students
 router.put('/api/add/student',AdminVerifyTokenPass, AddStudent)
-
-// api to Delete student
-router.delete('/api/update/students',AdminVerifyTokenPass)
+router.delete('/api/delete/student',AdminVerifyTokenPass, DeleteStudentByRoll)
 
 export default router;
 
