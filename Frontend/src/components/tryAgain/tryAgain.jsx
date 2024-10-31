@@ -2,20 +2,20 @@
 import { useState, useEffect } from 'react';
 import './tryAgain.css';
 
-function TryAgainTopBarPopup({ status }) {
+function TryAgainTopBarPopup({ status, msg}) {
   const [show, setShow] = useState(true);
   const [backgroundColor, setBackgroundColor] = useState("#ff4d4f");
 
   // Update the background color based on the status
   useEffect(() => {
-    if ([4, 5, 9, 10, 11, 14, 16, 18, 21].includes(status)) {
+    if ([4, 5, 9, 10, 11, 14, 16, 18, 21,23].includes(status)) {
       setBackgroundColor("#4caf50");
     } else {
       setBackgroundColor("#ff4d4f");
     }
   }, [status]);
 
-  function GetPopUpMessage(status) {
+  function GetPopUpMessage(status,msg) {
     switch (status) {
       case 500:
       case 3:
@@ -66,6 +66,12 @@ function TryAgainTopBarPopup({ status }) {
         return "Student Deleted Successfully!"
       case 22:
         return "Failed to Delete Student Or Student does not exists"
+      case 23:
+        return msg; // for green messages
+      case 24:
+        return msg; // for red messages
+      case 25:
+        return "Redirecting to Dashboard..."
       default:
         return "Something went wrong!";
     }
@@ -83,7 +89,7 @@ function TryAgainTopBarPopup({ status }) {
 
   return (
     <div className={`top-bar-popup ${show ? 'show' : 'hide'}`} style={{ backgroundColor }}>
-      {GetPopUpMessage(status)}
+      {GetPopUpMessage(status,msg)}
     </div>
   );
 }

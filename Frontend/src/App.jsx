@@ -29,7 +29,6 @@ function App() {
   return (
     <Router>
         <Suspense fallback={<Loader />}>
-        
         <Routes>
           <Route path="/" element={<HomePage />} />
 

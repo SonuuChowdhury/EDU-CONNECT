@@ -1,0 +1,165 @@
+/* Main Container Styling */
+.AddStudentFormContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 80%;
+    margin: 30px auto;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Styling */
+.AddStudentSection {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.AddStudentSection h3 {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Label and Input Styling */
+.AddStudentSection label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1em;
+    color: #666;
+}
+
+.AddStudentInput {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.AddStudentInput:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Disabled Input Styling */
+.AddStudentInput:disabled,
+.AddStudentDropdown:disabled,
+.AddStudentButton:disabled {
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+    color: #b0b0b0;
+    border-color: #ddd;
+    opacity: 0.7;
+}
+
+/* Dropdown Styling */
+.AddStudentDropdownContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.DropdownField {
+    flex: 1;
+}
+
+.AddStudentDropdown {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.AddStudentDropdown:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Button Styling */
+.AddStudentButton {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.AddStudentButton:hover {
+    background-color: #0056b3;
+}
+
+.AddStudentButton:disabled:hover {
+    background-color: #007bff;
+}
+
+.AddStudentButton:disabled {
+    background-color: #007bff;
+    opacity: 0.6;
+}
+
+/* Button Container Styling */
+.AddStudentButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.AddStudentCancelButton,
+.AddStudentAddButton {
+    padding: 14px 30px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.AddStudentCancelButton {
+    background-color: #6c757d;
+}
+
+.AddStudentCancelButton:hover {
+    background-color: #5a6268;
+    transform: scale(1.02);
+}
+
+.AddStudentAddButton {
+    background-color: #28a745;
+}
+
+.AddStudentAddButton:hover {
+    background-color: #218838;
+    transform: scale(1.02);
+}
+
+.AddStudentAddButton:disabled {
+    background-color: #28a745;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.AddStudentAddButton:disabled:hover {
+    background-color: #28a745;
+}
