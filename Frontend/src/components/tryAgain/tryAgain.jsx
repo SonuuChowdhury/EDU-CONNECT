@@ -8,7 +8,7 @@ function TryAgainTopBarPopup({ status }) {
 
   // Update the background color based on the status
   useEffect(() => {
-    if ([4, 5, 9, 10, 11, 14, 16, 18].includes(status)) {
+    if ([4, 5, 9, 10, 11, 14, 16, 18, 21].includes(status)) {
       setBackgroundColor("#4caf50");
     } else {
       setBackgroundColor("#ff4d4f");
@@ -62,6 +62,10 @@ function TryAgainTopBarPopup({ status }) {
         return "Failed to Add Item";
       case 20:
         return "Attach the Image to Add the Item";
+      case 21:
+        return "Student Deleted Successfully!"
+      case 22:
+        return "Failed to Delete Student Or Student does not exists"
       default:
         return "Something went wrong!";
     }

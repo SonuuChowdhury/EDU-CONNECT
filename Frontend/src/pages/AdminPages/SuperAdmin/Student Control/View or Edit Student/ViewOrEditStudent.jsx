@@ -16,13 +16,10 @@ import DataNotFound from '../../../../../components/Data Not found/DataNotFound.
 import GetAllStudentsData from '../../../../../api/Student Control APIs/GetAllStudentsData.js'
 
 import ViewStudentCard from './components/View Student Card/ViewStudentCard.jsx'
+import DeleteStudentOptionBox from './components/Delete Student/DeleteStudentDialogPopUp.jsx'
 
 export default function StudentViewOrEditEditor(){
     const navigate = useNavigate()
-
-    const [selectedData, setSelectedData] = useState('')
-    const [isUploaderOpen, setIsUploaderOpen] = useState(false)
-    const [isAddItemOpen, setIsAddItemOpen] = useState(false)
 
     const [isLoading, setIsLoading] = useState(false)
     const [StudentViewOrEditData, setStudentViewOrEditData] = useState([])
@@ -30,21 +27,32 @@ export default function StudentViewOrEditEditor(){
     const [ShowTopUp, SetShowTopUp] = useState(false)
     const [Authorized, setAuthorized] = useState(true)
     const [refresh, setRefresh] = useState(false)
-    const [SelectedStudentViewPopUpData, setSelectedStudentViewPopUpData] = useState('')
     const [dataEmpty, setDataEmpty] = useState(false)
 
-    const [isViewStudentPopupOpen, setIsViewStudentPopupOpen] = useState(false);
 
-    const handleCloseEditorPopup = () => {
-        setIsUploaderOpen(false);
-        setIsAddItemOpen(false)
-    }
+    const [SelectedStudentViewPopUpData, setSelectedStudentViewPopUpData] = useState('')
+    const [SelectedStudentDeletePopUpData, setSelectedStudentDeletePopUpData] = useState('')
+
+    const [isViewStudentPopupOpen, setIsViewStudentPopupOpen] = useState(false);
+    const [isDeleteStudentPopupOpen, setIsDeleteStudentPopupOpen] = useState(false);
 
     const openViewStudentPopup = (data) => {
         setSelectedStudentViewPopUpData(data)
         setIsViewStudentPopupOpen(true)
     }
-    const closePopup = () => setIsViewStudentPopupOpen(false);
+
+    const openDeleteStudentPopup = (data) => {
+        setSelectedStudentDeletePopUpData(data)
+        setIsDeleteStudentPopupOpen(true)
+
+    }
+
+    const closePopup = () => {
+        setIsViewStudentPopupOpen(false)
+        setIsDeleteStudentPopupOpen(false)
+
+        
+    };
 
     useEffect(() => {
         const getData = async () => {
@@ -93,10 +101,6 @@ export default function StudentViewOrEditEditor(){
         {Authorized ? null : <Unauthorized/>}
         {ShowTopUp ? <TryAgainTopBarPopup status={errorStatus}/> : null}
 
-        {isUploaderOpen ? <StudentViewOrEditUploadAndEditPopUP itemData={selectedData} onClose={handleCloseEditorPopup}/> : null}
-
-        {isAddItemOpen ? <StudentViewOrEditAddItem onClose={handleCloseEditorPopup}/> : null}
-
         <div className="TopAreaDashboard">
             <span className="SuperAdminHeaders">
                 <span className="SuperAdminHeader">WELCOME SUPER ADMIN</span>
@@ -136,7 +140,7 @@ export default function StudentViewOrEditEditor(){
                                 {<FontAwesomeIcon icon={faPenToSquare} className='StudentViewOrEditListDetailsControlButtonIcon'/>}                              
                             </div>
                             <div className="StudentViewOrEditListDetailsControlDeleteButtons">
-                                {<FontAwesomeIcon icon={faTrashCan} className='StudentViewOrEditListDetailsControlButtonIcon'/>}  
+                                {<FontAwesomeIcon icon={faTrashCan} className='StudentViewOrEditListDetailsControlButtonIcon' onClick={()=>openDeleteStudentPopup(data)}/>}  
                             </div>
                         </div>
                     </div>
@@ -156,6 +160,14 @@ export default function StudentViewOrEditEditor(){
             isOpen={isViewStudentPopupOpen} 
             onClose={closePopup} 
             data={SelectedStudentViewPopUpData} 
+        />
+        ) : null}
+
+        {isDeleteStudentPopupOpen ? (
+        <DeleteStudentOptionBox 
+            isOpen={isDeleteStudentPopupOpen} 
+            onClose={closePopup} 
+            data={SelectedStudentDeletePopUpData} 
         />
         ) : null}
 

@@ -21,7 +21,9 @@ import StudentForgetPassword from './components/loginComponents/StudentLoginComp
 import SuperAdminDashboard from './pages/AdminPages/SuperAdmin/Dashboard/Dashboard.jsx';
 import MasterSectionEditor from './pages/AdminPages/SuperAdmin/Home Editor/Master Section/MasterSectionEditor.jsx';
 
+// Student Control 
 import StudentViewOrEditEditor from './pages/AdminPages/SuperAdmin/Student Control/View or Edit Student/ViewOrEditStudent.jsx';
+import AdminAddStudent from './pages/AdminPages/SuperAdmin/Student Control/Add Student/AdminAddStudent.jsx';
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
           <Route path="/super-admin/admin-dashboard" element={<SuperAdminDashboard/>}/>
           <Route path="/super-admin/admin-dashboard/mastersection" element={<MasterSectionEditor/>}/>
           <Route path="/super-admin/admin-dashboard/view-or-edit-student" element={<StudentViewOrEditEditor/>}/>
+          <Route path="/super-admin/admin-dashboard/add-student" element={<AdminAddStudent/>}/>
+
 
         </Routes>
 

@@ -1,0 +1,118 @@
+/* Background overlay for the popup */
+.deleteStudentBoxOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup content container */
+.deleteStudentBoxContent {
+    width: 25rem;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    animation: DeleteBoxZoomIn 0.3s ease-in-out forwards;
+}
+
+/* Zoom-in effect on load */
+@keyframes DeleteBoxZoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Zoom-out effect on close */
+@keyframes DeleteBoxZoomOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* Highlighted confirmation message */
+.deleteConfirmationHeader {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff4d4d;
+    margin-bottom: 0.5rem;
+}
+
+/* Roll number display */
+.deleteStudentRoll {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+/* Warning message */
+.deleteWarningMessage {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+/* Button container */
+.deleteButtonContainer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Cancel button */
+.deleteCancelButton {
+    padding: 0.5rem 1.5rem;
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.deleteCancelButton:hover {
+    background-color: #b3b3b3;
+}
+
+/* Delete button */
+.deleteConfirmButton {
+    padding: 0.5rem 1.5rem;
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.deleteConfirmButton:hover {
+    background-color: #e63939;
+}
