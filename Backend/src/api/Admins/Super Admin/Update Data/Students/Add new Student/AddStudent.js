@@ -19,6 +19,11 @@ AddStudent.put("/api/add/student", async (req, res) => {
 
     try {
         if(verifyEmail){
+            const MaillExist = await studentbasicdetails.findOne({email:email});
+            if(MaillExist){
+                return res.status(400).json({msg:"Mail Already Exists!"})
+            }
+
             const GenOtp = GenerateOTP()
             const mailStatus = await SendMailForStudentEmailVerification(email, name, GenOtp);
             if(mailStatus.status==200){
@@ -47,31 +52,19 @@ AddStudent.put("/api/add/student", async (req, res) => {
             }
         }
 
-        if (roll) {
-            const existingStudents = await studentcredentials.find({
-                $or: [{ roll: roll }, { email: email }, { mobile: mobile }]
-            });
-
-            // Check if any student matches the roll number, email, or mobile number
-            const studentExist = existingStudents.find(student => student.roll === roll);
-            if (studentExist) {
-                return res.status(400).json({ msg: "Student Already Exists", code: 0 });
-            }
-
-            const studentEmailExist = existingStudents.find(student => student.email === email);
-            if (studentEmailExist) {
-                return res.status(400).json({ msg: "Email Already Exists", code: 1 });
-            }
-
-            const studentMobileExist = existingStudents.find(student => student.mobile === mobile);
-            if (studentMobileExist) {
-                return res.status(400).json({ msg: "Mobile Already Exists", code: 2 });
-            }
-        }
-
         if (!roll || !name || !department || !semester || !year || !email || !mobile || !address) {
             return res.status(400).json({ msg: "All Data is Required" });
         } else {
+
+            const StudentExist = await studentcredentials.findOne({roll:roll});
+            if(StudentExist){
+                return res.status(400).json({msg:"Student Already Exists!"})
+            }
+
+            const MobileExist = await studentbasicdetails.findOne({mobile:mobile});
+            if(MobileExist){
+                return res.status(400).json({msg:"Mobile Already Exists!"})
+            }
 
             const EmailVeried = await RedisClient.lRange("StudentEmailVerificationEmails", 0, -1);
             if (EmailVeried.includes(String(email))) {
