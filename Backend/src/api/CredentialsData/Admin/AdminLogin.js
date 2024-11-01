@@ -2,7 +2,7 @@ import admincredentials from '../../../models/admins/adminlogin.js';
 import obfuscateEmail from '../../../../Demo/obfuscateEmail.js';
 import GenerateOTP from '../../../../Demo/GenrateOPT.js';
 import { RedisClient } from '../../../db/ConnectRedis.js';
-import SendMailForOTPAdmin from './OTPMailForAdmin.js';
+import SendMailForOTPAdmin from '../../../mails/Admin/OTPMailForAdmin.js';
 import express from 'express';
 import jwt from  'jsonwebtoken'
 import dotenv from 'dotenv'
