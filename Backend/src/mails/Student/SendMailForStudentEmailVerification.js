@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export default async function SendMailForStudentEmailVerification(to, name, otp) {
+export default async function SendMailForStudentEmailVerification(to, otp) {
     const user = `${process.env.MAIL_ID}`;
     const pass = `${process.env.MAIL_PASS}`;
 
@@ -21,9 +21,9 @@ export default async function SendMailForStudentEmailVerification(to, name, otp)
         subject: '🔐 Email Verification for Academy of Technology',
         html: `
         <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.8; max-width: 600px; margin: auto; padding: 20px;">
-            <h2 style="color: #0056b3; font-size: 1.6em; text-align: center;">🎓 Welcome to the Academy of Technology, ${name}!</h2>
+            <h2 style="color: #0056b3; font-size: 1.6em; text-align: center;">🎓 Welcome to the Academy of Technology!</h2>
 
-            <p style="font-size: 1.1em; margin-top: 1em;">Dear <strong>${name}</strong>,</p>
+            <p style="font-size: 1.1em; margin-top: 1em;">Dear Student,</p>
 
             <p style="font-size: 1.1em;">We’re thrilled to have you join the <strong>Academy of Technology</strong> community! 🎉 To secure your account, please verify your email address using the One-Time Password (OTP) provided below.</p>
 
