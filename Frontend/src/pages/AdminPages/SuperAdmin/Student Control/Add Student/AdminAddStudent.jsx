@@ -72,6 +72,10 @@ export default function AdminAddStudent() {
                 SetShowTopUp(true)
                 setVerifyOTPBUttonDisabled(false)
                 setEmailInputButtonDisabled(true)
+            }else{
+                setErrorMsg(GetOtpResponse.data.msg)
+                setErrorStatus(24)
+                SetShowTopUp(true)
             }
         }catch(err){
             setErrorStatus(500)
