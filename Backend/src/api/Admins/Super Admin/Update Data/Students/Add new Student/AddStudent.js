@@ -24,8 +24,8 @@ AddStudent.put("/api/add/student", async (req, res) => {
                 return res.status(400).json({msg:"Mail Already Exists!"})
             }
 
-            const GenOtp = GenerateOTP()
-            const mailStatus = await SendMailForStudentEmailVerification(email, name, GenOtp);
+            const GenOtp = await GenerateOTP()
+            const mailStatus = await SendMailForStudentEmailVerification(email,GenOtp);
             if(mailStatus.status==200){
                 const GenOTPString = String(GenOtp)
                 await RedisClient.rPush("StudentEmailVerificationOTPs", GenOTPString);
