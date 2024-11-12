@@ -7,6 +7,8 @@ import cors from 'cors';
 import connectDB from './src/db/ConnectMongoDB.js';
 import { connectRedis } from './src/db/ConnectRedis.js';
 
+import HitServer from './src/api/Checking Servers/HitServer.js';
+
 connectDB()
 connectRedis()
 
@@ -23,10 +25,13 @@ app.use(express.json());
 import router from './src/routes/routes.js';
 app.use('/',router)
 
-
-
 // Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`SERVER IS LIVE IN THE PORT 3000 AND PRODUCTION📢!`);
 });
+
+setTimeout(() => {
+  HitServer();
+}, 30000);
+

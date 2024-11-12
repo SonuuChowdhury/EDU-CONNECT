@@ -18,30 +18,25 @@ export default async function SendMailForStudentEmailVerification(to, otp) {
     const mailOptions = {
         from: `ADMIN AOT INSTITUTE <${process.env.MAIL_ID}>`,
         to: to,
-        subject: '🔐 Email Verification for Academy of Technology',
+        subject: 'Email Verification for Academy of Technology',
         html: `
-        <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.8; max-width: 600px; margin: auto; padding: 20px;">
-            <h2 style="color: #0056b3; font-size: 1.6em; text-align: center;">🎓 Welcome to the Academy of Technology!</h2>
+        <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: auto; padding: 20px;">
+            <h2 style="color: #0056b3; font-size: 1.8em; text-align: center;">Welcome to the Academy of Technology</h2>
 
-            <p style="font-size: 1.1em; margin-top: 1em;">Dear Student,</p>
+            <p style="font-size: 1.2em;">Dear Student,</p>
 
-            <p style="font-size: 1.1em;">We’re thrilled to have you join the <strong>Academy of Technology</strong> community! 🎉 To secure your account, please verify your email address using the One-Time Password (OTP) provided below.</p>
+            <p style="font-size: 1.2em;">To complete your registration, please verify your email address by entering the One-Time Password (OTP) provided below:</p>
 
-            <h3 style="font-size: 1.2em; color: #0056b3;">🔑 Your Verification Code</h3>
-            <p style="font-size: 1.5em; font-weight: bold; color: #cc0000; text-align: center; margin: 20px 0;">${otp}</p>
+            <h3 style="font-size: 1.5em; color: #0056b3;">Your Verification Code</h3>
+            <p style="font-size: 1.8em; font-weight: bold; color: #cc0000; text-align: center; margin: 20px 0;">${otp}</p>
 
-            <p style="font-size: 1.1em;">Please enter this OTP on the verification page to confirm your email address.</p>
+            <p style="font-size: 1.2em;">Enter this OTP on the verification page. It is valid for 5 minutes.</p>
 
-            <p style="font-size: 1.1em;"><strong>⏰ Note:</strong> This OTP is valid for only 5 minutes. If it expires, you may request a new one from the login page.</p>
-
-            <h3 style="font-size: 1.2em; color: #0056b3;">💬 Need Assistance?</h3>
-            <p style="font-size: 1.1em;">If you have any questions or encounter issues with the verification process, feel free to contact our support team at <a href="mailto:support@aot.edu" style="color: #0056b3; text-decoration: underline;">support@aot.edu</a>. We're here to help! 😊</p>
-
-            <p style="font-size: 1.1em;">Thank you for taking this important step in securing your account. We look forward to supporting you in your academic journey at the Academy of Technology!</p>
+            <p style="font-size: 1.2em; margin-top: 1em;">If you need assistance, contact us at <a href="mailto:chowdhurysonu047@gmail.com" style="color: #0056b3; text-decoration: underline;">chowdhurysonu047@gmail.com</a>.</p>
 
             <div style="text-align: center; margin-top: 40px;">
-                <p style="font-size: 0.9em; color: #777;">Academy of Technology | Grand Trunk Road, Adisaptagram, India | Phone: +123-456-7890</p>
-                <p style="font-size: 0.9em; color: #777;">This is an automated email, please do not reply.</p>
+                <p style="font-size: 1em; color: #777;">Academy of Technology | Grand Trunk Road, Adisaptagram, India | Phone: +123-456-7890</p>
+                <p style="font-size: 1em; color: #777;">This is an automated email, please do not reply.</p>
             </div>
         </div>
         `,
