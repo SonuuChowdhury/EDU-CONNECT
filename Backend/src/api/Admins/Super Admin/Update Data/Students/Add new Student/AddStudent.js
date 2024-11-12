@@ -91,7 +91,9 @@ AddStudent.put("/api/add/student", async (req, res) => {
                     try {
                     // Save the student credentials and basic details
                     const savedStudentCredentials = await newStudentCredentials.save();
-                    const savedStudentDetails = await newStudentBasicDetails.save();
+                    let savedStudentDetails = false;
+
+                    savedStudentCredentials? savedStudentDetails = await newStudentBasicDetails.save(): null;
 
                     if (savedStudentCredentials && savedStudentDetails) {
                         await SendMailForNewStudent(email, name, roll);
