@@ -28,6 +28,9 @@ import AdminAddStudent from './pages/AdminPages/SuperAdmin/Student Control/Add S
 // Not Found Page 
 import NotFound from './pages/404 Not Found/NotFound.jsx';
 
+// Testing or playground page 
+import TestPage from './pages/Test Page/TestPage.jsx';
+
 function App() {
   return (
     <Router>
@@ -49,7 +52,10 @@ function App() {
           <Route path="/super-admin/admin-dashboard/view-or-edit-student" element={<StudentViewOrEditEditor/>}/>
           <Route path="/super-admin/admin-dashboard/add-student" element={<AdminAddStudent/>}/>
 
+          {/* // Testing or playground page  */}
+          <Route path="/testing" element={<TestPage/>} />
 
+          {/* All routes will be redirected to this if the route is not handelled specifically on the top  */}
           <Route path="*" element={<NotFound />} />
         </Routes>
 

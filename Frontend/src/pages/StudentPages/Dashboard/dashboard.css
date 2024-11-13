@@ -225,3 +225,58 @@
     font-size: 1.2rem;
     color: #666; /* Slightly lighter text color */
 }
+
+
+
+
+
+/* Grid layout for content area */
+.studentContentGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* Each item in the grid */
+.studentContentItem {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.studentContentItem:hover {
+    transform: scale(1.05);
+}
+
+/* Icon placeholder style */
+.studentContentItem .studentContentItemicon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #439DF0;
+    border-radius: 10px;
+}
+
+.studentContentItemicon{
+    background-image: url('StudentDashboardOptionsIcon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Text styling for each item */
+.studentContentItem studentContentItemName {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+}

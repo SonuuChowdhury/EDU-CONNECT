@@ -135,12 +135,69 @@ export default function StudentDashboardPage() {
                         <span>{data.email}</span>
                         <div className="studentButtonSection">
                             <button className='studentChangePasswordButton' onClick={ChangePasswordHandeller}>Change Password</button>
-                            <button className='studentFullProfileButton'>FULL PROFILE</button>
                             <button className='studentLogOutButton' onClick={LogOutHandeller}>LOG OUT</button>
                         </div>
                     </div>
                     <div className="studentDivider"></div>
                     <div className="studentContentAreaSection">
+                    <div className="studentContentGrid">
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>Attendance Monitoring</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>Enrollment Form</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p>CA Marks</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>PCA Marks</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>Exam Form</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>Admit Card</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>Backlog Form</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p>Sem Result</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>Review Result</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>Payments</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>Online Exam</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>Mock Exams</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                                <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>Issued Books</p>
+                            </div>
+                            <div className="studentContentItem"> 
+                        <span className="studentContentItemicon"></span>
+                                <p className='studentContentItemName'>PYQs</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
