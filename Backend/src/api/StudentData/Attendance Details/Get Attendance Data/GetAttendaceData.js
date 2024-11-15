@@ -1,5 +1,5 @@
 import express from 'express';
-import studentattendancedetails from '../../../../models/students/studentAttendanceDetails';
+import studentattendancedetails from '../../../../models/students/studentAttendanceDetails.js';
 
 const GetStudentAttendanceDetails = express.Router();
 GetStudentAttendanceDetails.use(express.json());
