@@ -14,7 +14,7 @@ export default async function AddMasterSectionDetails(FileData, tittle) {
         const FileName = `${tittle}_MasterPhoto`;
         if (FileData) {
             // Fetch authentication details from your backend
-            const authResponse = await fetch("https://institute-site-az-bug-busters.onrender.com/api/get-authentication-parameters");
+            const authResponse = await fetch("https://institute-site-az-bug-busters-33ps.onrender.com/api/get-authentication-parameters");
 
             if (!authResponse.ok) {
                 return {'status':500}; 
@@ -29,7 +29,7 @@ export default async function AddMasterSectionDetails(FileData, tittle) {
             const ImageKitInstance = new ImageKit({
                 publicKey: "public_t9hfh2XHEFiWJT3/VxAchbic9EQ=",
                 urlEndpoint: "https://ik.imagekit.io/azzbbadmin/",
-                authenticationEndpoint: "https://institute-site-az-bug-busters.onrender.com/api/    get-authentication-parameters"
+                authenticationEndpoint: "https://institute-site-az-bug-busters-33ps.onrender.com/api/    get-authentication-parameters"
             });
 
 
@@ -52,7 +52,7 @@ export default async function AddMasterSectionDetails(FileData, tittle) {
         }
 
         if(fileUpdating){
-            const UpdateOnDataBaseStatus = await axios.put('https://institute-site-az-bug-busters.onrender.com/api/update/mastersecetion',{
+            const UpdateOnDataBaseStatus = await axios.put('https://institute-site-az-bug-busters-33ps.onrender.com/api/update/mastersecetion',{
                 createNew:true,
                 tittle:tittle,
                 url:UploadedimageURL

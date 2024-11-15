@@ -28,7 +28,7 @@ export default async function AddStudentAPI(params) {
 
     try {
         const response = await axios.put(
-            'https://institute-site-az-bug-busters.onrender.com/api/add/student', 
+            'https://institute-site-az-bug-busters-33ps.onrender.com/api/add/student', 
             data, 
             config
         );

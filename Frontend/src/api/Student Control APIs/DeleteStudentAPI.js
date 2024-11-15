@@ -11,7 +11,7 @@ export default async function DeleteStudentByRole(roll) {
 
     try {
         const response = await axios.delete(
-            'https://institute-site-az-bug-busters.onrender.com/api/delete/student', 
+            'https://institute-site-az-bug-busters-33ps.onrender.com/api/delete/student', 
             config
         );
         
