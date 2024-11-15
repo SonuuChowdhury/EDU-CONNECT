@@ -51,6 +51,9 @@ import GetAllStudentDeatils from "../api/Admins/Super Admin/Fetch Data/Students/
 import AddStudent from "../api/Admins/Super Admin/Update Data/Students/Add new Student/AddStudent.js";
 import DeleteStudentByRoll from "../api/Admins/Super Admin/Update Data/Students/Delete Student/DeleteStudent.js";
 
+// Attendance Data Management 
+import GetStudentAttendanceDetails from "../api/StudentData/Attendance Details/Get Attendance Data/GetAttendaceData.js";
+
 const router = Router();
 
 // Serving the index.html when someone requests '/'
@@ -68,6 +71,9 @@ router.post('/login/student/forgot-password',ForgotPasswordHandeller)
 router.get('/api/student-dashboard', VerifyToken, GetStudentDeatils)
 router.put('/api/student/change-password',VerifyToken,UpdateStudentCredentials)
 router.put('/api/student/change-photo/update-or-delete',VerifyToken,StudentUpdateURLProfile)
+
+// attendance management 
+router.get('/api/student-dashboard/attendance',VerifyToken,GetStudentAttendanceDetails)
 
 // Authentication parameter for image kit
 router.get('/api/get-authentication-parameters',ImageKitGetAuthParams)

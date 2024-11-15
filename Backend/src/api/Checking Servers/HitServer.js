@@ -1,7 +1,7 @@
 export default async function HitServer() {
     setInterval(async () => {
         try {
-            const response = await fetch('https://institute-site-az-bug-busters.onrender.com');
+            const response = await fetch('https://institute-site-az-bug-busters-33ps.onrender.com');
             if (response.ok) {
                 console.log("Server is Live!!");
             } else {
@@ -10,5 +10,5 @@ export default async function HitServer() {
         } catch (error) {
             console.log("Server Is Not Live!!", error);
         }
-    }, 120000);
+    }, 600000); // 10 minutes in milliseconds
 }
