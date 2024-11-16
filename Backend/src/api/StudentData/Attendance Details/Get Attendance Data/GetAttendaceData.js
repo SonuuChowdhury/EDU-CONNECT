@@ -6,14 +6,15 @@ GetStudentAttendanceDetails.use(express.json());
 
 GetStudentAttendanceDetails.get('/api/student-dashboard/attendance', async (req, res) => {
     const { _id } = req.user;
-    const {roll} = req.body;
-
-    const studentAttendanceData = await studentattendancedetails.find({roll:roll})
-    res.status(200).json({data:studentAttendanceData})
-
-
+    const {roll, getAttendance} = req.body;
+    if(!roll){
+        return res.status(404).json({data:"Roll Number is required"})
+    }
+    if(getAttendance){
+        const studentAttendanceData = await studentattendancedetails.findOne({roll:Number(roll)})
+        return res.status(200).json({data:studentAttendanceData})
+    }
 });
-
 export default GetStudentAttendanceDetails;
 
 
