@@ -1,27 +1,21 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 import connectDB from '../../db/ConnectMongoDB.js'
 
 const { studentDetailsConnection } = await connectDB();
 
-const attendanceSchema = new mongoose.Schema({
-    roll: { type: Number, required: true, unique: true },
-    subjects: {
-      English: {
-        startDate: { type: Date, required: true },
-        AbsentDates: { type: [Date], default: [] },
-        PresentDates: { type: [Date], default: [] },
-        LastUpdated: { type: Date, required: true },
-        Monitoring: { type: Boolean, default: false }
-      },
-      Math: {
-        startDate: { type: Date, required: true },
-        AbsentDates: { type: [Date], default: [] },
-        PresentDates: { type: [Date], default: [] },
-        LastUpdated: { type: Date, required: true },
-        Monitoring: { type: Boolean, default: false }
-      }
-    }
-  })
+const subjectSchema = new mongoose.Schema({
+  name: { type: String, required: true }, // Subject name
+  startDate: { type: Date, required: true }, // Date monitoring started
+  AbsentDates: { type: [Date], default: [] }, // Array of absent dates
+  PresentDates: { type: [Date], default: [] }, // Array of present dates
+  LastUpdated: { type: Date, default: Date.now }, // Last update time
+  Monitoring: { type: Boolean, default: false } // Whether monitoring is active
+});
 
-const studentattendancedetails = studentDetailsConnection.model('studentattendancedetails', attendanceSchema);
-export default studentattendancedetails;
+const attendanceSchema = new mongoose.Schema({
+  roll: { type: Number, required: true, unique: true },
+  subjects: { type: [subjectSchema], default: [] } // List of subjects
+});
+
+const studentAttendanceDetails = studentDetailsConnection.model('studentAttendanceDetails', attendanceSchema);
+export default studentAttendanceDetails;
