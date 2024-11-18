@@ -10,5 +10,5 @@ export default async function HitServer() {
         } catch (error) {
             console.log("Server Is Not Live!!", error);
         }
-    }, 600000); // 10 minutes in milliseconds
+    }, 1200000); // 20 minutes in milliseconds
 }
