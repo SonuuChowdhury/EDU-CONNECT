@@ -10,7 +10,7 @@ export default async function GetHomePageContent(contentChoice) {
         }
     };
 
-    const ServerSite = "https://institute-site-az-bug-busters-33ps.onrender.com";
+    const ServerSite = "https://advanced-institute-management-portal.onrender.com";
 
     let ResponseData;
     switch (contentChoice) {
