@@ -4,44 +4,219 @@ import studentattendancedetails from '../../../../models/students/studentAttenda
 const GetStudentAttendanceDetails = express.Router();
 GetStudentAttendanceDetails.use(express.json());
 
-GetStudentAttendanceDetails.get('/api/student-dashboard/attendance', async (req, res) => {
-    const { _id } = req.user;
-    const {roll, getAttendance, startMonitoring} = req.query;
-    if(!roll){
-        return res.status(400).json({data:"Roll Number is required"})
-    }
+GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req, res) => {
+  const {
+    roll,
+    getAttendance,
+    startMonitoring,
+    addSubject,
+    deleteSubject,
+    subjectName,
+    updateAttendance,
+    markPresent,
+    markAbsent,
+    removeMark
+  } = req.body;
 
-    if(startMonitoring){
-        const NewAttendanceMonitoringData = new studentattendancedetails({
-            roll:roll,
-            subjects:[]
-        })
-        const NewAttendanceMonitoringDataStatus = await NewAttendanceMonitoringData.save()
-        if(!NewAttendanceMonitoringDataStatus){
-            return res.status(404).json({msg:"Falied to start Monitoring"})
-        }else{
-            return res.status(200).json({msg:"Monitoing started succesfully"})
+  if (!roll) {
+    return res.status(400).json({ data: "Roll Number is required" });
+  }
+
+  // Start Monitoring
+  if (startMonitoring) {
+    const NewAttendanceMonitoringData = new studentattendancedetails({
+      roll: roll,
+      subjects: [],
+    });
+    const NewAttendanceMonitoringDataStatus = await NewAttendanceMonitoringData.save();
+    if (!NewAttendanceMonitoringDataStatus) {
+      return res.status(400).json({ msg: "Failed to start Monitoring" });
+    } else {
+      return res.status(200).json({ msg: "Monitoring started successfully" });
+    }
+  }
+
+  // Update Attendance
+if (updateAttendance) {
+    try {
+      // Find the student by roll
+      const attendanceData = await studentattendancedetails.findOne({ roll: Number(roll) });
+  
+      if (!attendanceData) {
+        return res.status(404).json({ msg: "No student found with this roll number" });
+      }
+  
+      // Validate subject name
+      if (!subjectName) {
+        return res.status(400).json({ msg: "Subject Name is required" });
+      }
+  
+      // Find the specific subject
+      const subject = attendanceData.subjects.find((subj) => subj.name === subjectName);
+  
+      if (!subject) {
+        return res.status(404).json({ msg: "Subject not found" });
+      }
+  
+      // Today's date in `YYYY-MM-DD` format
+      const todayDate = new Date().toISOString().split('T')[0];
+  
+      if (removeMark) {
+        // Remove today's date from both PresentDates and AbsentDates
+        const wasPresent = subject.PresentDates.some(
+          (date) => new Date(date).toISOString().split('T')[0] === todayDate
+        );
+        const wasAbsent = subject.AbsentDates.some(
+          (date) => new Date(date).toISOString().split('T')[0] === todayDate
+        );
+  
+        if (!wasPresent && !wasAbsent) {
+          return res.status(400).json({ msg: "Today's date is not marked as present or absent" });
         }
-    }
-
-    
-
-    if(getAttendance){
-        const studentAttendanceData = await studentattendancedetails.findOne({roll:Number(roll)})
-        if(!studentAttendanceData){
-            return res.status(404).json({msg:"Attendance data not found"})
-        }else{
-            return res.status(200).json({data:studentAttendanceData})
+  
+        subject.PresentDates = subject.PresentDates.filter(
+          (date) => new Date(date).toISOString().split('T')[0] !== todayDate
+        );
+        subject.AbsentDates = subject.AbsentDates.filter(
+          (date) => new Date(date).toISOString().split('T')[0] !== todayDate
+        );
+  
+        // Update LastUpdated
+        subject.LastUpdated = new Date();
+  
+        // Save the updated attendance data
+        const updatedAttendance = await attendanceData.save();
+  
+        return res.status(200).json({
+          msg: "Today's attendance removed successfully",
+          data: updatedAttendance,
+        });
+      }
+  
+      if (markPresent) {
+        // Remove today's date from AbsentDates if present
+        subject.AbsentDates = subject.AbsentDates.filter(
+          (date) => new Date(date).toISOString().split('T')[0] !== todayDate
+        );
+  
+        // Add today's date to PresentDates if not already present
+        if (
+          !subject.PresentDates.some(
+            (date) => new Date(date).toISOString().split('T')[0] === todayDate
+          )
+        ) {
+          subject.PresentDates.push(new Date());
         }
+      } else if (markAbsent) {
+        // Remove today's date from PresentDates if present
+        subject.PresentDates = subject.PresentDates.filter(
+          (date) => new Date(date).toISOString().split('T')[0] !== todayDate
+        );
+  
+        // Add today's date to AbsentDates if not already absent
+        if (
+          !subject.AbsentDates.some(
+            (date) => new Date(date).toISOString().split('T')[0] === todayDate
+          )
+        ) {
+          subject.AbsentDates.push(new Date());
+        }
+      } else {
+        return res.status(400).json({ msg: "Specify whether to mark present or absent" });
+      }
+  
+      // Update LastUpdated
+      subject.LastUpdated = new Date();
+  
+      // Save the updated attendance data
+      const updatedAttendance = await attendanceData.save();
+  
+      return res.status(200).json({
+        msg: "Attendance updated successfully",
+        data: updatedAttendance,
+      });
+    } catch (error) {
+      return res.status(500).json({ msg: "Error updating attendance", error: error.message });
     }
+  }
+  
+
+  // Add Subject
+  if (addSubject) {
+    if (!subjectName) {
+      return res.status(400).json({ msg: "Subject name is required to add a subject" });
+    }
+    try {
+      const student = await studentattendancedetails.findOne({ roll: Number(roll) });
+      if (!student) {
+        return res.status(404).json({ msg: "Student not found" });
+      }
+      // Check if the subject already exists
+      const subjectExists = student.subjects.some((subject) => subject.name === subjectName);
+      if (subjectExists) {
+        return res.status(400).json({ msg: "Subject already exists" });
+      }
+      // Add the new subject
+      student.subjects.push({
+        name: subjectName,
+        startDate: new Date(),
+        absentDates: [],
+        presentDates: [],
+        monitoring: true,
+      });
+      const updatedStudent = await student.save();
+      return res.status(200).json({ msg: "Subject added successfully", data: updatedStudent });
+    } catch (error) {
+      return res.status(500).json({ msg: "Error adding subject", error: error.message });
+    }
+  }
+
+
+  if (deleteSubject) {
+    if (!subjectName) {
+      return res.status(400).json({ msg: "Subject name is required to delete a subject" });
+    }
+    try {
+      // Find the student by roll
+      const student = await studentattendancedetails.findOne({ roll: Number(roll) });
+  
+      if (!student) {
+        return res.status(404).json({ msg: "Student not found" });
+      }
+  
+      // Check if the subject exists
+      const subjectIndex = student.subjects.findIndex((subject) => subject.name === subjectName);
+      if (subjectIndex === -1) {
+        return res.status(404).json({ msg: "Subject not found" });
+      }
+  
+      // Remove the subject
+      student.subjects.splice(subjectIndex, 1);
+  
+      // Save the updated data
+      const updatedStudent = await student.save();
+  
+      return res.status(200).json({
+        msg: "Subject deleted successfully",
+        data: updatedStudent,
+      });
+    } catch (error) {
+      return res.status(500).json({ msg: "Error deleting subject", error: error.message });
+    }
+  }
+  
+
+  // Get Attendance
+  if (getAttendance) {
+    const studentAttendanceData = await studentattendancedetails.findOne({ roll: Number(roll) });
+    if (!studentAttendanceData) {
+      return res.status(404).json({ msg: "Attendance data not found" });
+    } else {
+      return res.status(200).json({ data: studentAttendanceData });
+    }
+  }
+
+  return res.status(400).json({ msg: "Select a parameter to do a task" });
 });
+
 export default GetStudentAttendanceDetails;
-
-
-
-
-
-
-
-
-

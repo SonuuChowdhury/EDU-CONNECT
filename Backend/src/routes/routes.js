@@ -73,7 +73,7 @@ router.put('/api/student/change-password',VerifyToken,UpdateStudentCredentials)
 router.put('/api/student/change-photo/update-or-delete',VerifyToken,StudentUpdateURLProfile)
 
 // attendance management 
-router.get('/api/student-dashboard/attendance',VerifyToken,GetStudentAttendanceDetails)
+router.post('/api/student-dashboard/attendance',VerifyToken,GetStudentAttendanceDetails)
 
 // Authentication parameter for image kit
 router.get('/api/get-authentication-parameters',ImageKitGetAuthParams)
