@@ -172,9 +172,11 @@
 
 /* Content area section styling */
 .studentContentAreaSection {
+    position: relative;
     height: calc(100vh - 60px);
     width: 70%;
     overflow-y: auto;
+    background-color: #f9f9f9;
 }
 
 /* Custom scrollbar styling */
@@ -234,49 +236,93 @@
 .studentContentGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
+    gap: 1.5rem;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
 }
 
 /* Each item in the grid */
 .studentContentItem {
-    height: auto;
+    height: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    background-color: #f0f0f0;
-    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: #439DF0;
+    border-radius: 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .studentContentItem:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Icon placeholder style */
-.studentContentItem .studentContentItemicon {
-    width: 3.5rem;
-    height: 3.5rem;
-    background-color: #439DF0;
-    border-radius: 10px;
-}
-
-.studentContentItemicon{
-    background-image: url('/StudentDashboardOptionsIcon.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+/* Icon styling */
+.studentContentItemIcon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #439df0, #76c7ff);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(67, 157, 240, 0.4);
 }
 
 /* Text styling for each item */
-.studentContentItem studentContentItemName {
+.studentContentItemName {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #333;
-    font-weight: 500;
+    font-weight: 600;
+}
+
+
+
+/* Attendance monitoring styles  */
+
+.AttendaceContentArea{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.DashboardRedirectionButton {
+    position: absolute;
+    top: 10px; /* Adjust for your desired margin from the top */
+    left: 10px; /* Adjust for your desired margin from the left */
+    background-color: #ef1e1e; /* Matt red color */
+    color: white; /* Text color for better contrast */
+    padding: 10px 15px; /* Padding for a good clickable area */
+    border-radius: 5px; /* Rounded corners for a sleek look */
+    font-size: 1.25rem; /* Adjust font size as needed */
+    font-weight: bold; /* Make the text bold */
+    cursor: pointer; /* Show pointer cursor on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for elevation */
+    text-align: center;
+    user-select: none; /* Prevent text selection */
+    transition: transform 0.2s, background-color 0.2s; /* Smooth hover effects */
+}
+
+.DashboardRedirectionButton:hover {
+    background-color: #c20f0f; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+.AttendanceMonitorHeader {
+    color: #439df0;
+    font-size: 2rem;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }

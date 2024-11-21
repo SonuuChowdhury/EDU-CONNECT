@@ -5,7 +5,9 @@ import GetStudentDashBoardData from '../../../api/Dashboard Data/Student/GetStud
 import Unauthorized from '../../../components/Errors/Unauthorized';
 import StudentUplaodImageComponent from '../../../components/DashboardComponents/Student/UplaodImageComponent/StudentUplaodImageComponent';
 
-import { useState, useEffect } from 'react';
+import AttendacePage from '../Attendance Page/AttendancePage';
+
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function getOrdinalSuffix(number) {
@@ -33,6 +35,12 @@ export default function StudentDashboardPage() {
     const [Authorized, setAuthorized] = useState(true);
     const [showProfile, setShowProfile] = useState(false);
     const [profilePictureUrl, setProfilePictureUrl] = useState('');
+
+    const [watchDashboard,setWatchDashboard] = useState(true)
+
+    const [ViewAttendanceDashboard,setViewAttendanceDashboard] = useState(false)
+
+
 
     // State to manage modal visibility
     const [isModalOpen, setIsModalOpen] = useState(false); // <-- Modal state
@@ -111,6 +119,15 @@ export default function StudentDashboardPage() {
         </div>
     );
 
+    const OpenAttendanceHandeller= useCallback(async()=>{
+        setWatchDashboard(false)
+        setViewAttendanceDashboard(true)
+    },[])
+
+
+    
+
+
     return (
         <>
             <BasicNavbar />
@@ -140,66 +157,65 @@ export default function StudentDashboardPage() {
                     </div>
                     <div className="studentDivider"></div>
                     <div className="studentContentAreaSection">
-                    <div className="studentContentGrid">
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>Attendance Monitoring</p>
+
+                    {watchDashboard?(
+                        
+                        <div className="studentContentGrid">
+                                <div className="studentContentItem" onClick={()=>OpenAttendanceHandeller()}> 
+                                    <p className='studentContentItemName'>Attendance Monitoring</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>Enrollment Form</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>CA Marks</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>PCA Marks</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>Exam Form</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>Admit Card</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>Backlog Form</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>Sem Result</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>Review Result</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>Payments</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>Online Exam</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>Mock Exams</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>Issued Books</p>
+                                </div>
+                                <div className="studentContentItem"> 
+                                    <p className='studentContentItemName'>PYQs</p>
+                                </div>
                             </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>Enrollment Form</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p>CA Marks</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>PCA Marks</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>Exam Form</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>Admit Card</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>Backlog Form</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p>Sem Result</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>Review Result</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>Payments</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>Online Exam</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>Mock Exams</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                                <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>Issued Books</p>
-                            </div>
-                            <div className="studentContentItem"> 
-                        <span className="studentContentItemicon"></span>
-                                <p className='studentContentItemName'>PYQs</p>
-                            </div>
-                        </div>
-                    </div>
+                        
+                    ):null}
+
+                    {ViewAttendanceDashboard? (<AttendacePage onClose={()=> {
+                        setWatchDashboard(true);
+                        setViewAttendanceDashboard(false);
+                    }} 
+                    />
+
+                    ):null}
                 </div>
+            </div>
             )}
 
             {isModalOpen && (
