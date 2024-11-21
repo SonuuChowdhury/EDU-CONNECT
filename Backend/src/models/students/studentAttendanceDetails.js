@@ -1,15 +1,15 @@
-import  mongoose  from 'mongoose';
-import connectDB from '../../db/ConnectMongoDB.js'
+import mongoose from 'mongoose';
+import connectDB from '../../db/ConnectMongoDB.js';
 
 const { studentDetailsConnection } = await connectDB();
 
 const subjectSchema = new mongoose.Schema({
   name: { type: String, required: true }, // Subject name
-  startDate: { type: Date, required: true, default: Date.now}, // Date monitoring started
+  startDate: { type: Date, required: true, default: Date.now }, // Date monitoring started
   AbsentDates: { type: [Date], default: [] }, // Array of absent dates
   PresentDates: { type: [Date], default: [] }, // Array of present dates
   LastUpdated: { type: Date, default: Date.now }, // Last update time
-  Monitoring: { type: Boolean, default: true } // Whether monitoring is active
+  subjectType: { type: Number, default: 1, enum: [1, 2] } // 1 for theory, 2 for lab
 });
 
 const attendanceSchema = new mongoose.Schema({

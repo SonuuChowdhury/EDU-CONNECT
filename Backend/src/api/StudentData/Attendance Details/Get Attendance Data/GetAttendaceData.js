@@ -12,6 +12,7 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
     addSubject,
     deleteSubject,
     subjectName,
+    subjectType,
     updateAttendance,
     markPresent,
     markAbsent,
@@ -144,25 +145,28 @@ if (updateAttendance) {
   // Add Subject
   if (addSubject) {
     if (!subjectName) {
-      return res.status(400).json({ msg: "Subject name is required to add a subject" });
+      return res.status(400).json({ msg: "Subject name is required to add a subject." });
+    }
+    if (!subjectType || ![1, 2].includes(subjectType)) {
+      return res.status(400).json({ msg: "Invalid or missing subjectType. Use 1 for theory or 2 for lab." });
     }
     try {
       const student = await studentattendancedetails.findOne({ roll: Number(roll) });
       if (!student) {
-        return res.status(404).json({ msg: "Student not found" });
+        return res.status(404).json({ msg: "Student not found." });
       }
       // Check if the subject already exists
       const subjectExists = student.subjects.some((subject) => subject.name === subjectName);
       if (subjectExists) {
-        return res.status(400).json({ msg: "Subject already exists" });
+        return res.status(400).json({ msg: "Subject already exists." });
       }
       // Add the new subject
       student.subjects.push({
         name: subjectName,
         startDate: new Date(),
-        absentDates: [],
-        presentDates: [],
-        monitoring: true,
+        AbsentDates: [],
+        PresentDates: [],
+        subjectType: subjectType || 1, // Default to theory
       });
       const updatedStudent = await student.save();
       return res.status(200).json({ msg: "Subject added successfully", data: updatedStudent });
@@ -170,6 +174,7 @@ if (updateAttendance) {
       return res.status(500).json({ msg: "Error adding subject", error: error.message });
     }
   }
+  
 
 
   if (deleteSubject) {

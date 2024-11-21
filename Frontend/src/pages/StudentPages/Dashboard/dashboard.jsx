@@ -211,6 +211,7 @@ export default function StudentDashboardPage() {
                         setWatchDashboard(true);
                         setViewAttendanceDashboard(false);
                     }} 
+                    StudentRoll={data.roll}
                     />
 
                     ):null}

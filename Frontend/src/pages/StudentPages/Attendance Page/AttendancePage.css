@@ -30,3 +30,95 @@
     background-color: #0056b3;
     transform: translateY(-2px);
   }
+
+
+  /* Parent Background */
+.loaderSpinnerbackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Spinner */
+.LoaderSpinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3); /* lighter border */
+  border-top: 5px solid white; /* visible spinning section */
+  border-radius: 50%;
+  animation: spinLoaderAnimation 1s linear infinite;
+}
+
+/* Animation */
+@keyframes spinLoaderAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+/* Styling for No Data Found */
+.noAttendanceDataWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  height: 100%;
+  text-align: center;
+}
+
+.noAttendanceDataHeader {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.startMonitoringButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.startMonitoringButton:hover {
+  background-color: #45a049;
+}
+
+/* Styling for No Subjects Found */
+
+.noSubjectHeader {
+  font-size: 1.8rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.addSubjectButton {
+  background-color: #007bff;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addSubjectButton:hover {
+  background-color: #0056b3;
+}

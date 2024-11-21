@@ -9,10 +9,27 @@ export default async function GetStudentAttendanceData(params) {
     }
 
     try {
-        if(params.startMonitoring){
-            console.log(params.startMonitoring)
-            
-            const { data } = await axios.post(
+        if(params.addSubject){
+            const  data  = await axios.post(
+                'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
+                {
+                    roll: params.roll,
+                    addSubject: true,
+                    subjectName:params.subjectName,
+                    subjectType:2
+                    // 1 for theory classes 2 for lab classes 
+                },
+                {
+                    headers: {
+                        'aot-student-login-authorization-token': token,
+                    },
+                }
+            );
+    
+            return data;
+
+        }else if(params.startMonitoring){
+            const  data  = await axios.post(
                 'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
                 {
                     roll: params.roll,
@@ -27,7 +44,7 @@ export default async function GetStudentAttendanceData(params) {
     
             return data;
         }else{
-            const { data } = await axios.post(
+            const data  = await axios.post(
                 'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
                 {
                     roll: params.roll,
