@@ -88,21 +88,123 @@
 }
 
 /* Profile name styling */
+/* General Profile Styling */
 .studentProfileName {
     margin-top: 0.5rem;
-    font-size: 2.2rem; /* Increased font size for better visibility */
+    font-size: 2.2rem;
+    color: #333; /* Standard dark gray for better visibility */
 }
 
 /* Profile department styling */
 .studentProfileDepartment {
-    font-size: 1.2rem; /* Slightly increased for better balance */
+    font-size: 1.2rem;
+    color: #555; /* Medium gray for subtle differentiation */
 }
 
 /* Year and semester styling */
 .studentYearAndSem {
     margin-top: 0.3rem;
-    font-size: 1rem; /* Consistent font size */
+    font-size: 1rem;
+    color: #666; /* Light gray for secondary text */
 }
+
+/* Button section styling */
+.studentButtonSection {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem; /* Adds spacing between buttons */
+}
+
+/* Profile photo styling */
+.studentProfilePhoto {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 1rem;
+    border: 2px solid #ddd; /* Adds a border around the image */
+}
+
+.studentUploadOrChangeProfilePIcture {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent overlay */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 50%;
+}
+
+.studentProfilePhoto:hover .studentUploadOrChangeProfilePIcture {
+    opacity: 1; /* Show overlay on hover */
+}
+
+/* Roll number styling */
+.StudentRollNumber {
+    font-size: 1.5rem;
+    color: #444; /* Slightly darker gray for roll number */
+    margin-top: 0.5rem;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .studentProfileName {
+        font-size: 1.8rem;
+    }
+
+    .studentProfileDepartment {
+        font-size: 1rem;
+    }
+
+    .studentYearAndSem {
+        font-size: 0.9rem;
+    }
+
+    .studentButtonSection {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .studentProfilePhoto {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Responsive Design for Extra Small Screens */
+@media (max-width: 480px) {
+    .studentProfileName {
+        font-size: 1.6rem;
+    }
+
+    .studentProfileDepartment {
+        font-size: 0.9rem;
+    }
+
+    .studentYearAndSem {
+        font-size: 0.8rem;
+    }
+
+    .studentButtonSection {
+        gap: 0.3rem;
+    }
+
+    .studentProfilePhoto {
+        width: 60px;
+        height: 60px;
+    }
+}
+
 
 /* Button section styling */
 .studentButtonSection {

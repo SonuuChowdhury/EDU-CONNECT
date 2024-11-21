@@ -6,8 +6,6 @@ import "./AttendancePage.css";
 
 import GetStudentAttendanceData from "../../../api/Dashboard Data/Student/GetStudentAttendanceData";
 
-import Loader from "../../../components/loader/loader";
-
 export default function AttendacePage({onClose,StudentRoll}) {
     const [roll, setRoll] = useState(StudentRoll)
     const [isLoading, setisLoading] = useState(true);
