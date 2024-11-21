@@ -17,7 +17,7 @@ export default async function StudentForgetPasswordAPI(roll,reqType,otp){
 
     if(reqType==1){
         try{
-            const VerifyOTPResponse=await axios.post('https://institute-site-az-bug-busters-33ps.onrender.com/login/student/forgot-password',{
+            const VerifyOTPResponse=await axios.post('https://advanced-institute-management-portal.onrender.com/login/student/forgot-password',{
                 "roll":roll,
                 "reqType":reqType,
                 "otp":otp
