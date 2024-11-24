@@ -43,6 +43,27 @@ export default async function GetStudentAttendanceData(params) {
             );
     
             return data;
+        }else if(params.updateAttendance){
+            const  data  = await axios.post(
+                'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
+                {
+                    roll: params.roll,
+                    updateAttendance: true,
+                    subjectName:params.subjectName,
+                    removeMark:params.removeMark,
+                    markAbsent:params.markAbsent,
+                    markPresent:params.markPresent,
+                },
+                {
+                    headers: {
+                        'aot-student-login-authorization-token': token,
+                    },
+                }
+            );
+    
+            return data;
+
+
         }else{
             const data  = await axios.post(
                 'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
