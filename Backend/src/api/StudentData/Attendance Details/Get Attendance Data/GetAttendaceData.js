@@ -183,6 +183,14 @@ if (updateAttendance) {
     if (!subjectType || ![1, 2].includes(subjectType)) {
       return res.status(400).json({ msg: "Invalid or missing subjectType. Use 1 for theory or 2 for lab." });
     }
+
+    // Validate NewTotalPresent and NewTotalAbsent
+    if (NewTotalPresent < 0 || isNaN(NewTotalPresent)) {
+      return res.status(400).json({ msg: "Invalid NewTotalPresent value. It cannot be negative or invalid." });
+    }
+    if (NewTotalAbsent < 0 || isNaN(NewTotalAbsent)) {
+      return res.status(400).json({ msg: "Invalid NewTotalAbsent value. It cannot be negative or invalid." });
+    }
     try {
       const student = await studentattendancedetails.findOne({ roll: Number(roll) });
       if (!student) {
