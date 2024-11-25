@@ -9,6 +9,8 @@ const subjectSchema = new mongoose.Schema({
   AbsentDates: { type: [Date], default: [] }, // Array of absent dates
   PresentDates: { type: [Date], default: [] }, // Array of present dates
   LastUpdated: { type: Date, default: Date.now }, // Last update time
+  TotalPresent: {type: Number},
+  TotalAbsent: {type: Number},
   subjectType: { type: Number, default: 1, enum: [1, 2] } // 1 for theory, 2 for lab
 });
 
