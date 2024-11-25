@@ -18,7 +18,11 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
     updateAttendance,
     markPresent,
     markAbsent,
-    removeMark
+    removeMark,
+    editData,
+    currentSubjectName,
+    newSubjectType,
+    newSubjectName
   } = req.body;
 
   if (!roll) {
@@ -38,6 +42,47 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
       return res.status(200).json({ msg: "Monitoring started successfully" });
     }
   }
+
+
+
+
+
+  // Editing data for name and subject type
+if (editData) {
+  // Validate input
+  if (!newSubjectName || !newSubjectType || !currentSubjectName) {
+    return res.status(400).json({
+      message: "Please provide Current Subject Name, New Subject Name, and New Subject Type.",
+    });
+  }
+
+  try {
+    // Update the specific subject inside the `subjects` array
+    const updatedAttendance = await studentattendancedetails.findOneAndUpdate(
+      { roll, "subjects.name": currentSubjectName }, // Match roll and current subject name
+      {
+        $set: {
+          "subjects.$.name": newSubjectName, // Update the subject name
+          "subjects.$.subjectType": newSubjectType, // Update the subject type
+        },
+      },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedAttendance) {
+      return res.status(404).json({ message: "Subject not found or unable to update." });
+    }
+
+    res.status(200).json({
+      message: "Subject updated successfully.",
+      updatedAttendance,
+    });
+  } catch (error) {
+    console.error("Error updating subject:", error);
+    res.status(500).json({ message: "An error occurred while updating the subject." });
+  }
+}
+
 
 
 
@@ -175,10 +220,10 @@ if (updateAttendance) {
 
     // Validate NewTotalPresent and NewTotalAbsent
     if (NewTotalPresent < 0 || isNaN(NewTotalPresent)) {
-      return res.status(400).json({ msg: "Invalid NewTotalPresent value. It cannot be negative or invalid." });
+      return res.status(400).json({ msg: "Invalid Attendance value. It cannot be negative or invalid." });
     }
     if (NewTotalAbsent < 0 || isNaN(NewTotalAbsent)) {
-      return res.status(400).json({ msg: "Invalid NewTotalAbsent value. It cannot be negative or invalid." });
+      return res.status(400).json({ msg: "Invalid Attendance value. It cannot be negative or invalid." });
     }
     try {
       const student = await studentattendancedetails.findOne({ roll: Number(roll) });
@@ -207,8 +252,6 @@ if (updateAttendance) {
     }
   }
   
-
-
   if (deleteSubject) {
     if (!subjectName) {
       return res.status(400).json({ msg: "Subject name is required to delete a subject" });
