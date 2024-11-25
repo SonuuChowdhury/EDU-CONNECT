@@ -63,6 +63,7 @@ if (updateAttendance) {
     }
 
     const todayDate = new Date().toISOString().split('T')[0];
+    const incrementValue = subject.subjectType === 2 ? 2 : 1; // Lab (2) or Theory (1)
 
     if (removeMark) {
       const wasPresent = subject.PresentDates.some(
@@ -77,14 +78,14 @@ if (updateAttendance) {
       }
 
       if (wasPresent) {
-        subject.TotalPresent = Math.max(0, subject.TotalPresent - (subject.isLab ? 2 : 1)); // Decrement by 2 for lab
+        subject.TotalPresent = Math.max(0, subject.TotalPresent - incrementValue); // Decrement by 2 for lab, 1 for theory
         subject.PresentDates = subject.PresentDates.filter(
           (date) => new Date(date).toISOString().split('T')[0] !== todayDate
         );
       }
 
       if (wasAbsent) {
-        subject.TotalAbsent = Math.max(0, subject.TotalAbsent - (subject.isLab ? 2 : 1)); // Decrement by 2 for lab
+        subject.TotalAbsent = Math.max(0, subject.TotalAbsent - incrementValue); // Decrement by 2 for lab, 1 for theory
         subject.AbsentDates = subject.AbsentDates.filter(
           (date) => new Date(date).toISOString().split('T')[0] !== todayDate
         );
@@ -105,7 +106,7 @@ if (updateAttendance) {
       );
 
       if (wasAbsent) {
-        subject.TotalAbsent = Math.max(0, subject.TotalAbsent - (subject.isLab ? 2 : 1)); // Decrement by 2 for lab
+        subject.TotalAbsent = Math.max(0, subject.TotalAbsent - incrementValue); // Decrement by 2 for lab, 1 for theory
       }
 
       subject.AbsentDates = subject.AbsentDates.filter(
@@ -118,7 +119,7 @@ if (updateAttendance) {
 
       if (!wasAlreadyPresent) {
         subject.PresentDates.push(new Date());
-        subject.TotalPresent += (subject.isLab ? 2 : 1); // Increment by 2 for lab
+        subject.TotalPresent += incrementValue; // Increment by 2 for lab, 1 for theory
       }
     } else if (markAbsent) {
       const wasPresent = subject.PresentDates.some(
@@ -126,7 +127,7 @@ if (updateAttendance) {
       );
 
       if (wasPresent) {
-        subject.TotalPresent = Math.max(0, subject.TotalPresent - (subject.isLab ? 2 : 1)); // Decrement by 2 for lab
+        subject.TotalPresent = Math.max(0, subject.TotalPresent - incrementValue); // Decrement by 2 for lab, 1 for theory
       }
 
       subject.PresentDates = subject.PresentDates.filter(
@@ -139,7 +140,7 @@ if (updateAttendance) {
 
       if (!wasAlreadyAbsent) {
         subject.AbsentDates.push(new Date());
-        subject.TotalAbsent += (subject.isLab ? 2 : 1); // Increment by 2 for lab
+        subject.TotalAbsent += incrementValue; // Increment by 2 for lab, 1 for theory
       }
     } else {
       return res.status(400).json({ msg: "Specify whether to mark present or absent" });
@@ -156,6 +157,7 @@ if (updateAttendance) {
     return res.status(500).json({ msg: "Error updating attendance", error: error.message });
   }
 }
+
 
 
   
