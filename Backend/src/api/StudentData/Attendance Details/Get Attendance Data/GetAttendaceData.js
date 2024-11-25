@@ -52,23 +52,19 @@ if (updateAttendance) {
       return res.status(404).json({ msg: "No student found with this roll number" });
     }
 
-    // Validate subject name
     if (!subjectName) {
       return res.status(400).json({ msg: "Subject Name is required" });
     }
 
-    // Find the specific subject
     const subject = attendanceData.subjects.find((subj) => subj.name === subjectName);
 
     if (!subject) {
       return res.status(404).json({ msg: "Subject not found" });
     }
 
-    // Today's date in `YYYY-MM-DD` format
     const todayDate = new Date().toISOString().split('T')[0];
 
     if (removeMark) {
-      // Remove today's date from both PresentDates and AbsentDates
       const wasPresent = subject.PresentDates.some(
         (date) => new Date(date).toISOString().split('T')[0] === todayDate
       );
@@ -81,23 +77,20 @@ if (updateAttendance) {
       }
 
       if (wasPresent) {
-        subject.TotalPresent = Math.max(0, subject.TotalPresent - 1); // Decrement TotalPresent
+        subject.TotalPresent = Math.max(0, subject.TotalPresent - (subject.isLab ? 2 : 1)); // Decrement by 2 for lab
         subject.PresentDates = subject.PresentDates.filter(
           (date) => new Date(date).toISOString().split('T')[0] !== todayDate
         );
       }
 
       if (wasAbsent) {
-        subject.TotalAbsent = Math.max(0, subject.TotalAbsent - 1); // Decrement TotalAbsent
+        subject.TotalAbsent = Math.max(0, subject.TotalAbsent - (subject.isLab ? 2 : 1)); // Decrement by 2 for lab
         subject.AbsentDates = subject.AbsentDates.filter(
           (date) => new Date(date).toISOString().split('T')[0] !== todayDate
         );
       }
 
-      // Update LastUpdated
       subject.LastUpdated = new Date();
-
-      // Save the updated attendance data
       const updatedAttendance = await attendanceData.save();
 
       return res.status(200).json({
@@ -107,59 +100,52 @@ if (updateAttendance) {
     }
 
     if (markPresent) {
-      // Remove today's date from AbsentDates if present
       const wasAbsent = subject.AbsentDates.some(
         (date) => new Date(date).toISOString().split('T')[0] === todayDate
       );
 
       if (wasAbsent) {
-        subject.TotalAbsent = Math.max(0, subject.TotalAbsent - 1); // Decrement TotalAbsent
+        subject.TotalAbsent = Math.max(0, subject.TotalAbsent - (subject.isLab ? 2 : 1)); // Decrement by 2 for lab
       }
 
       subject.AbsentDates = subject.AbsentDates.filter(
         (date) => new Date(date).toISOString().split('T')[0] !== todayDate
       );
 
-      // Add today's date to PresentDates if not already present
       const wasAlreadyPresent = subject.PresentDates.some(
         (date) => new Date(date).toISOString().split('T')[0] === todayDate
       );
 
       if (!wasAlreadyPresent) {
         subject.PresentDates.push(new Date());
-        subject.TotalPresent += 1; // Increment TotalPresent
+        subject.TotalPresent += (subject.isLab ? 2 : 1); // Increment by 2 for lab
       }
     } else if (markAbsent) {
-      // Remove today's date from PresentDates if present
       const wasPresent = subject.PresentDates.some(
         (date) => new Date(date).toISOString().split('T')[0] === todayDate
       );
 
       if (wasPresent) {
-        subject.TotalPresent = Math.max(0, subject.TotalPresent - 1); // Decrement TotalPresent
+        subject.TotalPresent = Math.max(0, subject.TotalPresent - (subject.isLab ? 2 : 1)); // Decrement by 2 for lab
       }
 
       subject.PresentDates = subject.PresentDates.filter(
         (date) => new Date(date).toISOString().split('T')[0] !== todayDate
       );
 
-      // Add today's date to AbsentDates if not already absent
       const wasAlreadyAbsent = subject.AbsentDates.some(
         (date) => new Date(date).toISOString().split('T')[0] === todayDate
       );
 
       if (!wasAlreadyAbsent) {
         subject.AbsentDates.push(new Date());
-        subject.TotalAbsent += 1; // Increment TotalAbsent
+        subject.TotalAbsent += (subject.isLab ? 2 : 1); // Increment by 2 for lab
       }
     } else {
       return res.status(400).json({ msg: "Specify whether to mark present or absent" });
     }
 
-    // Update LastUpdated
     subject.LastUpdated = new Date();
-
-    // Save the updated attendance data
     const updatedAttendance = await attendanceData.save();
 
     return res.status(200).json({
@@ -170,6 +156,7 @@ if (updateAttendance) {
     return res.status(500).json({ msg: "Error updating attendance", error: error.message });
   }
 }
+
 
   
 
