@@ -117,13 +117,24 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
 }
 
 .addSubjectButton:hover {
   background-color: #0056b3;
 }
 
+.addSubjectButton:disabled {
+  background-color: #cccccc; /* Light gray for disabled state */
+  color: #666666; /* Darker gray for text */
+  cursor: not-allowed; /* Indicate it's not clickable */
+  opacity: 0.7; /* Slightly transparent for a disabled effect */
+  border: none; /* Keep consistent with the enabled state */
+}
+
+
 .AttendanceDetailsArea{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   width: 100%;
   display: flex;
   gap: 3rem;
@@ -477,24 +488,132 @@
     font-size: 1rem;
   }
 
+}
 
+.AddingSubjectContainer {
+  width: 60%;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.AddingSubjectContainerHeader {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 1.5rem;
+}
 
+.AddingSubjectContainerNameInputArea,
+.AddingSubjectContainerAttendanceDataArea {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
-  
+.AddingSubjectContainerLabel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #555555;
+  font-weight: bold;
+}
 
-  
+.AddingSubjectContainerInput {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
 
+.AddingSubjectContainerButtonSection {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+}
 
+.AddingSubjectContainerButtonSectionCancelButton,
+.AddingSubjectContainerButtonSectionAddButton {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+.AddingSubjectContainerButtonSectionCancelButton {
+  background-color: #f44336;
+  color: white;
+}
 
+.AddingSubjectContainerButtonSectionCancelButton:hover {
+  background-color: #d32f2f;
+}
 
+.AddingSubjectContainerButtonSectionAddButton {
+  background-color: #4caf50;
+  color: white;
+}
 
+.AddingSubjectContainerButtonSectionAddButton:hover {
+  background-color: #388e3c;
+}
 
+.AddingSubjectContainerSubjectTypeArea {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
+.AddingSubjectContainerSelect {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  background-color: #fff;
+  color: #555;
+}
 
+.AddingSubjectContainerSelect:focus {
+  border-color: #007bff;
+  outline: none;
+}
 
-
+.AddingSubjectContainerMsgSection {
+  width: 70%;
+  height: auto;
+  padding: 0.5rem 1rem; /* Add padding for better spacing */
+  border: 1.5px solid #e57373; /* Use a lighter red for the border */
+  background-color: #ffcccb; /* Use a softer, lighter red for the background */
+  color: #b71c1c; /* Darker red for text to maintain contrast */
+  font-size: 1rem; /* Adjust font size for better readability */
+  font-weight: bold; /* Make the text bold */
+  border-radius: 8px; /* Add rounded corners */
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  text-align: center; /* Center align the text */
 }
 
 

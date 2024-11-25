@@ -10,14 +10,16 @@ export default async function GetStudentAttendanceData(params) {
 
     try {
         if(params.addSubject){
+            const CalculatedTotalAbsent= params.TotalClass - params.TotalPresent;
             const  data  = await axios.post(
                 'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
                 {
                     roll: params.roll,
                     addSubject: true,
                     subjectName:params.subjectName,
-                    subjectType:2
-                    // 1 for theory classes 2 for lab classes 
+                    subjectType:Number(params.subjectType),                                
+                    NewTotalPresent:params.TotalPresent,
+                    NewTotalAbsent:CalculatedTotalAbsent
                 },
                 {
                     headers: {
@@ -27,6 +29,25 @@ export default async function GetStudentAttendanceData(params) {
             );
     
             return data;
+
+        }else if(params.deleteSubject){
+            console.log(params.subjectName)
+            const  data  = await axios.post(
+                'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
+                {
+                    roll: params.roll,
+                    deleteSubject: true,
+                    subjectName:params.subjectName
+                },
+                {
+                    headers: {
+                        'aot-student-login-authorization-token': token,
+                    },
+                }
+            );
+    
+            return data;
+
 
         }else if(params.startMonitoring){
             const  data  = await axios.post(
