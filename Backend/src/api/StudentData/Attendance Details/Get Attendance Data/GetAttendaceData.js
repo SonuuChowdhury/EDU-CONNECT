@@ -73,13 +73,13 @@ if (editData) {
       return res.status(404).json({ message: "Subject not found or unable to update." });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Subject updated successfully.",
       updatedAttendance,
     });
   } catch (error) {
     console.error("Error updating subject:", error);
-    res.status(500).json({ message: "An error occurred while updating the subject." });
+    return res.status(500).json({ message: "An error occurred while updating the subject." });
   }
 }
 
