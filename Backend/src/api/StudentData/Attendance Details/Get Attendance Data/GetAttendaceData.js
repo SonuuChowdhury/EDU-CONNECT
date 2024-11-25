@@ -46,7 +46,7 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
 if (updateAttendance) {
   try {
     // Find the student by roll
-    const attendanceData = await studentAttendanceDetails.findOne({ roll: Number(roll) });
+    const attendanceData = await studentattendancedetails.findOne({ roll: Number(roll) });
 
     if (!attendanceData) {
       return res.status(404).json({ msg: "No student found with this roll number" });
