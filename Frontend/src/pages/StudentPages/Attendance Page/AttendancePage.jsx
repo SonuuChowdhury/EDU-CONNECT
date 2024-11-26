@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays,faTrashCan ,faPenToSquare,faXmark,faCheck, faBan, faL} from '@fortawesome/free-solid-svg-icons';
 
 import GetStudentAttendanceData from "../../../api/Dashboard Data/Student/GetStudentAttendanceData";
+import EditSubject from "./Components/EditingSubject/EditSubject";
 
 export default function AttendacePage({onClose,StudentRoll}) {
     const [roll, setRoll] = useState(StudentRoll)
@@ -30,6 +31,10 @@ export default function AttendacePage({onClose,StudentRoll}) {
     const [AddingSubject, setAddingSubject]=useState(false)
     const [AddingSubjectShowMsg, setAddingSubjectShowMsg]=useState(false)
     const [AddingSubjectMsg, setAddingSubjectMsg]=useState("")
+
+    const [EditingSubjectData, SetEditingSubjectData]= useState(false)
+    const [EditingCurrentSubjectData, SetEditingCurrentSubjectData]= useState()
+    
 
     useEffect(() => {
       if (AttendanceData && AttendanceData.subjects) {
@@ -257,6 +262,10 @@ export default function AttendacePage({onClose,StudentRoll}) {
         <div className="LoaderSpinner"></div>
       </div>
     : null}
+
+    {EditingSubjectData? <EditSubject onClose={()=>SetEditingSubjectData(false)} data={EditingCurrentSubjectData} roll={StudentRoll} UpdateData={(data)=>setAttendanceData(data)}/> :null}
+
+
     <div
       className="DashboardRedirectionButton"
       onClick={onClose}>
@@ -367,9 +376,12 @@ export default function AttendacePage({onClose,StudentRoll}) {
             </div>
 
             <div className="AttendanceSubjectCardOptionsArea">
-              <div className="AttendanceSubjectCardOptions"><FontAwesomeIcon icon={faCalendarDays} /> </div>
-              <div className="AttendanceSubjectCardOptions"><FontAwesomeIcon icon={faPenToSquare} /></div>
-              <div className="AttendanceSubjectCardOptions" onClick={()=>SubjectDeleteHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faTrashCan} /></div>
+              <div className="AttendanceSubjectCardOptions" title="View Attendance Calender"><FontAwesomeIcon icon={faCalendarDays} /> </div>
+              <div className="AttendanceSubjectCardOptions" title="Edit Subject" onClick={()=>{
+                SetEditingCurrentSubjectData(data,StudentRoll)
+                SetEditingSubjectData(true)
+              }}><FontAwesomeIcon icon={faPenToSquare} /></div>
+              <div className="AttendanceSubjectCardOptions" title="Delete Subject" onClick={()=>SubjectDeleteHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faTrashCan} /></div>
             </div>
 
             <div className="AttendanceSubjectCardTodaysAttendanceArea">
@@ -393,9 +405,9 @@ export default function AttendacePage({onClose,StudentRoll}) {
                 </span>
 
               <div className="AttendanceSubjectCardTodaysAttendanceOptions">
-                <div className="AttendanceSubjectCardTodaysAttendanceOptionsPresent" onClick={()=>MarkStudentPresentHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faCheck} /></div>
-                <div className="AttendanceSubjectCardTodaysAttendanceOptionsRemove" onClick={()=>RemoveMarkStudentHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faBan} /> </div>
-                <div className="AttendanceSubjectCardTodaysAttendanceAbsent" onClick={()=>MarkStudentAbsentHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faXmark} /></div>
+                <div className="AttendanceSubjectCardTodaysAttendanceOptionsPresent" title="Mark Present" onClick={()=>MarkStudentPresentHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faCheck} /></div>
+                <div className="AttendanceSubjectCardTodaysAttendanceOptionsRemove" title="Remove Mark" onClick={()=>RemoveMarkStudentHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faBan} /> </div>
+                <div className="AttendanceSubjectCardTodaysAttendanceAbsent" title="Mark Absent" onClick={()=>MarkStudentAbsentHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faXmark} /></div>
               </div>
             </div>
           </div>

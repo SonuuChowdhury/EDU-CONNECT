@@ -30,8 +30,19 @@ export default async function GetStudentAttendanceData(params) {
     
             return data;
 
+        }else if(params.editData){
+            const  data  = await axios.post(
+                'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
+                params,
+                {
+                    headers: {
+                        'aot-student-login-authorization-token': token,
+                    },
+                }
+            );
+    
+            return data;
         }else if(params.deleteSubject){
-            console.log(params.subjectName)
             const  data  = await axios.post(
                 'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
                 {
