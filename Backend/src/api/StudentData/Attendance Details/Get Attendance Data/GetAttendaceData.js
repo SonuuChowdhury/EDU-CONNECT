@@ -22,7 +22,8 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
     editData,
     currentSubjectName,
     newSubjectType,
-    newSubjectName
+    newSubjectName,
+    isAttendanceDataChanged
   } = req.body;
 
   if (!roll) {
@@ -45,48 +46,55 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
 
 
 
-
-
-  // Editing data for name and subject type
-if (editData) {
-  // Validate input
-  if (!newSubjectName || !newSubjectType || !currentSubjectName) {
-    return res.status(400).json({
-      message: "Please provide Current Subject Name, New Subject Name, and New Subject Type.",
-    });
-  }
-
-  try {
-    // Update the specific subject inside the `subjects` array
-    const updatedAttendance = await studentattendancedetails.findOneAndUpdate(
-      { roll, "subjects.name": currentSubjectName }, // Match roll and current subject name
-      {
-        $set: {
-          "subjects.$.name": newSubjectName, // Update the subject name
-          "subjects.$.subjectType": newSubjectType, // Update the subject type
-        },
-      },
-      { new: true } // Return the updated document
-    );
-
-    if (!updatedAttendance) {
-      return res.status(404).json({ message: "Subject not found or unable to update." });
+// Editing Data 
+  if (editData) {
+    // Validate input
+    if (!newSubjectName || !newSubjectType || !currentSubjectName) {
+      return res.status(400).json({
+        message: "Please provide Current Subject Name, New Subject Name, and New Subject Type.",
+      });
     }
-
-    return res.status(200).json({
-      message: "Subject updated successfully.",
-      updatedAttendance,
-    });
-  } catch (error) {
-    console.error("Error updating subject:", error);
-    return res.status(500).json({ message: "An error occurred while updating the subject." });
+  
+    try {
+      const updateQuery = { roll, "subjects.name": currentSubjectName }; // Match roll and current subject name
+      let updateFields = {
+        "subjects.$.name": newSubjectName, // Update the subject name
+        "subjects.$.subjectType": newSubjectType, // Update the subject type
+        "subjects.$.LastUpdated": new Date(), // Update the last updated timestamp
+      };
+  
+      if (isAttendanceDataChanged) {
+        // Clear PresentDates and AbsentDates, and update totals
+        updateFields = {
+          ...updateFields,
+          "subjects.$.PresentDates": [], // Clear PresentDates
+          "subjects.$.AbsentDates": [], // Clear AbsentDates
+          "subjects.$.TotalPresent": NewTotalPresent, // Update TotalPresent
+          "subjects.$.TotalAbsent": NewTotalAbsent, // Update TotalAbsent
+        };
+      }
+      
+      // Perform the update
+      const updatedAttendance = await studentattendancedetails.findOneAndUpdate(
+        updateQuery, // Query
+        { $set: updateFields }, // Fields to update
+        { new: true } // Return the updated document
+      );
+  
+      if (!updatedAttendance) {
+        return res.status(404).json({ message: "Subject not found or unable to update." });
+      }
+  
+      return res.status(200).json({
+        message: "Subject updated successfully.",
+        updatedAttendance,
+      });
+    } catch (error) {
+      console.error("Error updating subject:", error);
+      return res.status(500).json({ message: "An error occurred while updating the subject." });
+    }
   }
-}
-
-
-
-
-
+  
  // Update Attendance
 if (updateAttendance) {
   try {
