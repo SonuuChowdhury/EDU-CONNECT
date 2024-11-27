@@ -93,7 +93,9 @@
 .react-calendar__tile--active {
     color: inherit;
     font-weight: normal;
+    color: #ffffff;
     border: none;
+    font-weight: bold;
     pointer-events: none;
 }
 
