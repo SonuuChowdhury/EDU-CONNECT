@@ -91,7 +91,6 @@
 /* Remove 'Today' and 'Selected' Highlight */
 .react-calendar__tile--now,
 .react-calendar__tile--active {
-    background-color: transparent !important;
     color: inherit;
     font-weight: normal;
     border: none;

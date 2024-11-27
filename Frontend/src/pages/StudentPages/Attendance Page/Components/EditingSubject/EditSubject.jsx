@@ -80,11 +80,9 @@ export default function EditSubject(params){
             </div>
         : null}
 
-        <div className="EditSubjectBackground" onClick={(e)=>{
-            e.stopPropagation()
-            
-        }}>
-            <div className="EditSubjectEditingBox">
+        <div className="EditSubjectBackground" onClick={params.onClose}>
+            <div className="EditSubjectEditingBox" onClick={(e)=>{
+            e.stopPropagation()}}>
                 <span className="EditSubjectEditingBoxHeader">
                     EDIT SUBJECT
                 </span>

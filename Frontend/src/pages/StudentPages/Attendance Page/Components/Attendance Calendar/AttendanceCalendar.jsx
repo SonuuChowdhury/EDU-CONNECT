@@ -5,8 +5,14 @@ import "./AttendanceCalendar.css";
 import { useState, useEffect} from "react";
 
 const AttendanceCalendar = (params) => {
-  const greenDates = params.data.PresentDates; // Green marked dates
-  const redDates = params.data.AbsentDates; // Red marked dates
+  // Format dates to YYYY-MM-DD
+  const greenDates = params.data.PresentDates.map((d) =>
+    d.split("T")[0]
+  ); // Green marked dates
+  const redDates = params.data.AbsentDates.map((d) =>
+    d.split("T")[0]
+  ); // Red marked dates
+
 
   const [dataAvailable, SetDataAvailable] = useState(true);
 
@@ -14,22 +20,26 @@ const AttendanceCalendar = (params) => {
     if(greenDates.length==0 && redDates.length==0){
         SetDataAvailable(false)
     }
-    console.log(greenDates,redDates)
     
   }, [redDates,greenDates])
   
 
+  const formatDateToLocal = (date) => {
+    const offsetDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000); // Adjust for local timezone
+    return offsetDate.toISOString().split("T")[0];
+  };
+  
   const isGreenDate = (date) => {
-    const formattedDate = date.toISOString().split("T")[0]; // Format to YYYY-MM-DD
-    return greenDates.some((d) => d.split("T")[0] === formattedDate); // Match YYYY-MM-DD
+    const formattedDate = formatDateToLocal(date); // Use local time zone
+    return greenDates.includes(formattedDate);
   };
   
   const isRedDate = (date) => {
-    const formattedDate = date.toISOString().split("T")[0];
-    return redDates.some((d) => d.split("T")[0] === formattedDate); // Match YYYY-MM-DD
+    const formattedDate = formatDateToLocal(date); // Use local time zone
+    return redDates.includes(formattedDate);
   };
   
-
+  
   return (
     <div className="AttendanceCalendarArea" onClick={params.onClose}>
       <div className="AttendanceCalendarAreaCard" onClick={(e)=>e.stopPropagation()}>
@@ -41,7 +51,9 @@ const AttendanceCalendar = (params) => {
             className="CalendarBox"
             tileClassName={({ date, view }) => {
               if (view === "month") {
-                if (isGreenDate(date)) return "highlight-green";
+                if (isGreenDate(date)) {
+                  return "highlight-green"
+                }
                 if (isRedDate(date)) return "highlight-red";
               }
               return null;
