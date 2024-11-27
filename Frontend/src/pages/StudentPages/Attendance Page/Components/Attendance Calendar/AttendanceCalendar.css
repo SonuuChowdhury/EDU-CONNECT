@@ -56,34 +56,34 @@
 
 /* Green Highlight */
 .highlight-green {
-    background-color: #4caf50; /* Green background */
+    background-color: #4caf50 !important; /* Green background */
     border-radius: 50%;
-    color: #ffffff; /* White text */
-    font-weight: bold;
+    color: #ffffff !important; /* White text */
+    font-weight: bold !important;
     border: 2px solid #388e3c;
     padding: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
 .highlight-green:hover {
-    background-color: #388e3c; /* Darker green on hover */
+    background-color: #388e3c !important; /* Darker green on hover */
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
 }
 
 /* Red Highlight */
 .highlight-red {
-    background-color: #d9534f; /* Red background */
+    background-color: #d9534f !important; /* Red background */
     border-radius: 50%;
-    color: #ffffff; /* White text */
-    font-weight: bold;
+    color: #ffffff !important; /* White text */
+    font-weight: bold !important;
     border: 2px solid #b52b2b;
     padding: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .highlight-red:hover {
-    background-color: #b52b2b; /* Darker red on hover */
+    background-color: #b52b2b !important; /* Darker red on hover */
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
@@ -91,11 +91,10 @@
 /* Remove 'Today' and 'Selected' Highlight */
 .react-calendar__tile--now,
 .react-calendar__tile--active {
-    color: inherit;
+    background-color: inherit;
     font-weight: normal;
-    color: #ffffff;
+    color: black;
     border: none;
-    font-weight: bold;
     pointer-events: none;
 }
 
@@ -125,11 +124,11 @@
 }
 
 .AttendanceCalendarAreaCardDetailsAreaColorPresent {
-    background-color: #4caf50;
+    background-color: #4caf50 ; 
 }
 
 .AttendanceCalendarAreaCardDetailsAreaColorAbsent {
-    background-color: #d9534f;  
+    background-color: #d9534f ;  
     margin-left: 1rem; 
 }
 
