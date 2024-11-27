@@ -125,3 +125,128 @@
     flex-direction: column;
     align-items: center;
 }
+
+
+/* Container for the error area */
+.HomePageErrorArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+  
+  /* Error board styling */
+  .ErrorBoard {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    border: 2px solid #ff4c4c;
+  }
+  
+  /* Error title */
+  .ErrorTitle {
+    font-size: 2rem;
+    color: #ff4c4c;
+    margin-bottom: 1rem;
+  }
+  
+  /* Error message */
+  .ErrorMessage {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  /* Suggestions for the user */
+  .ErrorSuggestions {
+    text-align: left;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    list-style: disc inside;
+  }
+  
+  /* Retry button */
+  .RetryButton {
+    padding: 0.8rem 1.5rem;
+    background-color: #ff4c4c;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .RetryButton:hover {
+    background-color: #e33d3d;
+  }
+  
+ /* Welcome Message Background Area */
+.ShowWelcomeMessageBackgroundArea {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
+  
+  /* Welcome Message Box */
+  .ShowWelcomeMessageBackgroundBox {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+  }
+  
+  /* Close Button */
+  .CloseWelcomeMessageButton {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  /* Welcome Message Content */
+  .WelcomeMessageContent {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .WelcomeMessageContent .WelcomeMessageContentHeader {
+    font-size: 1.8rem;
+    color: #007bff;
+    margin-bottom: 15px;
+  }
+  
+  .WelcomeMessageContent .WelcomeMessageContentParas {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  .WelcomeMessageContent .PortfolioLink {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .WelcomeMessageContent .PortfolioLink:hover {
+    text-decoration: underline;
+  }
+  
