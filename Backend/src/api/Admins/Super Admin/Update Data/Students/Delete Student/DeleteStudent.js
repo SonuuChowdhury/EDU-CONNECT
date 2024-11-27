@@ -1,6 +1,7 @@
 import express from "express";
 import studentbasicdetails from "../../../../../../models/students/studentDetails.js";
 import studentcredentials from "../../../../../../models/students/studentCredentials.js";
+import studentattendancedetails from '../../../../../../models/students/studentAttendanceDetails.js';
 
 const DeleteStudentByRoll = express.Router();
 DeleteStudentByRoll.use(express.json());
@@ -14,6 +15,7 @@ DeleteStudentByRoll.delete("/api/delete/student", async (req, res) => {
     try {
         const studentDetailsDeletionStatus = await studentbasicdetails.deleteOne({ roll });
         const studentCredentialsDeletionStatus = await studentcredentials.deleteOne({ roll });
+        const studentAttendanceDetails = await studentattendancedetails.deleteOne({roll});
 
         if (studentDetailsDeletionStatus.deletedCount > 0 && studentCredentialsDeletionStatus.deletedCount > 0) {
             return res.status(200).json({ msg: "Student Deleted Successfully" });
