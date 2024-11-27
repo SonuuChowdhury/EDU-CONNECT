@@ -1,0 +1,159 @@
+/* Common Styles */
+.AttendanceCalendarArea {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker, dim transparent background */
+    z-index: 1000;
+}
+
+/* Card Container */
+.AttendanceCalendarAreaCard {
+    width: 50%; /* Increase width */
+    max-width: 600px; /* Limit max size */
+    background-color: #ffffff; /* Pure white card background */
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    overflow: hidden; /* Clip content to rounded corners */
+    animation: AttendanceCalendarfadeIn 0.5s ease-in-out; /* Add fade-in animation */
+}
+
+/* Card Header */
+.AttendanceCalendarAreaCardHeader {
+    align-self: center;
+    font-size: 1.8rem; /* Larger font size */
+    font-weight: bold;
+    margin: 1.5rem 0;
+    color: #333333; /* Darker text color for contrast */
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    letter-spacing: 1px; /* Add slight letter spacing */
+}
+
+/* Calendar Box */
+.CalendarBox {
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    margin: 0 auto; /* Center within the card */
+    width: 90%; /* Adjust width for padding */
+    padding: 10px;
+}
+
+/* Calendar Tiles */
+.react-calendar__tile {
+    font-size: 16px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    border-radius: 10px; /* Rounded tiles */
+    margin: 2px; /* Add spacing between tiles */
+    text-align: center;
+}
+
+/* Green Highlight */
+.highlight-green {
+    background-color: #4caf50; /* Green background */
+    border-radius: 50%;
+    color: #ffffff; /* White text */
+    font-weight: bold;
+    border: 2px solid #388e3c;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.highlight-green:hover {
+    background-color: #388e3c; /* Darker green on hover */
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+/* Red Highlight */
+.highlight-red {
+    background-color: #d9534f; /* Red background */
+    border-radius: 50%;
+    color: #ffffff; /* White text */
+    font-weight: bold;
+    border: 2px solid #b52b2b;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.highlight-red:hover {
+    background-color: #b52b2b; /* Darker red on hover */
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Remove 'Today' and 'Selected' Highlight */
+.react-calendar__tile--now,
+.react-calendar__tile--active {
+    background-color: transparent !important;
+    color: inherit;
+    font-weight: normal;
+    border: none;
+    pointer-events: none;
+}
+
+/* Disable Tile Clicks */
+.react-calendar__tile {
+    pointer-events: none;
+}
+
+/* Legend Area */
+.AttendanceCalendarAreaCardDetailsArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #666666; /* Neutral color for legend text */
+}
+
+
+.AttendanceCalendarAreaCardDetailsAreaColorPresent,
+.AttendanceCalendarAreaCardDetailsAreaColorAbsent{
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 5px;
+    margin-right: 1rem;
+}
+
+.AttendanceCalendarAreaCardDetailsAreaColorPresent {
+    background-color: #4caf50;
+}
+
+.AttendanceCalendarAreaCardDetailsAreaColorAbsent {
+    background-color: #d9534f;  
+    margin-left: 1rem; 
+}
+
+.AttendanceCalendarAreaCardDetailsAreaColorDetails {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* No Data Message */
+.AttendanceCalendarAreaCardNoDataHeader {
+    font-size: 1.5rem;
+    color: #b0b0b0; /* Light gray text */
+    text-align: center;
+    margin: 2rem;
+}
+
+/* Animations */
+@keyframes AttendanceCalendarfadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

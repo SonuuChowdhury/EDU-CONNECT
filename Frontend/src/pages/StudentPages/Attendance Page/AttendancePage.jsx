@@ -10,6 +10,8 @@ import { faCalendarDays,faTrashCan ,faPenToSquare,faXmark,faCheck, faBan, faL} f
 import GetStudentAttendanceData from "../../../api/Dashboard Data/Student/GetStudentAttendanceData";
 import EditSubject from "./Components/EditingSubject/EditSubject";
 
+import AttendanceCalendar from "./Components/Attendance Calendar/AttendanceCalendar";
+
 export default function AttendacePage({onClose,StudentRoll}) {
     const [roll, setRoll] = useState(StudentRoll)
     const [isLoading, setisLoading] = useState(true);
@@ -34,6 +36,9 @@ export default function AttendacePage({onClose,StudentRoll}) {
 
     const [EditingSubjectData, SetEditingSubjectData]= useState(false)
     const [EditingCurrentSubjectData, SetEditingCurrentSubjectData]= useState()
+
+    const [ViewAttendanceCalendar, SetViewAttendanceCalendar] = useState(false)
+    const [ViewAttendanceCalendarData, SetViewAttendanceCalendarData] = useState()
     
 
     useEffect(() => {
@@ -263,6 +268,13 @@ export default function AttendacePage({onClose,StudentRoll}) {
       </div>
     : null}
 
+    {ViewAttendanceCalendar?(
+      <AttendanceCalendar
+        data={ViewAttendanceCalendarData}
+        onClose={()=>SetViewAttendanceCalendar(false)}
+      />
+    ):null}
+
     {EditingSubjectData? <EditSubject onClose={()=>SetEditingSubjectData(false)} data={EditingCurrentSubjectData} roll={StudentRoll} UpdateData={(data)=>setAttendanceData(data)}/> :null}
 
 
@@ -376,7 +388,10 @@ export default function AttendacePage({onClose,StudentRoll}) {
             </div>
 
             <div className="AttendanceSubjectCardOptionsArea">
-              <div className="AttendanceSubjectCardOptions" title="View Attendance Calender"><FontAwesomeIcon icon={faCalendarDays} /> </div>
+              <div className="AttendanceSubjectCardOptions" title="View Attendance Calender" onClick={()=>{
+                SetViewAttendanceCalendarData(data)
+                SetViewAttendanceCalendar(true)
+                }}><FontAwesomeIcon icon={faCalendarDays} /> </div>
               <div className="AttendanceSubjectCardOptions" title="Edit Subject" onClick={()=>{
                 SetEditingCurrentSubjectData(data,StudentRoll)
                 SetEditingSubjectData(true)
