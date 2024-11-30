@@ -25,12 +25,16 @@ getStudentCredentials.post('/login/student', async (req, res) => {
         if (!student) {
             return res.status(404).send('Student not found');
         }
-        const isMatched = await bcrypt.compare(password,student.password)
+        const isMatched = bcrypt.compare(password,student.password)
 
         if(!isMatched){
             return res.status(400).send("Invalid Password")
         }
-        const token = jwt.sign({_id:student._id},process.env.JWT_SECRET,{expiresIn:'1h'})
+
+        student.lastLogin = new Date();
+        await student.save();
+        
+        const token = jwt.sign({_id:student._id, roll:studentRoll},process.env.JWT_SECRET,{expiresIn:'1h'})
         res.status(200).json({token})
     
     } catch (error) {
