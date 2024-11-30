@@ -6,7 +6,8 @@ const { loginConnection } = await connectDB();
 const studentCredentialsSchema = new mongoose.Schema({
   roll: Number,
   password: String,
-  lastLogin: Date
+  lastLogin: Date,
+  joined:Date
 });
 
 const studentcredentials = loginConnection.model('studentcredentials', studentCredentialsSchema); // Corrected model name
