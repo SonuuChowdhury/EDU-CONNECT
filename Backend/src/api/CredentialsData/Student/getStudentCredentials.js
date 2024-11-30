@@ -1,4 +1,5 @@
 import studentcredentials from '../../../models/students/studentCredentials.js';
+import studentbasicdetails from '../../../models/students/studentDetails.js';
 import express from 'express';
 import jwt from  'jsonwebtoken'
 import dotenv from 'dotenv'
@@ -22,6 +23,7 @@ getStudentCredentials.post('/login/student', async (req, res) => {
     try {
         // Find student with matching roll
         const student = await studentcredentials.findOne({ roll: studentRoll });
+        const StudentDetails = await studentbasicdetails.findOne({ roll: studentRoll });
         if (!student) {
             return res.status(404).send('Student not found');
         }
@@ -31,7 +33,7 @@ getStudentCredentials.post('/login/student', async (req, res) => {
             return res.status(400).send("Invalid Password")
         }
 
-        student.lastLogin = new Date();
+        StudentDetails.lastLogin = new Date();
         await student.save();
         
         const token = jwt.sign({_id:student._id, roll:studentRoll},process.env.JWT_SECRET,{expiresIn:'1h'})

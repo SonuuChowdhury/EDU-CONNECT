@@ -13,7 +13,9 @@ const studentDetailsSchema = new mongoose.Schema({
   semester: { type: Number, required: true },
   address: { type: String, required: true },
   isProfile: { type: Boolean, default: false },
-  profile: { type: String, default: null }
+  profile: { type: String, default: null },
+  lastLogin: {type: Date},
+  joined: {type: Date}
 });
 
 
