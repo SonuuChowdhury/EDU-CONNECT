@@ -95,6 +95,36 @@ export default function StudentViewOrEditEditor(){
         }
     }, [ShowTopUp, refresh]);
 
+
+    function formatISODate(isoDate) {
+        const date = new Date(isoDate);
+
+        if(!isoDate){
+            return false
+        }
+    
+        // Array of month names
+        const months = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+    
+        // Extract parts of the date
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+    
+        // Extract and format time
+        let hours = date.getHours();
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12; // Convert to 12-hour format
+    
+        // Format the final string
+        return `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
+    }
+    
+
     return <>
         <BasicNavbar/>
         {isLoading ? <Loader/> : null}
@@ -130,6 +160,16 @@ export default function StudentViewOrEditEditor(){
                                 {data.department}
                             </span>
                         </div>
+
+                        <div className="StudentViewOrEditListLoginDetails">
+                            <span className="StudentViewOrEditListLoginDetailsLastLogin">
+                                Last Login: {formatISODate(data.lastLogin) || "No Data"}
+                            </span>
+                            <span className="StudentViewOrEditListLoginDetailsJoined">
+                                Joined: {formatISODate(data.joined) || "No Data"}
+                            </span>
+                        </div>
+
 
                         <div className="StudentViewOrEditListDetailsControlButtonsArea">
                             <div className="StudentViewOrEditListDetailsControlViewButton">

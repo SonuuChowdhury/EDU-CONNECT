@@ -24,12 +24,13 @@
     border: 2px solid black;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .StudentViewOrEditListItemProfilePhoto{
     border-radius: 50%;
-    width: 7rem;
-    height: 7rem;
+    width: 5rem;
+    height: 5rem;
     border: 2px solid black;
     margin-left: 1.5rem;
     background-size: cover;
@@ -39,7 +40,7 @@
 
 .StudentViewOrEditListDetailsSection{
     height: 100%;
-    width: 50%;
+    width: 30%;
     margin-left: 2rem;
     display: flex;
     flex-direction: column;
@@ -48,24 +49,77 @@
 }
 
 .StudentViewOrEditListDetailsName{
-    font-size: 2rem;
+    font-size: 1.65rem;
 }
 
 .StudentViewOrEditListDetailsRoll{
-    margin-top: 1rem;
+    margin-top: 0.7rem;
 }
+
+.StudentViewOrEditListDetailsRoll,
+.StudentViewOrEditListDetailsDepartment{
+    font-size: 0.8rem;
+}
+
+.StudentViewOrEditListLoginDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 22%;
+    background-color: #f4f4f9; /* Light background for contrast */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Dark text color for readability */
+}
+
+.StudentViewOrEditListLoginDetails span {
+    font-size: 14px;
+    margin: 8px 0;
+    border-radius: 4px;
+    width: 90%; /* Make spans take full width for alignment */
+    text-align: center;
+    background-color: #ffffff; /* Background for each text block */
+    color: #555; /* Slightly lighter text */
+    border: 1px solid #eee; /* Subtle border */
+    padding-top: 0.4rem;
+    padding: 0.4rem;
+
+}
+
+.StudentViewOrEditListLoginDetails span:hover {
+    background-color: #e6f7ff; /* Highlight on hover */
+    color: #007acc; /* Emphasize text on hover */
+}
+
+.StudentViewOrEditListLoginDetailsLastLogin {
+    font-weight: bold;
+    color: #1a73e8; /* Slightly brighter color for emphasis */
+}
+
+.StudentViewOrEditListLoginDetailsJoined {
+    font-weight: bold;
+    color: #34a853; /* Green color for joined info */
+}
+
+
+
+
 
 .StudentViewOrEditListDetailsControlButtonsArea{
     height: 100%;
-    width: 30%;
+    width: 20%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    justify-self: flex-end;
 }
 
 .StudentViewOrEditListDetailsControlViewButton,.StudentViewOrEditListDetailsControlDeleteButtons,.StudentViewOrEditListDetailsControlEditButtons{
-    height: 40%;
-    width: 15%;
+    height: 3rem;
+    width: 3rem;
     border-radius: 5px;
     cursor: pointer;
     transition: transform 0.3s ease;
