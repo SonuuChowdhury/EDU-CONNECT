@@ -27,7 +27,7 @@ getStudentCredentials.post('/login/student', async (req, res) => {
         if (!student) {
             return res.status(404).send('Student not found');
         }
-        const isMatched = bcrypt.compare(password,student.password)
+        const isMatched = await bcrypt.compare(password,student.password)
 
         if(!isMatched){
             return res.status(400).send("Invalid Password")
