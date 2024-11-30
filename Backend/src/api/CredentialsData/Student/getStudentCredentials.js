@@ -34,7 +34,7 @@ getStudentCredentials.post('/login/student', async (req, res) => {
         }
 
         StudentDetails.lastLogin = new Date();
-        await student.save();
+        await StudentDetails.save();
         
         const token = jwt.sign({_id:student._id, roll:studentRoll},process.env.JWT_SECRET,{expiresIn:'1h'})
         res.status(200).json({token})
