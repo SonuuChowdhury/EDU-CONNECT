@@ -9,6 +9,7 @@ import getStudentCredentials from "../api/CredentialsData/Student/getStudentCred
 import getAdminCredentials from "../api/CredentialsData/Admin/AdminLogin.js";
 
 // Student handellers 
+import signUpStudent from "../api/Admins/Super Admin/Update Data/Students/Add new Student/signUpStudent.js";
 import GetStudentDeatils from "../api/StudentData/GetStudentData.js";
 import UpdateStudentCredentials from "../api/CredentialsData/Student/UpdateStudentCredentials.js";
 import ForgotPasswordHandeller from "../api/CredentialsData/Student/ForgotPassword.js";
@@ -64,8 +65,9 @@ router.get('/', (req, res) => {
 
 router.get('/api/home', homeRouter); 
 
-// Studet Login 
+// Studet Login And Sign UP
 router.post('/login/student',getStudentCredentials)
+router.put('/signup/student', signUpStudent)
 router.post('/login/student/forgot-password',ForgotPasswordHandeller)
 // Studet routes 
 router.get('/api/student-dashboard', VerifyToken, GetStudentDeatils)
