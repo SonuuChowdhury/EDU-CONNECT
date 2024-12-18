@@ -85,7 +85,9 @@ signUpStudent.put("/signup/student", async (req, res) => {
                     semester: semester,
                     email: email,
                     mobile: mobile,
-                    address: address
+                    address: address,
+                    lastLogin: null,
+                    joined: new Date()
                 });
 
                     try {
