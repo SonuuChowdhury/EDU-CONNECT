@@ -102,16 +102,16 @@ signUpStudent.put("/signup/student", async (req, res) => {
                         await SendMailForNewStudent(email, name, roll);
                         const student = await studentcredentials.findOne({ roll: roll });
                         const token = jwt.sign({_id:student._id, roll:roll},process.env.JWT_SECRET,{expiresIn:'1h'})
-                        res.status(200).json({ 
+                        return res.status(200).json({ 
                             msg: "Student Added Successfully",
                             token
                          });
                     } else {
-                        res.status(400).json({ msg: "Student cannot be Added" });
+                        return res.status(400).json({ msg: "Student cannot be Added" });
                     }
                 } catch (error) {
                     console.log(error);
-                    res.status(400).json({ msg: "Student cannot be Added" });
+                    return res.status(400).json({ msg: "Student cannot be Added" });
                 }
             } else {
                 return res.status(400).json({msg:"Email Not Verified"});
@@ -119,7 +119,7 @@ signUpStudent.put("/signup/student", async (req, res) => {
         }
     } catch (err) {
         console.log(err);
-        res.status(500).json({ msg: "Internal Server Error" });
+        return res.status(500).json({ msg: "Internal Server Error" });
     }
 });
 
