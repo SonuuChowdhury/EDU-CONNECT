@@ -59,10 +59,12 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
       return res.status(404).json({ msg: "Student not found." });
     }
 
-    // Check if the subject already exists
-    const subjectExists = student.subjects.some((subject) => subject.name === newSubjectName);
-    if (subjectExists) {
-      return res.status(400).json({ msg: "Subject already exists." });
+    if(!(currentSubjectName===newSubjectName)){
+      // Check if the subject already exists
+      const subjectExists = student.subjects.some((subject) => subject.name === newSubjectName);
+      if (subjectExists) {
+        return res.status(400).json({ msg: "Subject already exists." });
+      }
     }
   
     try {
