@@ -58,7 +58,7 @@ export default function EditSubject(params){
                 SetIsError(true)
                 closeHandeller();
             }else{
-                SetErrorMsg(ResponseData.response.data.message)
+                SetErrorMsg(ResponseData.response.data.msg)
                 SetIsError(true)
             }
         }finally{
