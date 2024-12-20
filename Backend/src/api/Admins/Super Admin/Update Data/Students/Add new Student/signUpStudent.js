@@ -10,6 +10,7 @@ import SendMailForNewStudent from "../../../../../../mails/Student/SendMailForNe
 import SendMailForStudentEmailVerification from "../../../../../../mails/Student/SendMailForStudentEmailVerification.js";
 
 import { RedisClient } from "../../../../../../db/ConnectRedis.js";
+import jwt from "jsonwebtoken";
 
 const signUpStudent = express.Router();
 signUpStudent.use(express.json());
