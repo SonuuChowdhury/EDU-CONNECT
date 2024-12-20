@@ -44,8 +44,6 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
     }
   }
 
-
-
 // Editing Data 
   if (editData) {
     // Validate input
@@ -53,6 +51,12 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
       return res.status(400).json({
         message: "Please provide Current Subject Name, New Subject Name, and New Subject Type.",
       });
+    }
+
+    // Fetch student data by roll number
+    const student = await studentattendancedetails.findOne({ roll: Number(roll) });
+    if (!student) {
+      return res.status(404).json({ msg: "Student not found." });
     }
 
     // Check if the subject already exists
@@ -69,15 +73,14 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
         "subjects.$.LastUpdated": new Date(), // Update the last updated timestamp
       };
 
-      // Validate NewTotalPresent and NewTotalAbsent
+    // Validate NewTotalPresent and NewTotalAbsent
     if (NewTotalPresent < 0 || isNaN(NewTotalPresent)) {
       return res.status(400).json({ msg: "Invalid Attendance value. It cannot be negative or invalid." });
     }
     if (NewTotalAbsent < 0 || isNaN(NewTotalAbsent)) {
       return res.status(400).json({ msg: "Invalid Attendance value. It cannot be negative or invalid." });
     }
-  
-      if (isAttendanceDataChanged) {
+    if (isAttendanceDataChanged){
         // Clear PresentDates and AbsentDates, and update totals
         updateFields = {
           ...updateFields,
