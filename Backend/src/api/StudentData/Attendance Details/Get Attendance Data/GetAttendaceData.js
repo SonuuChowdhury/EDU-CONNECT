@@ -54,6 +54,12 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
         message: "Please provide Current Subject Name, New Subject Name, and New Subject Type.",
       });
     }
+
+    // Check if the subject already exists
+    const subjectExists = student.subjects.some((subject) => subject.name === newSubjectName);
+    if (subjectExists) {
+      return res.status(400).json({ msg: "Subject already exists." });
+    }
   
     try {
       const updateQuery = { roll, "subjects.name": currentSubjectName }; // Match roll and current subject name
@@ -62,6 +68,14 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
         "subjects.$.subjectType": newSubjectType, // Update the subject type
         "subjects.$.LastUpdated": new Date(), // Update the last updated timestamp
       };
+
+      // Validate NewTotalPresent and NewTotalAbsent
+    if (NewTotalPresent < 0 || isNaN(NewTotalPresent)) {
+      return res.status(400).json({ msg: "Invalid Attendance value. It cannot be negative or invalid." });
+    }
+    if (NewTotalAbsent < 0 || isNaN(NewTotalAbsent)) {
+      return res.status(400).json({ msg: "Invalid Attendance value. It cannot be negative or invalid." });
+    }
   
       if (isAttendanceDataChanged) {
         // Clear PresentDates and AbsentDates, and update totals
