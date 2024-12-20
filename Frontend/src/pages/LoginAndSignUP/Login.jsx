@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap,faChalkboardUser,faUserTie} from '@fortawesome/free-solid-svg-icons';
 
 // stylings 
-import './LoginAndSignUP.css'
+import './Login.css'
 
 
 // components 
@@ -13,7 +13,7 @@ import StudentLoginComponent from '../../components/loginComponents/StudentLogin
 import FacultyLoginComponent from '../../components/loginComponents/FacultyLoginComponent/FacultyLoginComponent'
 import AdminLoginComponent from '../../components/loginComponents/AdminLoginComponent/AdminLoginComponent'
 
-function LoginAndSignUP(){
+function Login(){
     const [RoleSelectValue,SetRoleSelectValue]=useState(0);
 
 
@@ -78,4 +78,4 @@ function LoginAndSignUP(){
 
 }
 
-export default LoginAndSignUP
+export default Login;

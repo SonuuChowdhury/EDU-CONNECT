@@ -1,0 +1,176 @@
+.SignUpPageArea {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.SignUPMiniHeader {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    margin-top: 1.5rem;
+}
+
+.SignUPMainHeader {
+    font-size: 2rem;
+    font-weight:bolder;
+    margin-bottom: 1.5rem;
+}
+
+.EmailVerificationBoxForSignUP {
+    width: 85%;
+    max-width: 24rem;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.EmailVerificationBoxEmailText,
+.EmailVerificationBoxOTP {
+    align-self: flex-start;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 0.4rem 0 0.3rem 0.3rem;
+    color: #555555;
+}
+
+.EmailVerificationBoxInputBox {
+    width: 100%;
+    height: 2rem;
+    padding: 0.4rem;
+    margin-bottom: 0.8rem;
+    border: 1.2px solid #cccccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.EmailVerificationBoxInputBox:disabled{
+    cursor:not-allowed;
+}
+
+.EmailVerificationBoxInputBox:focus {
+    outline: none;
+    border-color: #4c9aff;
+    border: 1.2px solid #cccccc;
+}
+
+.EmailVerificationBoxConfirmationArea {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.EmailVerificationBoxConfirmationAreaText {
+    font-size: 0.85rem;
+    color: #555555;
+}
+
+.EmailVerificationBoxConfirmationAreaButton {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4c9aff;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.EmailVerificationBoxConfirmationAreaButton:hover {
+    color: #5a67d8;
+}
+
+.EmailVerificationBoxButtonsArea {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.EmailVerificationBoxButtonsAreaCancelButton,
+.EmailVerificationBoxButtonsAreaSendOtpAndSubmitButton {
+    width: 48%;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.EmailVerificationBoxButtonsAreaCancelButton {
+    background-color: #f4f6f9;
+    color: #555555;
+    border: 1.2px solid #cccccc;
+}
+
+.EmailVerificationBoxButtonsAreaCancelButton:hover {
+    background-color: #e2e6ed;
+    color: #333333;
+}
+
+.EmailVerificationBoxButtonsAreaSendOtpAndSubmitButton {
+    background-color: #4c9aff;
+    color: #ffffff;
+}
+
+.EmailVerificationBoxButtonsAreaSendOtpAndSubmitButton:hover {
+    background-color: #5a67d8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .SignUPMainHeader {
+        font-size: 1.2rem;
+    }
+
+    .EmailVerificationBoxForSignUP {
+        padding: 1rem;
+    }
+
+    .EmailVerificationBoxButtonsArea {
+        flex-direction: column;
+    }
+
+    .EmailVerificationBoxButtonsAreaCancelButton,
+    .EmailVerificationBoxButtonsAreaSendOtpAndSubmitButton {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .EmailVerificationBoxButtonsAreaSendOtpAndSubmitButton {
+        margin-bottom: 0;
+    }
+}
+
+
+.DetailEntryArea{
+    width: 100%;
+    height: auto;
+}
+
+.TimeCountingArea{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.TimeCountingAreaWarning {
+    text-align: center;
+    height: auto;
+    background-color: #ffe4e1; /* Light red for warning */
+    color: #ff4500; /* Bright red text */
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid #ff6347; /* Tomato border for a distinct look */
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }

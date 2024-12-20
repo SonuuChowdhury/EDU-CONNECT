@@ -11,7 +11,8 @@ import Loader from './components/loader/loader';
 
 // Lazy load the HomePage component
 const HomePage = lazy(() => import('./pages/Home Page/homePage'));
-import LoginAndSignUP from './pages/LoginAndSignUP/LoginAndSignUP';
+import Login from './pages/LoginAndSignUP/Login.jsx';
+import SignUp from './pages/LoginAndSignUP/SignUp.jsx';
 import StudentDashboardPage from './pages/StudentPages/Dashboard/dashboard.jsx'
 
 import StudentChangePassword from './pages/StudentPages/Password Change/ChangePassword.jsx';
@@ -38,8 +39,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
 
-          {/* Login routes  */}
-          <Route path="/login" element={<LoginAndSignUP />} />
+          {/* Login and sign-Up routes  */}
+          <Route path="/login" element={<Login/>} />
+          <Route path="/sign-up" element={<SignUp/>} />
           <Route path="/login/student/forget-password" element={<StudentForgetPassword />} />
 
           {/* Student dashboard routes  */}

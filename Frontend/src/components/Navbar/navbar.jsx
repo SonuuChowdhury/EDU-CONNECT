@@ -8,6 +8,10 @@ export default function Navbar() {
     navigate('/login'); // Navigate to the /login route
   };
 
+  const handleLoginClickForSignUp = () => {
+    navigate('/sign-up'); // Navigate to the /login route
+  };
+
   return (
     <div className="NavOptionsBar">
       <div className="leftNavOptionsBar">
@@ -20,6 +24,7 @@ export default function Navbar() {
       </div>
 
       <div className="rightNavOptionsBar">
+        <button className="SignUpButton loginButton" onClick={handleLoginClickForSignUp}>SignUP</button>
         <button className="loginButton" onClick={handleLoginClick}>Login</button>
       </div>
     </div>
