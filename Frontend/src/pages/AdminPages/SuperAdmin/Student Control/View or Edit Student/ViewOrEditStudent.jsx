@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpRightFromSquare, faEye, faPenToSquare,faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import {faEnvelope, faArrowUpRightFromSquare, faEye, faPenToSquare,faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 import BasicNavbar from '../../../../../components/basicNavbar/basicNavbar'
 import Loader from '../../../../../components/loader/loader'
@@ -140,6 +140,65 @@ export default function StudentViewOrEditEditor(){
                 {<FontAwesomeIcon icon={faArrowUpRightFromSquare}/>} Dashboard
             </button>
         </div>
+
+        <div className="StudentViewOrEditControlSectionArea">
+            <div className="StudentViewOrEditControlSection">
+                <div className="StudentViewOrEditControlSectionControlsandSearchSection">
+                    <button title='Bulk Edit' className="StudentViewOrEditControlSectionControlsandSearchSectionBulkEdit">
+                        <FontAwesomeIcon icon={faPenToSquare} className='StudentViewOrEditControlSectionicon' />Bulk Edit
+                    </button>
+                    <button title='Send Notice'
+                    className="StudentViewOrEditControlSectionControlsandSearchSectionSendNotice">
+                        <FontAwesomeIcon icon={faEnvelope} className='StudentViewOrEditControlSectionicon'/>Send Notice
+                    </button>
+                </div>
+
+                <div className="StudentViewOrEditControlSectionSearchArea">
+                    <span className="StudentViewOrEditControlSectionSearchAreaSearchText">Search Student</span>
+                    <input type="text" className="StudentViewOrEditControlSectionSearchAreaSearchBox" title='Enter Student Name...' placeholder='Enter Student Name...' />
+                </div>
+
+                <div className="StudentViewOrEditControlSectionFilterAndExportArea">
+                    <span className="StudentViewOrEditControlSectionFilterAndExportLabel">
+                        Apply Filters:
+                    </span>
+                    <div className="StudentViewOrEditControlSectionFilterAndExportSemFilter">
+                        <span className='StudentViewOrEditControlSectionFilterAndExportLabel'>Semester</span>
+                        <select className='StudentViewOrEditControlSectionFilterAndExportDropdown'> 
+                            <option value="0">Sem</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+
+                    <div className="StudentViewOrEditControlSectionFilterAndExportDeptFilter">
+                        <span className='StudentViewOrEditControlSectionFilterAndExportLabel'>Department</span>
+                        <select className='StudentViewOrEditControlSectionFilterAndExportDropdown'> 
+                            <option value="0">Dept</option>
+                            <option value="1">EEE</option>
+                            <option value="2">ECE</option>
+                            <option value="3">CSE</option>
+                            <option value="4">CSBS</option>
+                            <option value="5">ME</option>
+                            <option value="6">EE</option>
+                        </select>
+                    </div>
+
+                    <button className="StudentViewOrEditControlSectionFilterAndExportButton">
+                        Export as XLS
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        
+
 
         <div className="StudentViewOrEditListSection">
             {StudentViewOrEditData.map((data, index)=>{
