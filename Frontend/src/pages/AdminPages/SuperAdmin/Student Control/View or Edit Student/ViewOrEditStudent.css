@@ -122,6 +122,8 @@
 }
 
 .StudentViewOrEditControlSectionFilterAndExportButton {
+    width: auto;
+    height: 80%;
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
     font-weight: bold;
@@ -303,4 +305,96 @@
 .StudentViewOrEditListDetailsControlButtonIcon{
     width: 70%;
     height: 70%;
+}
+
+
+
+
+/* Container for the dropdown */
+.ExportToXLSButtonContainer {
+    position: relative;
+    width: auto;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  /* Button styling */
+  .ExportToXLSButtonContent {
+    background-color: #ffa500;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .dropdown-button:hover {
+    background-color: #ff8c00;
+  }
+  
+  /* Dropdown content */
+.ExportToXLSButtonContent {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 6.5rem;
+    max-width: 250px; /* Compact and centered */
+    background-color: #ffffff; /* Clean white background */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Soft shadow for modern floating effect */
+    border-radius: 12px; /* Larger border radius for a more premium look */
+    z-index: 10; /* Ensure the dropdown stays above other content */
+    animation: ExportButtonContentfadeIn 0.3s ease-in-out;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean font */
+  }
+  
+  /* Dropdown list */
+  .ExportToXLSButtonList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Stacked items */
+    gap: 4px; /* Small space between items */
+  }
+  
+  /* Dropdown items */
+  .ExportToXLSButtonItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px; /* Adjusted padding for better spacing */
+    cursor: pointer;
+    text-align: center;
+    font-size: 13px; /* Slightly larger text for readability */
+    font-weight: 600; /* Bolder text for emphasis */
+    color: #333333; /* Darker, sharper text */
+    border-radius: 8px; /* Rounded edges for each item */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Smooth hover effects */
+  }
+  
+  .ExportToXLSButtonItem:hover {
+    background-color: #f0f4f8; /* Subtle hover effect (light grey-blue) */
+    transform: scale(1.02); /* Slight zoom effect */
+    color: #0078d4; /* Accent color for hover text */
+  }
+  
+  /* Fade-in animation for dropdown */
+  @keyframes ExportButtonContentfadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+.ExportButtonListIcons{
+    margin-right: 0.5rem;
+    height: 3rem;
 }

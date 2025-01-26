@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
 import './ViewOrEditStudent.css'
 import '../../Dashboard/Dashboard.css'
 
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import * as XLSX from "xlsx";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faEnvelope, faArrowUpRightFromSquare, faEye, faPenToSquare,faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import {faEnvelope, faArrowUpRightFromSquare, faEye, faPenToSquare,faTrashCan,faUser,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 import BasicNavbar from '../../../../../components/basicNavbar/basicNavbar'
 import Loader from '../../../../../components/loader/loader'
@@ -36,6 +38,8 @@ export default function StudentViewOrEditEditor(){
 
     const [isViewStudentPopupOpen, setIsViewStudentPopupOpen] = useState(false);
     const [isDeleteStudentPopupOpen, setIsDeleteStudentPopupOpen] = useState(false);
+
+    const [isExportDropdownVisible, setisExportDropdownVisible]=useState(false)
 
     const [searchValue,SetSearchValue]=useState("");
     const [semFilterValue, setSemFilterValue]= useState(0)
@@ -87,6 +91,123 @@ export default function StudentViewOrEditEditor(){
             setStudentViewOrEditData(FetchedStudentViewOrEditData)
         }
     }
+
+    const ExportAllStudentsToXLS = () => {
+        const filteredData = FetchedStudentViewOrEditData.map(({ _id, isProfile, profile, __v, ...rest }) => rest);
+        const ws = XLSX.utils.json_to_sheet(filteredData); // Convert JSON to Sheet
+        const wb = XLSX.utils.book_new(); // Create a new workbook
+    
+        // Adjust column widths
+        const columnWidths = [
+            { wch: 14 }, // Width for "roll"
+            { wch: 25 }, // Width for "name"
+            { wch: 35 }, // Width for "department"
+            { wch: 8 }, // Width for "year"
+            { wch: 8 }, // Width for "semester"
+            { wch: 35 }, // Width for "email"
+            { wch: 15 }, // Width for "mobile"
+            { wch: 45 }, // Width for "address"
+            { wch: 25 }, // Width for "lastLogin"
+        ];
+        ws["!cols"] = columnWidths; // Apply column widths
+    
+        // Center align all cells
+        const range = XLSX.utils.decode_range(ws["!ref"]);
+        for (let R = range.s.r; R <= range.e.r; ++R) {
+            for (let C = range.s.c; C <= range.e.c; ++C) {
+                const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+                if (!ws[cellAddress]) continue;
+    
+                // Initialize cell style if not present
+                if (!ws[cellAddress].s) ws[cellAddress].s = {};
+    
+                // Apply alignment styles
+                ws[cellAddress].s.alignment = {
+                    horizontal: "center",
+                    vertical: "center",
+                };
+            }
+        }
+    
+        XLSX.utils.book_append_sheet(wb, ws, "Sheet1"); // Append the sheet to the workbook
+    
+        // Format date and time
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        });
+        const formattedTime = now.toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+        });
+        const timestamp = `${formattedDate}, ${formattedTime}`;
+    
+        // Export the workbook to an Excel file
+        XLSX.writeFile(wb, `All_Students_${timestamp}.xlsx`);
+        setisExportDropdownVisible(false)
+    };
+
+    const ExportFilteredStudentsToXLS = () => {
+        const filteredData = StudentViewOrEditData.map(({ _id, isProfile, profile, __v, ...rest }) => rest);
+        const ws = XLSX.utils.json_to_sheet(filteredData); // Convert JSON to Sheet
+        const wb = XLSX.utils.book_new(); // Create a new workbook
+    
+        // Adjust column widths
+        const columnWidths = [
+            { wch: 14 }, // Width for "roll"
+            { wch: 25 }, // Width for "name"
+            { wch: 35 }, // Width for "department"
+            { wch: 8 }, // Width for "year"
+            { wch: 8 }, // Width for "semester"
+            { wch: 35 }, // Width for "email"
+            { wch: 15 }, // Width for "mobile"
+            { wch: 45 }, // Width for "address"
+            { wch: 25 }, // Width for "lastLogin"
+        ];
+        ws["!cols"] = columnWidths; // Apply column widths
+    
+        // Center align all cells
+        const range = XLSX.utils.decode_range(ws["!ref"]);
+        for (let R = range.s.r; R <= range.e.r; ++R) {
+            for (let C = range.s.c; C <= range.e.c; ++C) {
+                const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+                if (!ws[cellAddress]) continue;
+    
+                // Initialize cell style if not present
+                if (!ws[cellAddress].s) ws[cellAddress].s = {};
+    
+                // Apply alignment styles
+                ws[cellAddress].s.alignment = {
+                    horizontal: "center",
+                    vertical: "center",
+                };
+            }
+        }
+    
+        XLSX.utils.book_append_sheet(wb, ws, "Sheet1"); // Append the sheet to the workbook
+    
+        // Format date and time
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        });
+        const formattedTime = now.toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+        });
+        const timestamp = `${formattedDate}, ${formattedTime}`;
+    
+        // Export the workbook to an Excel file
+        XLSX.writeFile(wb, `Filtered_Students_${timestamp}.xlsx`);
+        setisExportDropdownVisible(false)
+    };
+    
 
     const openViewStudentPopup = (data) => {
         setSelectedStudentViewPopUpData(data)
@@ -243,9 +364,20 @@ export default function StudentViewOrEditEditor(){
                         </select>
                     </div>
 
-                    <button className="StudentViewOrEditControlSectionFilterAndExportButton">
-                        Export as XLS
+                    <div className='ExportToXLSButtonContainer'>
+
+                    <button onClick={()=>setisExportDropdownVisible((val)=>!val)} className="StudentViewOrEditControlSectionFilterAndExportButton">
+                        {isExportDropdownVisible?"Cancel":"Export as XLS"}
                     </button>
+                    {isExportDropdownVisible && (
+                        <div className="ExportToXLSButtonContent">
+                        <ul className="ExportToXLSButtonList">
+                            <li title='Export Details of all Students' onClick={ExportAllStudentsToXLS} className="ExportToXLSButtonItem"><FontAwesomeIcon icon={faUser} className='ExportButtonListIcons' /><span>All Students</span></li>
+                            <li title='Export Details of Filtered Students' onClick={ExportFilteredStudentsToXLS} className="ExportToXLSButtonItem"><FontAwesomeIcon icon={faMagnifyingGlass} className='ExportButtonListIcons' /><span>Filtered Students</span></li>
+                        </ul>
+                        </div>
+                    )}
+                    </div>
                 </div>
             </div>
         </div>
@@ -282,19 +414,16 @@ export default function StudentViewOrEditEditor(){
                                 Joined: {formatISODate(data.joined) || "No Data"}
                             </span>
                         </div>
-
-
                         <div className="StudentViewOrEditListDetailsControlButtonsArea">
-                            <div className="StudentViewOrEditListDetailsControlViewButton">
+                            <button className="StudentViewOrEditListDetailsControlViewButton" title='View Student'> 
                                 {<FontAwesomeIcon icon={faEye} className='StudentViewOrEditListDetailsControlButtonIcon' onClick={()=>openViewStudentPopup(data)}/>}
-
-                            </div>
-                            <div className="StudentViewOrEditListDetailsControlEditButtons">
+                            </button>
+                            <button className="StudentViewOrEditListDetailsControlEditButtons" title='Edit Student'>
                                 {<FontAwesomeIcon icon={faPenToSquare} className='StudentViewOrEditListDetailsControlButtonIcon'/>}                              
-                            </div>
-                            <div className="StudentViewOrEditListDetailsControlDeleteButtons">
+                            </button>
+                            <button className="StudentViewOrEditListDetailsControlDeleteButtons" title='Delete Student'>
                                 {<FontAwesomeIcon icon={faTrashCan} className='StudentViewOrEditListDetailsControlButtonIcon' onClick={()=>openDeleteStudentPopup(data)}/>}  
-                            </div>
+                            </button>
                         </div>
                     </div>
                 )
