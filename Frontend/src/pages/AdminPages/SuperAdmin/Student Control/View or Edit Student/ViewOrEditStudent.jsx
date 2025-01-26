@@ -22,6 +22,7 @@ export default function StudentViewOrEditEditor(){
     const navigate = useNavigate()
 
     const [isLoading, setIsLoading] = useState(false)
+    const [FetchedStudentViewOrEditData, setFetchedStudentViewOrEditData] = useState([])
     const [StudentViewOrEditData, setStudentViewOrEditData] = useState([])
     const [errorStatus, setErrorStatus] = useState(null);
     const [ShowTopUp, SetShowTopUp] = useState(false)
@@ -35,6 +36,57 @@ export default function StudentViewOrEditEditor(){
 
     const [isViewStudentPopupOpen, setIsViewStudentPopupOpen] = useState(false);
     const [isDeleteStudentPopupOpen, setIsDeleteStudentPopupOpen] = useState(false);
+
+    const [searchValue,SetSearchValue]=useState("");
+    const [semFilterValue, setSemFilterValue]= useState(0)
+    const [DeptFilterValue, SetDeptFilterValue]= useState("0")
+
+    const OnSearchInputChange=async(e)=>{
+        SetSearchValue(e.target.value)
+        const VarSearchValue=e.target.value;
+        const SearchResults=FetchedStudentViewOrEditData.filter(student => 
+            student.name.toLowerCase().includes(VarSearchValue.toLowerCase())
+        );
+        setStudentViewOrEditData(SearchResults)
+        if(SearchResults.length==0){
+            setDataEmpty(true)
+        }else{
+            setDataEmpty(false)
+        }
+    }
+
+    const OnSemFilterValueChange=async(e)=>{
+        setSemFilterValue(e.target.value)
+        const SelectedSem= e.target.value;
+        const FilterResult = FetchedStudentViewOrEditData.filter(student=>student.semester==SelectedSem)
+        setStudentViewOrEditData(FilterResult)
+        if(FilterResult.length==0){
+            setDataEmpty(true)
+        }else{
+            setDataEmpty(false)
+        }
+        if(SelectedSem==0){
+            setDataEmpty(false)
+            setStudentViewOrEditData(FetchedStudentViewOrEditData)
+        }
+    }
+
+    const OnDeptFilterValueChanged=(e)=>{
+        SetDeptFilterValue(e.target.value)
+        const SelectedDept= e.target.value;
+        const FilterResult = FetchedStudentViewOrEditData.filter(student=>student.department.toLowerCase().includes(SelectedDept.toLowerCase()))
+        setStudentViewOrEditData(FilterResult)
+        console.log(FilterResult)
+        if(FilterResult.length==0){
+            setDataEmpty(true)
+        }else{
+            setDataEmpty(false)
+        }
+        if(SelectedDept==0){
+            setDataEmpty(false)
+            setStudentViewOrEditData(FetchedStudentViewOrEditData)
+        }
+    }
 
     const openViewStudentPopup = (data) => {
         setSelectedStudentViewPopUpData(data)
@@ -63,6 +115,7 @@ export default function StudentViewOrEditEditor(){
                     setAuthorized(false);
                 } else if (data.status === 200) {
                     setStudentViewOrEditData(data.data);
+                    setFetchedStudentViewOrEditData(data.data);
                     if (((data.data).length) === 0) {
                         setDataEmpty(true)
                     }
@@ -155,7 +208,7 @@ export default function StudentViewOrEditEditor(){
 
                 <div className="StudentViewOrEditControlSectionSearchArea">
                     <span className="StudentViewOrEditControlSectionSearchAreaSearchText">Search Student</span>
-                    <input type="text" className="StudentViewOrEditControlSectionSearchAreaSearchBox" title='Enter Student Name...' placeholder='Enter Student Name...' />
+                    <input type="text" value={searchValue} onChange={OnSearchInputChange} className="StudentViewOrEditControlSectionSearchAreaSearchBox" title='Enter Student Name...' placeholder='Enter Student Name...' />
                 </div>
 
                 <div className="StudentViewOrEditControlSectionFilterAndExportArea">
@@ -164,8 +217,8 @@ export default function StudentViewOrEditEditor(){
                     </span>
                     <div className="StudentViewOrEditControlSectionFilterAndExportSemFilter">
                         <span className='StudentViewOrEditControlSectionFilterAndExportLabel'>Semester</span>
-                        <select className='StudentViewOrEditControlSectionFilterAndExportDropdown'> 
-                            <option value="0">Sem</option>
+                        <select value={semFilterValue} onChange={OnSemFilterValueChange} className='StudentViewOrEditControlSectionFilterAndExportDropdown'> 
+                            <option value="0">All</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -179,13 +232,13 @@ export default function StudentViewOrEditEditor(){
 
                     <div className="StudentViewOrEditControlSectionFilterAndExportDeptFilter">
                         <span className='StudentViewOrEditControlSectionFilterAndExportLabel'>Department</span>
-                        <select className='StudentViewOrEditControlSectionFilterAndExportDropdown'> 
-                            <option value="0">Dept</option>
-                            <option value="1">EEE</option>
-                            <option value="2">ECE</option>
-                            <option value="3">CSE</option>
-                            <option value="4">CSBS</option>
-                            <option value="5">ME</option>
+                        <select onChange={OnDeptFilterValueChanged} value={DeptFilterValue} className='StudentViewOrEditControlSectionFilterAndExportDropdown'> 
+                            <option value="0">All</option>
+                            <option value="Electrical and Electronics Engineering">EEE</option>
+                            <option value="Electronics and Communication Engineering">ECE</option>
+                            <option value="Computer Science Engineering">CSE</option>
+                            <option value="Computer Science and Business Studies">CSBS</option>
+                            <option value="Mechanical Engineering">ME</option>
                             <option value="6">EE</option>
                         </select>
                     </div>
@@ -199,11 +252,12 @@ export default function StudentViewOrEditEditor(){
 
         
 
+        {dataEmpty ? <DataNotFound/>:
 
         <div className="StudentViewOrEditListSection">
-            {StudentViewOrEditData.map((data, index)=>{
+            {StudentViewOrEditData.map((data)=>{
                 return(
-                    <div className="StudentViewOrEditListItem" key={index}>
+                    <div className="StudentViewOrEditListItem" key={data.roll}>
                         <div className="StudentViewOrEditListItemProfilePhoto" style={data.isProfile? {backgroundImage:`url(${data.profile})`} : {backgroundImage:`url('/defaultProfile.jpg')`}}/>
 
                         <div className="StudentViewOrEditListDetailsSection">
@@ -249,10 +303,7 @@ export default function StudentViewOrEditEditor(){
 
         </div>
         
-        {dataEmpty ? <DataNotFound/> : null}
-
-        <div className="StudentViewOrEditBorder"/>
-
+        }
 
         {isViewStudentPopupOpen ? (
         <ViewStudentCard 

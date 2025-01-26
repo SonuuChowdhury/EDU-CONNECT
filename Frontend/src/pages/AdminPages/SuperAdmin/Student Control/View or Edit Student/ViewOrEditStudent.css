@@ -75,7 +75,7 @@
 .StudentViewOrEditControlSectionSearchAreaSearchBox {
     width: 15rem; /* Comfortable width for input box */
     padding: 0.5rem; /* Inner padding for typing comfort */
-    border: 2px solid #ccc; /* Neutral border for a clean look */
+    border: 1px solid #ccc; /* Neutral border for a clean look */
     border-radius: 5px; /* Rounded corners for modern UI */
     font-size: 1rem; /* Match text size for better readability */
     outline: none; /* Remove default outline */
