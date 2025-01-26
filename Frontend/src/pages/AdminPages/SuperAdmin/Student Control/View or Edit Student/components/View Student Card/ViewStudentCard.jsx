@@ -9,10 +9,8 @@ export default function ViewStudentCard({ isOpen, onClose, data }) {
     // Handle closing animation
     const handleClose = () => {
         setIsClosing(true);
-        setTimeout(() => {
-            setIsClosing(false);
-            onClose();
-        }, 300); // Match the animation duration (0.3s)
+        setIsClosing(false);
+        onClose();
     };
 
     // Return null if not open
