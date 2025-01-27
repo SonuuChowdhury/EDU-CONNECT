@@ -118,7 +118,7 @@ router.put('/api/add/student',AdminVerifyTokenPass, AddStudent)
 router.delete('/api/delete/student',AdminVerifyTokenPass, DeleteStudentByRoll)
 
 //API To Send Notice to all students
-router.put('/api/notice/multiple', SendNoticeToAllStudents)  //send Notice to multiple students
+router.put('/api/notice/multiple',AdminVerifyTokenPass, SendNoticeToAllStudents)
 
 export default router;
 
