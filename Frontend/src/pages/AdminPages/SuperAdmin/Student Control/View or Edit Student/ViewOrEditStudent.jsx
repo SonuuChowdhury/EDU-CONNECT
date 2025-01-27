@@ -360,7 +360,7 @@ export default function StudentViewOrEditEditor(){
                             <option value="Computer Science Engineering">CSE</option>
                             <option value="Computer Science and Business Studies">CSBS</option>
                             <option value="Mechanical Engineering">ME</option>
-                            <option value="6">EE</option>
+                            <option value="Electrical Engineering">EE</option>
                         </select>
                     </div>
 

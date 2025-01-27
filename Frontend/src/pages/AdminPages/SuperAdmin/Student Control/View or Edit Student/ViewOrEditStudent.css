@@ -33,7 +33,6 @@
   .StudentViewOrEditControlSectionControlsandSearchSectionBulkEdit,
   .StudentViewOrEditControlSectionControlsandSearchSectionSendNotice {
     padding: 0.6rem 1.5rem; /* Comfortable padding for buttons */
-    font-size: 1rem; /* Slightly larger font size */
     font-weight: 500; /* Medium font weight for readability */
     color: white;
     border: none; /* Removes default borders */
@@ -112,7 +111,10 @@
 
 .StudentViewOrEditControlSectionFilterAndExportDeptFilterSelector,
 .StudentViewOrEditControlSectionFilterAndExportSemFilterSelector{
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
+    height: auto;
 }
 
 .StudentViewOrEditControlSectionFilterAndExportArea > div {
@@ -122,28 +124,23 @@
 }
 
 .StudentViewOrEditControlSectionFilterAndExportButton {
-    width: auto;
-    height: 80%;
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
+    width: 3;
+    height: 2.8rem;
     font-weight: bold;
     color: #fff;
     background-color: #f39c12;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .StudentViewOrEditControlSectionFilterAndExportButton:hover {
     background-color: #e67e22;
-    transform: scale(1.05); /* Subtle zoom effect */
 }
 
 .StudentViewOrEditControlSectionFilterAndExportInput {
     padding: 0.5rem;
     font-size: 0.9rem;
-    width: 15rem; /* Consistent input width */
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
@@ -161,7 +158,6 @@
 }
 
 .StudentViewOrEditControlSectionFilterAndExportLabel {
-    font-size: 0.9rem;
     color: #444;
 }
   
