@@ -55,6 +55,9 @@ import DeleteStudentByRoll from "../api/Admins/Super Admin/Update Data/Students/
 // Attendance Data Management 
 import GetStudentAttendanceDetails from "../api/StudentData/Attendance Details/Get Attendance Data/GetAttendaceData.js";
 
+// Mailing Apis 
+import SendNoticeToAllStudents from "../api/Send Mails/Send Multiple Notices/SendNoticeToAllStudents.js";
+
 const router = Router();
 
 // Serving the index.html when someone requests '/'
@@ -113,6 +116,9 @@ router.get('/api/super-admin/students',AdminVerifyTokenPass, GetAllStudentDeatil
 // API to manage students
 router.put('/api/add/student',AdminVerifyTokenPass, AddStudent)
 router.delete('/api/delete/student',AdminVerifyTokenPass, DeleteStudentByRoll)
+
+//API To Send Notice to all students
+router.put('/api/notice/multiple', SendNoticeToAllStudents)  //send Notice to multiple students
 
 export default router;
 
