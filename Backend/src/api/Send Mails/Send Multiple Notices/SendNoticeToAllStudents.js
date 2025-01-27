@@ -8,7 +8,7 @@ const SendNoticeToAllStudents = express.Router();
 SendNoticeToAllStudents.use(express.json());
 
 SendNoticeToAllStudents.put("/api/notice/multiple", async (req, res) => {
-  const { EmailList, regarding, ByName, ByPosition, content } = req.body;
+  const { EmailList, subject, ByName, ByPosition, content } = req.body;
   if (!EmailList || EmailList.length === 0) {
     return res.status(400).json({ error: "EmailList is required" });
   }
@@ -20,7 +20,7 @@ SendNoticeToAllStudents.put("/api/notice/multiple", async (req, res) => {
       EmailList.map(async (email, index) => {
         try {
           // Call your email sending function
-          await SendNotice(email, regarding, ByName, ByPosition, content);
+          await SendNotice(email, subject, ByName, ByPosition, content);
           successCount++;
           // Emit progress to clients
           io.emit("emailProgress", {

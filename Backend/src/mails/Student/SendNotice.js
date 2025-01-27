@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export default async function SendNotice(to, regarding,subject, ByName, ByPosition, content) {
+export default async function SendNotice(to,subject, ByName, ByPosition, content) {
     const user = `${process.env.MAIL_ID}`;
     const pass = `${process.env.MAIL_PASS}`;
 
@@ -36,7 +36,7 @@ export default async function SendNotice(to, regarding,subject, ByName, ByPositi
                 </p>
                 
                 <p style="font-size: 16px; color: #555;">
-                    <strong>Subject:</strong> Notice for ${regarding} 
+                    <strong>Subject:</strong> Notice for ${subject} 
                 </p>
 
                 <p style="font-size: 16px; color: #555; line-height: 1.6;">
