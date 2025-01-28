@@ -58,6 +58,8 @@ import GetStudentAttendanceDetails from "../api/StudentData/Attendance Details/G
 // Mailing Apis 
 import SendNoticeToAllStudents from "../api/Send Mails/Send Multiple Notices/SendNoticeToAllStudents.js";
 
+import RephraseTextByGoogleAPI from "../api/RapidAPI Rephraser/RephraseTextByGoogleAPI.js";
+
 const router = Router();
 
 // Serving the index.html when someone requests '/'
@@ -119,6 +121,7 @@ router.delete('/api/delete/student',AdminVerifyTokenPass, DeleteStudentByRoll)
 
 //API To Send Notice to all students
 router.put('/api/notice/multiple',AdminVerifyTokenPass, SendNoticeToAllStudents)
+router.get('/api/rephrase',RephraseTextByGoogleAPI)
 
 export default router;
 
