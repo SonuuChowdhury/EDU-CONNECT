@@ -19,6 +19,7 @@ import GetAllStudentsData from '../../../../../api/Student Control APIs/GetAllSt
 
 import ViewStudentCard from './components/View Student Card/ViewStudentCard.jsx'
 import DeleteStudentOptionBox from './components/Delete Student/DeleteStudentDialogPopUp.jsx'
+import SendNoticeOnMail from './components/Notice Sender/SendNoticeOnMail.jsx';
 
 export default function StudentViewOrEditEditor(){
     const navigate = useNavigate()
@@ -44,6 +45,8 @@ export default function StudentViewOrEditEditor(){
     const [searchValue,SetSearchValue]=useState("");
     const [semFilterValue, setSemFilterValue]= useState(0)
     const [DeptFilterValue, SetDeptFilterValue]= useState("0")
+
+    const [isSendNoticeModalOpen,SetIsSendNoticeModalOpen]=useState(false)
 
     const OnSearchInputChange=async(e)=>{
         SetSearchValue(e.target.value)
@@ -298,12 +301,12 @@ export default function StudentViewOrEditEditor(){
         return `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
     }
     
-
     return <>
         <BasicNavbar/>
         {isLoading ? <Loader/> : null}
         {Authorized ? null : <Unauthorized/>}
         {ShowTopUp ? <TryAgainTopBarPopup status={errorStatus}/> : null}
+        {isSendNoticeModalOpen?<SendNoticeOnMail data={FetchedStudentViewOrEditData} onClose={()=>SetIsSendNoticeModalOpen((val)=>!val)} />:null}
 
         <div className="TopAreaDashboard">
             <span className="SuperAdminHeaders">
@@ -321,7 +324,7 @@ export default function StudentViewOrEditEditor(){
                     <button title='Bulk Edit' className="StudentViewOrEditControlSectionControlsandSearchSectionBulkEdit">
                         <FontAwesomeIcon icon={faPenToSquare} className='StudentViewOrEditControlSectionicon' />Bulk Edit
                     </button>
-                    <button title='Send Notice'
+                    <button title='Send Notice' onClick={()=>SetIsSendNoticeModalOpen(true)} 
                     className="StudentViewOrEditControlSectionControlsandSearchSectionSendNotice">
                         <FontAwesomeIcon icon={faEnvelope} className='StudentViewOrEditControlSectionicon'/>Send Notice
                     </button>
