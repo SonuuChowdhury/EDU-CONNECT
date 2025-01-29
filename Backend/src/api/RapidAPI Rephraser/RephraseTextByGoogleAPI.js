@@ -7,7 +7,7 @@ dotenv.config();
 const RephraseTextByGoogleAPI = express.Router();
 RephraseTextByGoogleAPI.use(express.json());
 
-RephraseTextByGoogleAPI.get("/api/rephrase", async (req, res) => {
+RephraseTextByGoogleAPI.post("/api/rephrase", async (req, res) => {
     const {text}=req.body
 
     if(!text || text==""){
