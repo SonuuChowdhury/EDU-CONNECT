@@ -33,7 +33,6 @@ export default function StudentViewOrEditEditor(){
     const [refresh, setRefresh] = useState(false)
     const [dataEmpty, setDataEmpty] = useState(false)
 
-
     const [SelectedStudentViewPopUpData, setSelectedStudentViewPopUpData] = useState('')
     const [SelectedStudentDeletePopUpData, setSelectedStudentDeletePopUpData] = useState('')
 
@@ -385,8 +384,6 @@ export default function StudentViewOrEditEditor(){
             </div>
         </div>
 
-        
-
         {dataEmpty ? <DataNotFound/>:
 
         <div className="StudentViewOrEditListSection">
@@ -434,7 +431,6 @@ export default function StudentViewOrEditEditor(){
             })}
 
         </div>
-        
         }
 
         {isViewStudentPopupOpen ? (

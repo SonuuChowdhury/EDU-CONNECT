@@ -1,18 +1,63 @@
-import { useState } from 'react'
+/* eslint-disable no-unused-vars */
+import { useState,useEffect } from 'react'
 import './SendNoticeOnMail.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faWandMagicSparkles} from '@fortawesome/free-solid-svg-icons'
+
+import RephraseByGemeniAPI from '../../../../../../../api/AI Rephrase/RephraseByGemeniAPI.js'
 
 export default function SendNoticeOnMail(params){
     const [name,setName]=useState("")
     const [designation, setDesignation]= useState("Admin")
     const [Subject, setSubject]=useState("")
     const [Content,setContent]=useState("")
+    const [ContentLoading,setContentLoading]=useState(false)
     const [SendToAllStudents, SetSendToAllStudents] = useState(true)
 
     const [studentData, setStudentData] = useState(params.data);
+    const [SelectedEmails,setSelectedEmails]=useState([])
+    const [SelectAllStudents, setSelectAllStudents]=useState(false)
 
+    useEffect(() => {
+        if (SendToAllStudents) {
+          let emails = studentData.map((item) => item.email); // No need for explicit return
+          setSelectedEmails(emails);
+        }else{
+            setSelectedEmails([]);
+        }
+      }, [studentData, SendToAllStudents]);
+      
+    const OnStudentCardCLickHandeller=async(OperationalEmail)=>{
+        if(SelectedEmails.includes(OperationalEmail)){
+            const updatedEmailList =await  SelectedEmails.filter(email => email !== OperationalEmail);
+            setSelectedEmails(updatedEmailList)
+        }else{
+            setSelectedEmails([...SelectedEmails, OperationalEmail])
+        }
+    }
+
+    const SelectAllStudentsOnNoticeHandeller=async ()=>{
+        if(!SelectAllStudents){
+            let emails = studentData.map((item) => item.email); // No need for explicit return
+            setSelectedEmails(emails);
+        }else{
+            setSelectedEmails([])
+        }
+    }
+
+    const RephraseButtonHandeller=async()=>{
+        try{
+            setContentLoading(true)
+            const RephrasedTextOutput = await RephraseByGemeniAPI(Content)
+
+            if(RephrasedTextOutput.status==200){
+                setContent(RephrasedTextOutput.text)
+            }
+        }finally{
+            setContentLoading(false)
+        }
+    }
     return<>
     <div className="SendNoticeOnMailBackground" onClick={()=>params.onClose()}>
         <div className="SendNoticeOnMailContainer" onClick={(e)=>{
@@ -75,8 +120,8 @@ export default function SendNoticeOnMail(params){
                 </div>
                 <div className="SubjectAndContentInputAreaContent">
                     <span className='SubjectAndContentInputAreaContentSpan'>Content</span>
-                    <textarea  className='SubjectAndContentInputAreaContentInput' value={Content} onChange={(e)=>setContent(e.target.value)} placeholder='Write the notice content here...' />
-                    <button title='Rephrase the overall message in just one click.' className='SubjectAndContentInputAreaContentInputRephraseButton'><FontAwesomeIcon className='SubjectAndContentInputAreaContentInputRephraseButtonIcon' icon={faWandMagicSparkles} />Rephrase</button>
+                    <textarea disabled={ContentLoading}  className='SubjectAndContentInputAreaContentInput' value={Content} onChange={(e)=>setContent(e.target.value)} placeholder='Write the notice content here...' />
+                    <button disabled={ContentLoading} onClick={RephraseButtonHandeller} title='Rephrase the overall message in just one click.' className='SubjectAndContentInputAreaContentInputRephraseButton'><FontAwesomeIcon className='SubjectAndContentInputAreaContentInputRephraseButtonIcon' icon={faWandMagicSparkles} />Rephrase</button>
                 </div>
             </div>
 
@@ -104,11 +149,13 @@ export default function SendNoticeOnMail(params){
                     <span className="NoticeContainerStudentListTopControlAndLabelsSelectAll">
                         Select All :
                     </span>
-                    <input type="checkbox" className='NoticeContainerStudentListTopControlAndLabelsSelectAllCheckBox'/>
+                    <input type="checkbox" className='NoticeContainerStudentListTopControlAndLabelsSelectAllCheckBox' checked={SelectAllStudents} onClick={()=>setSelectAllStudents(val=>!val)} onChange={SelectAllStudentsOnNoticeHandeller} readOnly/>
                 </div>
                 {studentData.map((student)=>(
-                    <div key={student.roll}className="NoticeContainerStudentListStudentCard">
-                        <input type="checkbox" className='NoticeContainerStudentListStudentCardCheckBox'/>
+                    <div key={student.roll}className="NoticeContainerStudentListStudentCard" onClick={(e)=>{OnStudentCardCLickHandeller(student.email)
+                        e.stopPropagation()
+                    }}>
+                        <input type="checkbox" checked={SelectedEmails.includes(student.email)} readOnly className='NoticeContainerStudentListStudentCardCheckBox'/>
                         <div className="NoticeContainerStudentListStudentCardRofile" style={student.isProfile? {backgroundImage:`url(${student.profile})`} : {backgroundImage:`url('/defaultProfile.jpg')`}} />
                         <div className="NoticeContainerStudentListStudentCardNameAndRoll">
                             <span className='NoticeContainerStudentListStudentCardName'>{student.name}</span>
@@ -119,10 +166,7 @@ export default function SendNoticeOnMail(params){
                         </span>
                     </div>
                 ))}
-
-
             </div> 
-            
             :null}
 
             <div className="SendNoticeButtonSectionArea">

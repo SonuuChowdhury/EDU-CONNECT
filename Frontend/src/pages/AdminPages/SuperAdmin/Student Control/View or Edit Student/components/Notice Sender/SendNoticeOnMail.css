@@ -329,6 +329,8 @@
 .NoticeContainerStudentListStudentCardCheckBox {
     margin-right: 10px;
     cursor: pointer;
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
 .NoticeContainerStudentListStudentCardRofile {
@@ -365,4 +367,44 @@
     font-weight: 600;
     border-radius: 5px;
     white-space: nowrap;
+}
+
+
+
+.SubjectAndContentInputAreaContentInput:disabled,
+.SubjectAndContentInputAreaContentInputRephraseButton:disabled{
+    cursor: not-allowed;
+}
+
+.SubjectAndContentInputAreaContentInput:disabled {
+    position: relative;
+    background-color: #f3f3f3;
+    color: #aaa;
+    overflow: hidden;
+    cursor: not-allowed;
+}
+
+.SubjectAndContentInputAreaContentInput:disabled::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    animation: waveEffect 1.2s linear infinite;
+}
+
+@keyframes waveEffect {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(100%);
+    }
 }
