@@ -20,6 +20,7 @@ import GetAllStudentsData from '../../../../../api/Student Control APIs/GetAllSt
 import ViewStudentCard from './components/View Student Card/ViewStudentCard.jsx'
 import DeleteStudentOptionBox from './components/Delete Student/DeleteStudentDialogPopUp.jsx'
 import SendNoticeOnMail from './components/Notice Sender/SendNoticeOnMail.jsx';
+import SendingNoticeModal from './components/SendingNotice/SendingNoticeModal.jsx';
 
 export default function StudentViewOrEditEditor(){
     const navigate = useNavigate()
@@ -46,6 +47,14 @@ export default function StudentViewOrEditEditor(){
     const [DeptFilterValue, SetDeptFilterValue]= useState("0")
 
     const [isSendNoticeModalOpen,SetIsSendNoticeModalOpen]=useState(false)
+    const [SendNoticeData, SetSendNoticeData]= useState([])
+    const [isSendingNoticeModalOpen, SetIsSendingNoticeModalOpen]=useState(false)
+
+    const SendNotice=(data)=>{
+        SetIsSendNoticeModalOpen(false)
+        SetSendNoticeData(data)
+        SetIsSendingNoticeModalOpen(true)
+    }
 
     const OnSearchInputChange=async(e)=>{
         SetSearchValue(e.target.value)
@@ -305,8 +314,8 @@ export default function StudentViewOrEditEditor(){
         {isLoading ? <Loader/> : null}
         {Authorized ? null : <Unauthorized/>}
         {ShowTopUp ? <TryAgainTopBarPopup status={errorStatus}/> : null}
-        {isSendNoticeModalOpen?<SendNoticeOnMail data={FetchedStudentViewOrEditData} onClose={()=>SetIsSendNoticeModalOpen((val)=>!val)} />:null}
-
+        {isSendNoticeModalOpen?<SendNoticeOnMail data={FetchedStudentViewOrEditData} SendNotice={SendNotice} onClose={()=>SetIsSendNoticeModalOpen((val)=>!val)} />:null}
+        {isSendingNoticeModalOpen? <SendingNoticeModal data={SendNoticeData} onClose={()=>SetIsSendingNoticeModalOpen(false)}/>:null}
         <div className="TopAreaDashboard">
             <span className="SuperAdminHeaders">
                 <span className="SuperAdminHeader">WELCOME SUPER ADMIN</span>

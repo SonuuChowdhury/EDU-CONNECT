@@ -7,6 +7,8 @@ import {faWandMagicSparkles} from '@fortawesome/free-solid-svg-icons'
 
 import RephraseByGemeniAPI from '../../../../../../../api/AI Rephrase/RephraseByGemeniAPI.js'
 
+import DataNotFound from '../../../../../../../components/Data Not found/DataNotFound.jsx'
+
 export default function SendNoticeOnMail(params){
     const [name,setName]=useState("")
     const [designation, setDesignation]= useState("Admin")
@@ -19,6 +21,12 @@ export default function SendNoticeOnMail(params){
     const [SelectedEmails,setSelectedEmails]=useState([])
     const [SelectAllStudents, setSelectAllStudents]=useState(false)
 
+    const [semFilterValue, setSemFilterValue]= useState(0)
+    const [DeptFilterValue, SetDeptFilterValue]= useState("0")
+    const [DataEmpty, SetDataEmpty]= useState(false)
+
+    const [SendingMails, SetSendingMails]= useState(false)
+
     useEffect(() => {
         if (SendToAllStudents) {
           let emails = studentData.map((item) => item.email); // No need for explicit return
@@ -27,6 +35,17 @@ export default function SendNoticeOnMail(params){
             setSelectedEmails([]);
         }
       }, [studentData, SendToAllStudents]);
+
+    const SendButtonHandeller=async()=>{
+        const NoticeData = {
+            Name:name,
+            Designation:designation,
+            Subject:Subject,
+            Content:Content,
+            emails:SelectedEmails
+        }
+        params.SendNotice(NoticeData)
+    }
       
     const OnStudentCardCLickHandeller=async(OperationalEmail)=>{
         if(SelectedEmails.includes(OperationalEmail)){
@@ -34,6 +53,41 @@ export default function SendNoticeOnMail(params){
             setSelectedEmails(updatedEmailList)
         }else{
             setSelectedEmails([...SelectedEmails, OperationalEmail])
+        }
+    }
+    
+    const OnSemFilterValueChange=async(e)=>{
+        setSelectedEmails([])
+        setSemFilterValue(e.target.value)
+        const SelectedSem= e.target.value;
+        const FilterResult = params.data.filter(student=>student.semester==SelectedSem)
+        setStudentData(FilterResult)
+        if(FilterResult.length==0){
+            SetDataEmpty(true)
+        }else{
+            SetDataEmpty(false)
+        }
+        if(SelectedSem==0){
+            SetDataEmpty(false)
+            setStudentData(params.data)
+        }
+    }
+
+    const OnDeptFilterValueChanged=(e)=>{
+        setSelectedEmails([])
+        SetDeptFilterValue(e.target.value)
+        const SelectedDept= e.target.value;
+        const FilterResult = params.data.filter(student=>student.department.toLowerCase().includes(SelectedDept.toLowerCase()))
+        setStudentData(FilterResult)
+        console.log(FilterResult)
+        if(FilterResult.length==0){
+            SetDataEmpty(true)
+        }else{
+            SetDataEmpty(false)
+        }
+        if(SelectedDept==0){
+            SetDataEmpty(false)
+            setStudentData(params.data)
         }
     }
 
@@ -65,13 +119,13 @@ export default function SendNoticeOnMail(params){
         }}>
             <button className='SendNoticeOnMailCancelButton' onClick={()=>params.onClose()}>X</button>
 
+
             <span className="SendNoticeOnMailHeader">SEND NOTICE</span>
 
             <div className="NameAndDesignationInputArea">
                 <div className="NameAndDesignationInputAreaName">
                     <span className='NameAndDesignationInputAreaNameSpan'>Name</span>
                     <input type="text" value={name} onChange={(e)=>setName(e.target.value)} placeholder='Eg. Sonu Chowdhury' className='NameAndDesignationInputAreaNameInput' />
-
                 </div>
                 <div className="NameAndDesignationInputAreaDesignation">
                     <span className='NameAndDesignationInputAreaDesignationSpan'>Dsignation</span>
@@ -143,6 +197,36 @@ export default function SendNoticeOnMail(params){
             {!SendToAllStudents? 
             <div className="NoticeContainerStudentListContainer">
                 <div className="NoticeContainerStudentListToolsAndFilters">
+                    <span className='NoticeStudentListFiltersSpan'>Filters: </span>
+
+
+                    <div className="NoticeStudentListFiltersFiltersSection">
+                        <span className='NoticeStudentListFiltersSpanSemSpan'>Semester</span>
+                        <select value={semFilterValue} onChange={OnSemFilterValueChange} className='NoticeStudentListFiltersSpanSemDropDown'> 
+                            <option value="0">All</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+
+                    <div className="NoticeStudentListFiltersSpanDeptFilter">
+                        <span className='NoticeStudentListFiltersSpanDeptFilterSpan'>Department</span>
+                        <select onChange={OnDeptFilterValueChanged} value={DeptFilterValue} className='NoticeStudentListFiltersSpanDeptFilterDropDown'> 
+                            <option value="0">All</option>
+                            <option value="Electrical and Electronics Engineering">EEE</option>
+                            <option value="Electronics and Communication Engineering">ECE</option>
+                            <option value="Computer Science Engineering">CSE</option>
+                            <option value="Computer Science and Business Studies">CSBS</option>
+                            <option value="Mechanical Engineering">ME</option>
+                            <option value="Electrical Engineering">EE</option>
+                        </select>
+                    </div>
 
                 </div>
                 <div className="NoticeContainerStudentListTopControlAndLabels">
@@ -151,6 +235,7 @@ export default function SendNoticeOnMail(params){
                     </span>
                     <input type="checkbox" className='NoticeContainerStudentListTopControlAndLabelsSelectAllCheckBox' checked={SelectAllStudents} onClick={()=>setSelectAllStudents(val=>!val)} onChange={SelectAllStudentsOnNoticeHandeller} readOnly/>
                 </div>
+                {DataEmpty ? <DataNotFound/>:null}
                 {studentData.map((student)=>(
                     <div key={student.roll}className="NoticeContainerStudentListStudentCard" onClick={(e)=>{OnStudentCardCLickHandeller(student.email)
                         e.stopPropagation()
@@ -171,7 +256,17 @@ export default function SendNoticeOnMail(params){
 
             <div className="SendNoticeButtonSectionArea">
                 <button className="SendNoticeButtonSectionCancelButton" onClick={()=>params.onClose()}>CANCEL</button>
-                <button className="SendNoticeButtoonSectionSendButton">SEND</button>
+                <button className="SendNoticeButtoonSectionSendButton" onClick={SendButtonHandeller} disabled={SelectedEmails.length==0 || name=="" || Content=="" || Subject==""} title={
+                    SelectedEmails.length === 0 
+                    ? "No emails selected" 
+                    : name === "" 
+                    ? "Name is required" 
+                    : Content === "" 
+                    ? "Content cannot be empty" 
+                    : Subject === "" 
+                    ? "Subject is required" 
+                    : ""
+                } >SEND</button>
             </div>
         </div>
     </div>

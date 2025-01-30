@@ -219,6 +219,11 @@
     font-weight: 600;
 }
 
+.SendNoticeButtoonSectionSendButton:disabled{
+    background-color: gray;
+    cursor: not-allowed;
+}
+
 .SendNoticeButtonSectionCancelButton {
     background-color: #f44336;
     color: white;
@@ -233,6 +238,10 @@
     background-color: #4caf50;
     color: white;
     transition: background-color 0.3s;
+}
+
+.SendNoticeButtoonSectionSendButton:disabled:hover{
+    background-color: #ccc;
 }
 
 .SendNoticeButtoonSectionSendButton:hover {
@@ -299,6 +308,37 @@
 .NoticeContainerStudentListToolsAndFilters {
     width: 100%;
     height: 2.8rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+
+}
+
+.NoticeStudentListFiltersSpan{
+    margin-left: 0.5rem;
+}
+
+.NoticeStudentListFiltersFiltersSection{
+    margin-left: 0.8rem;
+}
+
+.NoticeStudentListFiltersSpanSemDropDown{
+    margin-left: 0.5rem;
+    width: 4rem;
+    border: 1px solid rgb(161, 157, 157);
+    padding: 0.3rem;
+}
+
+.NoticeStudentListFiltersSpanDeptFilter{
+    margin-left: 2rem;
+}
+
+.NoticeStudentListFiltersSpanDeptFilterDropDown{
+    margin-left: 0.5rem;
+    width: 6rem;
+    border: 1px solid rgb(161, 157, 157);
+    padding: 0.3rem;
 }
 
 .NoticeContainerStudentListTopControlAndLabels{
@@ -315,6 +355,7 @@
 }
 
 .NoticeContainerStudentListStudentCard {
+    cursor: pointer;
     width: 95%;
     align-self: center;
     display: flex;
@@ -415,3 +456,21 @@
         transform: translateX(100%);
     }
 }
+
+
+
+/* Modal Background Overlay */
+.SendButtonConfirmationModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it appears on top */
+}
+
+
