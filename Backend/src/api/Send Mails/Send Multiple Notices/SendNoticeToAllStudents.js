@@ -20,8 +20,8 @@ SendNoticeToAllStudents.put("/api/notice/multiple", async (req, res) => {
       EmailList.map(async (email, index) => {
         try {
           // Call your email sending function
-          await SendNotice(email, subject, ByName, ByPosition, content);
-          successCount++;
+          const MailResponse = await SendNotice(email, subject, ByName, ByPosition, content);
+          MailResponse.status==200? successCount++: null
           // Emit progress to clients
           io.emit("emailProgress", {
             email,
