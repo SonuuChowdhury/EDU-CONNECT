@@ -18,8 +18,13 @@ export default function SendingNoticeModal(params) {
     const SuccessPerVar= Math.round(((successNumber + failedNumbers)/totalNumbers)*100)
     setPercentageStatus(SuccessPerVar)
   }, [totalNumbers,successNumber,failedNumbers])
-  
 
+  useEffect(() => {
+    if(percentageStatus==100){
+      setFailedNumbers(totalNumbers-successNumber)
+    }
+  }, [successNumber,percentageStatus,totalNumbers])
+  
   useEffect(() => {
     // Listen for email progress updates
     socket.on("emailProgress", ({ progress }) => {
