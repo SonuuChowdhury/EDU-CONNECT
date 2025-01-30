@@ -7,11 +7,26 @@ export default async function SendNotice(to,subject, ByName, ByPosition, content
     const user = `${process.env.MAIL_ID}`;
     const pass = `${process.env.MAIL_PASS}`;
 
-    // Get current date and time
+    // Get current date and time in IST
     const now = new Date();
-    const options = { hour: '2-digit', minute: '2-digit', hour12: true };
-    const time = new Intl.DateTimeFormat('en-US', options).format(now);
-    const date = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).format(now);
+
+    // Format time in 12-hour format with AM/PM
+    const time = now.toLocaleTimeString("en-US", { 
+        timeZone: "Asia/Kolkata", // Indian timezone (IST)
+        hour: "2-digit", 
+        minute: "2-digit", 
+        hour12: true 
+    });
+
+    // Format date as "DD Mon YYYY"
+    const date = now.toLocaleDateString("en-GB", { 
+        timeZone: "Asia/Kolkata", 
+        day: "2-digit", 
+        month: "short", 
+        year: "numeric" 
+    });
+
+    // Combine both
     const dateAndTime = `${time}, ${date}`;
 
     const MailTransporter = nodemailer.createTransport({
