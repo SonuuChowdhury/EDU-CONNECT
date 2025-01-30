@@ -15,9 +15,14 @@ export default function SendingNoticeModal(params) {
   const [SentNotices, setSentNotices]= useState(false)
 
   useEffect(() => {
+    const SuccessPerVar= Math.round(((successNumber + failedNumbers)/totalNumbers)*100)
+    setPercentageStatus(SuccessPerVar)
+  }, [totalNumbers,successNumber,failedNumbers])
+  
+
+  useEffect(() => {
     // Listen for email progress updates
     socket.on("emailProgress", ({ progress }) => {
-      setPercentageStatus(progress);
       setSuccessNumber((prev) => prev + 1);
     });
 
