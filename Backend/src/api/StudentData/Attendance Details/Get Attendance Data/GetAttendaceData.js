@@ -86,8 +86,6 @@ GetStudentAttendanceDetails.post('/api/student-dashboard/attendance', async (req
         // Clear PresentDates and AbsentDates, and update totals
         updateFields = {
           ...updateFields,
-          "subjects.$.PresentDates": [], // Clear PresentDates
-          "subjects.$.AbsentDates": [], // Clear AbsentDates
           "subjects.$.TotalPresent": NewTotalPresent, // Update TotalPresent
           "subjects.$.TotalAbsent": NewTotalAbsent, // Update TotalAbsent
         };
