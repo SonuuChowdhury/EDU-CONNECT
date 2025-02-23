@@ -21,6 +21,8 @@ export default function AttendacePage({onClose,StudentRoll}) {
 
     const [NoOfSubject, SetNoOfSubject] = useState(0)
     const [SubjectData, setSubjectData]= useState([])
+    const [theorySubjects, SetTheorySubjects]= useState([])
+    const [practicalSubjects, setPracticalSubjects]= useState([])
     const [TotalClasses,SetTotalClasses] = useState(0)
     const [TotalClassesAttended,SetTotalClassesAttended] = useState(0)
     const [TotalClassesPercentage,SetTotalClassesPercentage] = useState(0)
@@ -39,13 +41,32 @@ export default function AttendacePage({onClose,StudentRoll}) {
 
     const [ViewAttendanceCalendar, SetViewAttendanceCalendar] = useState(false)
     const [ViewAttendanceCalendarData, SetViewAttendanceCalendarData] = useState()
-    
+    const [isDeleteSubjectDialogueBoxOpen, SetisDeleteSubjectDialogueBoxOpen]= useState(false)
+    const [SubjectDeleting,setSubjectDeleting]= useState()
 
     useEffect(() => {
       if (AttendanceData && AttendanceData.subjects) {
         ConfigureAttendanceData();
       }
     }, [AttendanceData]);
+
+    const DeleteSubjectDialouge=async (data)=>{
+      await setSubjectDeleting(data)    
+      SetisDeleteSubjectDialogueBoxOpen(true)
+    }
+
+    // Function to classify subjects
+    const classifySubjects = (subjects) => {
+      const theory = subjects.filter(subject => subject.subjectType === 1);
+      const practical = subjects.filter(subject => subject.subjectType !== 1);
+      SetTheorySubjects(theory);
+      setPracticalSubjects(practical);
+    };
+
+    // Runs on first render & when SubjectData updates
+    useEffect(() => {
+      classifySubjects(SubjectData);
+    }, [SubjectData]);
 
 
     function formatDateTime(timestamp) {
@@ -246,6 +267,7 @@ export default function AttendacePage({onClose,StudentRoll}) {
         }
       }finally{
         setisLoading(false)
+        SetisDeleteSubjectDialogueBoxOpen(false)
       }
     })
 
@@ -267,6 +289,25 @@ export default function AttendacePage({onClose,StudentRoll}) {
         <div className="LoaderSpinner"></div>
       </div>
     : null}
+
+    {isDeleteSubjectDialogueBoxOpen?
+      (<>
+        <div className="DeleteSubjectDialougeBackground" onClick={()=>SetisDeleteSubjectDialogueBoxOpen(false)}>
+          <div className="DeleteSubjectDialougeBox" onClick={(e)=>e.stopPropagation()}>
+            <span className="DeleteSubjectDialougeSpan">
+              Do You Want To Remove {SubjectDeleting.name}?
+            </span>
+            <div className="DeleteSubjectDialougeButtonArea">
+              <button className="DeleteSubjectDialougeNoButton" onClick={()=> SetisDeleteSubjectDialogueBoxOpen(false)}>
+                NO
+              </button>
+              <button className="DeleteSubjectDialougeYesButton" onClick={()=>SubjectDeleteHandeller({subjectName:SubjectDeleting.name})}>
+                YES
+              </button>
+            </div>
+          </div>
+        </div>
+      </>) :null}
 
     {ViewAttendanceCalendar?(
       <AttendanceCalendar
@@ -359,7 +400,10 @@ export default function AttendacePage({onClose,StudentRoll}) {
             <span>Percentage: {TotalClassesPercentage} %</span>
         </div>
         <div className="AttendancaAndSubjectsArea">
-        {SubjectData.map((data)=>(
+
+          <span className="ClassSpecifierSpan">Theory Classes</span>
+
+        {theorySubjects.map((data)=>(
           <div key={data._id} className="AttendanceSubjectCard">
             <div className="AttendanceSubjectCardDetails">
               <span className="AttendanceSubjectCardDetailsName">{data.name}</span>
@@ -396,7 +440,7 @@ export default function AttendacePage({onClose,StudentRoll}) {
                 SetEditingCurrentSubjectData(data,StudentRoll)
                 SetEditingSubjectData(true)
               }}><FontAwesomeIcon icon={faPenToSquare} /></div>
-              <div className="AttendanceSubjectCardOptions" title="Delete Subject" onClick={()=>SubjectDeleteHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faTrashCan} /></div>
+              <div className="AttendanceSubjectCardOptions" title="Delete Subject" onClick={()=>DeleteSubjectDialouge(data)} ><FontAwesomeIcon icon={faTrashCan} /></div>
             </div>
 
             <div className="AttendanceSubjectCardTodaysAttendanceArea">

@@ -621,4 +621,92 @@
 }
 
 
+.ClassSpecifierSpan{
+  font-size: 1.5rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: #007bff;
+  color: white;
+  padding: 0.6rem;
+  border-radius:5px ;
+  margin-top: 0.7rem;
+  margin-bottom: 0.4rem;
+}
+
+
+/* Full-page background without blur effect */
+.DeleteSubjectDialougeBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it is on top of other elements */
+}
+
+/* Centered dialog box */
+.DeleteSubjectDialougeBox {
+  background: white;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  padding: 20px;
+  max-width: 400px; /* Max width for larger screens */
+  width: 90%; /* Responsive width */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styling for the text span */
+.DeleteSubjectDialougeSpan {
+  font-size: 18px; /* Font size for the message */
+  color: #333; /* Dark text color for contrast */
+  margin-bottom: 20px; /* Spacing below the message */
+  align-self: center;
+}
+
+/* Button area styling */
+.DeleteSubjectDialougeButtonArea {
+  display: flex;
+  justify-content:space-around;
+}
+
+/* General button styling */
+.DeleteSubjectDialougeNoButton,
+.DeleteSubjectDialougeYesButton {
+  background-color: #007bff; /* Primary button color */
+  color: white; /* Button text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners for buttons */
+  padding: 10px 15px; /* Padding for buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions for hover effects */
+}
+
+/* Hover effects for buttons */
+.DeleteSubjectDialougeNoButton:hover,
+.DeleteSubjectDialougeYesButton:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Active state for buttons to provide feedback */
+.DeleteSubjectDialougeNoButton:active,
+.DeleteSubjectDialougeYesButton:active {
+  transform: scale(0.95); /* Slightly shrink on click */
+}
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 600px) {
+  .DeleteSubjectDialougeBox {
+      padding: 15px; /* Less padding on smaller screens */
+      font-size: 16px; /* Adjust font size if necessary */
+  }
+
+  .DeleteSubjectDialougeSpan {
+      font-size: 16px; /* Adjust font size if necessary */
+      margin-bottom: 15px; /* Adjust spacing if necessary */
+  }
+}
 
