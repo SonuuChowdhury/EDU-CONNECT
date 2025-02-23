@@ -401,9 +401,84 @@ export default function AttendacePage({onClose,StudentRoll}) {
         </div>
         <div className="AttendancaAndSubjectsArea">
 
-          <span className="ClassSpecifierSpan">Theory Classes</span>
+        <span className="ClassSpecifierSpan">Theory Classes</span>
 
         {theorySubjects.map((data)=>(
+          <div key={data._id} className="AttendanceSubjectCard">
+            <div className="AttendanceSubjectCardDetails">
+              <span className="AttendanceSubjectCardDetailsName">{data.name}</span>
+              <span className="AttendanceSubjectCardDetailsSubjectType">Subject Type: {data.subjectType==1? "Theory": "Lab"} </span>
+              <span className="AttendanceSubjectCardDetailsDatesDetails">Started on: {formatDateTime(data.startDate)}</span>
+              <span className="AttendanceSubjectCardDetailsDatesDetails">Last Updated: {formatDateTime(data.LastUpdated)}</span>
+            </div>
+
+            <div className="AttendanceSubjectCardAttendance">
+              <div className="AttendanceSubjectCardAttendanceData">
+                <span>
+                  Total Class: {data.TotalAbsent + data.TotalPresent|| 0}
+                </span>
+                <span>
+                  Present: {data.TotalPresent || 0 }
+                </span>
+                <span>
+                  Absent: {data.TotalAbsent || 0 }
+                </span>
+              </div>
+              
+
+              <span className={`AttendanceSubjectCardAttendanceDataPercentage ${CalculatePercentage(data)>=75?"AttendacePass":"AttendanceLow"}`}>
+                  {CalculatePercentage(data)}
+              </span>
+            </div>
+
+            <div className="AttendanceSubjectCardOptionsArea">
+              <div className="AttendanceSubjectCardOptions" title="View Attendance Calender" onClick={()=>{
+                SetViewAttendanceCalendarData(data)
+                SetViewAttendanceCalendar(true)
+                }}><FontAwesomeIcon icon={faCalendarDays} /> </div>
+              <div className="AttendanceSubjectCardOptions" title="Edit Subject" onClick={()=>{
+                SetEditingCurrentSubjectData(data,StudentRoll)
+                SetEditingSubjectData(true)
+              }}><FontAwesomeIcon icon={faPenToSquare} /></div>
+              <div className="AttendanceSubjectCardOptions" title="Delete Subject" onClick={()=>DeleteSubjectDialouge(data)} ><FontAwesomeIcon icon={faTrashCan} /></div>
+            </div>
+
+            <div className="AttendanceSubjectCardTodaysAttendanceArea">
+              <span className="AttendanceSubjectCardTodaysAttendanceHeader">
+                TODAY
+              </span>
+              <span className={`AttendanceSubjectCardTodaysAttendanceStatus 
+                  ${data.PresentDates?.some(date => new Date(date).toDateString() === new Date().toDateString()) 
+                    ? "StatusPresent" 
+                    : data.AbsentDates?.some(date => new Date(date).toDateString() === new Date().toDateString()) 
+                    ? "StatusAbsent" 
+                    : "StatusNotMarked"
+               }`}>
+                Status: {
+                  data.PresentDates?.some(date => new Date(date).toDateString() === new Date().toDateString())
+                    ? "Present"
+                    : data.AbsentDates?.some(date => new Date(date).toDateString() === new Date().toDateString())
+                    ? "Absent"
+                    : "Not Marked"
+                    }
+                </span>
+
+              <div className="AttendanceSubjectCardTodaysAttendanceOptions">
+                <div className="AttendanceSubjectCardTodaysAttendanceOptionsPresent" title="Mark Present" onClick={()=>MarkStudentPresentHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faCheck} /></div>
+                <div className="AttendanceSubjectCardTodaysAttendanceOptionsRemove" title="Remove Mark" onClick={()=>RemoveMarkStudentHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faBan} /> </div>
+                <div className="AttendanceSubjectCardTodaysAttendanceAbsent" title="Mark Absent" onClick={()=>MarkStudentAbsentHandeller({subjectName:data.name})}><FontAwesomeIcon icon={faXmark} /></div>
+              </div>
+            </div>
+          </div>
+        ))}
+        </div>
+
+
+        <div className="AttendancaAndSubjectsArea">
+
+        <span className="ClassSpecifierSpan">LAB Classes</span>
+
+        {practicalSubjects.map((data)=>(
           <div key={data._id} className="AttendanceSubjectCard">
             <div className="AttendanceSubjectCardDetails">
               <span className="AttendanceSubjectCardDetailsName">{data.name}</span>
