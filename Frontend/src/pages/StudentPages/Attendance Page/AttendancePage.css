@@ -134,7 +134,7 @@
 
 
 .AttendanceDetailsArea{
-  font-weight: bolder;
+  font-weight:bold;
   font-family: 'Times New Roman', Times, serif;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -145,7 +145,7 @@
   font-size: 1.5rem;
   border-radius: 3px;
   background-color: #dad7cd;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .AttendanceDetailsSpan{
