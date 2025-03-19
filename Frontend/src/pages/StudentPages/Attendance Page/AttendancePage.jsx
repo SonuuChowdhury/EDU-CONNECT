@@ -12,6 +12,8 @@ import EditSubject from "./Components/EditingSubject/EditSubject";
 
 import AttendanceCalendar from "./Components/Attendance Calendar/AttendanceCalendar";
 
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+
 export default function AttendacePage({onClose,StudentRoll}) {
     const [roll, setRoll] = useState(StudentRoll)
     const [isLoading, setisLoading] = useState(true);
@@ -43,6 +45,44 @@ export default function AttendacePage({onClose,StudentRoll}) {
     const [ViewAttendanceCalendarData, SetViewAttendanceCalendarData] = useState()
     const [isDeleteSubjectDialogueBoxOpen, SetisDeleteSubjectDialogueBoxOpen]= useState(false)
     const [SubjectDeleting,setSubjectDeleting]= useState()
+    const [GraphDataTheory, setGraphDataTheory] = useState({})
+    const [GraphDataLab, setGraphDataLab] = useState({})
+
+
+    useEffect(() => {
+      console.log(AttendanceData);
+    
+      // Ensure AttendanceData and subjects exist
+      if (AttendanceData && Array.isArray(AttendanceData.subjects) && AttendanceData.subjects.length > 0) {
+        const subjects = AttendanceData.subjects;
+    
+        // Separate theory and lab subjects based on subjectType
+        const theorySubjects = subjects.filter(subject => subject.subjectType === 1);
+        const labSubjects = subjects.filter(subject => subject.subjectType === 2);
+    
+        // Transform theory subjects into desired format
+        const transformedTheoryData = theorySubjects.map(subject => ({
+          SubjectName: subject.name.trim(), // Trim any extra spaces
+          Total: subject.TotalPresent + subject.TotalAbsent, // Calculate total classes
+          Present: subject.TotalPresent // Use the provided TotalPresent value
+        }));
+    
+        // Transform lab subjects into desired format
+        const transformedLabData = labSubjects.map(subject => ({
+          SubjectName: subject.name.trim(), // Trim any extra spaces
+          Total: subject.TotalPresent + subject.TotalAbsent, // Calculate total classes
+          Present: subject.TotalPresent // Use the provided TotalPresent value
+        }));
+    
+        // Update states with transformed data
+        setGraphDataTheory(transformedTheoryData);
+        setGraphDataLab(transformedLabData);
+    
+        console.log("Theory Data:", transformedTheoryData);
+        console.log("Lab Data:", transformedLabData);
+      }
+    }, [AttendanceData]);
+    
 
     useEffect(() => {
       if (AttendanceData && AttendanceData.subjects) {
@@ -336,10 +376,10 @@ export default function AttendacePage({onClose,StudentRoll}) {
     ) : ( NoOfSubject==0 ? (
           <>
             <div className="AttendanceDetailsArea">
-              <span>Total Class:{TotalClasses}</span>
-              <span>Present: {TotalClassesAttended}</span>
-              <span>Percentage: {TotalClassesPercentage} %</span>
-            </div>
+                <div className="AttendanceDetailsSpan">Total Class:{TotalClasses}</div>
+                <div className="AttendanceDetailsSpan">Present: {TotalClassesAttended}</div>
+                <div className="AttendanceDetailsSpan">Percentage: {TotalClassesPercentage} %</div>
+              </div>
             <h1 className="noSubjectHeader">No Subjects Found</h1>
 
 
@@ -395,10 +435,34 @@ export default function AttendacePage({onClose,StudentRoll}) {
       ): (
         <>
         <div className="AttendanceDetailsArea">
-            <span>Total Class: {TotalClasses}</span>
-            <span>Present: {TotalClassesAttended}</span>
-            <span>Percentage: {TotalClassesPercentage} %</span>
+                <div className="AttendanceDetailsSpan">Total Class:{TotalClasses}</div>
+                <div className="AttendanceDetailsSpan">Present: {TotalClassesAttended}</div>
+                <div className="AttendanceDetailsSpan">Percentage: {TotalClassesPercentage} %</div>
+              </div>
+        <div className="CurrentAttendaceGraphArea">
+        <BarChart
+        width={900}
+        height={300}
+        data={GraphDataTheory}
+        margin={{
+          top: 20,
+          right: 30,
+          left: 20,
+          bottom: 5
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="SubjectName" />
+        <YAxis domain={[0, dataMax => dataMax + 5]} />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="Total" fill="#8884d8" />
+        <Bar dataKey="Present" fill="#82ca9d" />
+      </BarChart>
+
         </div>
+
+
         <div className="AttendancaAndSubjectsArea">
 
         <span className="ClassSpecifierSpan">Theory Classes</span>
