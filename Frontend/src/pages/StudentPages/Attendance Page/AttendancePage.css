@@ -731,5 +731,61 @@
   width: 90%;
   height: auto;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
 }
+
+.AttendanceAnalyticsText{
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+
+.CurrentAttendaceGraphAreaHeader{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+}
+
+.CurrentAttendaceGraphs {
+  width: 80%; /* Set width to 80% */
+  padding: 20px; /* Increased padding for a more spacious feel */
+  margin: 15px auto; /* Center horizontally and add vertical spacing */
+  background-color: #007bff; /* Bright blue background color */
+  color: white; /* White text for contrast */
+  border-radius: 10px; /* Slightly larger rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Deeper shadow for more depth */
+  display: flex; /* Use flexbox for alignment */
+  justify-content: space-between; /* Space between text and icon */
+  align-items: center; /* Center align items vertically */
+  font-family: Arial, sans-serif; /* Font styling */
+  font-weight: bold; /* Bold text for emphasis */
+}
+
+.FutureAttendaceCurves {
+  width: 80%; /* Set width to 80% */
+  padding: 20px; /* Increased padding for a more spacious feel */
+  margin: 15px auto; /* Center horizontally and add vertical spacing */
+  background-color: #28a745; /* Bright green background color */
+  color: white; /* White text for contrast */
+  border-radius: 10px; /* Slightly larger rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Deeper shadow for more depth */
+  display: flex; /* Use flexbox for alignment */
+  justify-content: space-between; /* Space between text and icon */
+  align-items: center; /* Center align items vertically */
+  font-family: Arial, sans-serif; /* Font styling */
+  font-weight: bold; /* Bold text for emphasis */
+}
+
+.AttendaceGraphsDownIcon {
+  margin-left: 15px; /* Space between text and icon */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.rotateIcon {
+  transform: rotate(180deg); /* Rotate icon on hover for visual feedback */
+}
+

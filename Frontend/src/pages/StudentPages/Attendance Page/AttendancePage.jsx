@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
@@ -5,14 +6,14 @@ import { useState, useEffect, useCallback } from "react";
 import "./AttendancePage.css";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarDays,faTrashCan ,faPenToSquare,faXmark,faCheck, faBan, faL} from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays,faTrashCan ,faPenToSquare,faXmark,faCheck, faBan, faL, faAngleDown} from '@fortawesome/free-solid-svg-icons';
 
 import GetStudentAttendanceData from "../../../api/Dashboard Data/Student/GetStudentAttendanceData";
 import EditSubject from "./Components/EditingSubject/EditSubject";
 
 import AttendanceCalendar from "./Components/Attendance Calendar/AttendanceCalendar";
 
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import {Line, LineChart,BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
 export default function AttendacePage({onClose,StudentRoll}) {
     const [roll, setRoll] = useState(StudentRoll)
@@ -47,8 +48,9 @@ export default function AttendacePage({onClose,StudentRoll}) {
     const [SubjectDeleting,setSubjectDeleting]= useState()
     const [GraphDataTheory, setGraphDataTheory] = useState({})
     const [GraphDataLab, setGraphDataLab] = useState({})
-
-
+    const [viewingGraphDataCurrent, setviewingGraphDataCurrent]= useState(false)
+    const [viewingGraphDataFuture, setviewingGraphDataFuture] = useState(false)
+    const [GraphDataFuture, setGraphDataFuture] = useState({})
     useEffect(() => {
       console.log(AttendanceData);
     
@@ -77,9 +79,41 @@ export default function AttendacePage({onClose,StudentRoll}) {
         // Update states with transformed data
         setGraphDataTheory(transformedTheoryData);
         setGraphDataLab(transformedLabData);
-    
-        console.log("Theory Data:", transformedTheoryData);
-        console.log("Lab Data:", transformedLabData);
+        
+        const TotalsClass = AttendanceData.subjects.reduce((total, subject) => total + (subject.TotalPresent + subject.TotalAbsent), 0);
+        const TotalAttended = AttendanceData.subjects.reduce((total, subject) => total + subject.TotalPresent, 0);
+
+        const FutureAttendancedata = [
+          {
+            name: "Tommorow",
+            "If Present": parseFloat(((TotalAttended + 6) / (TotalsClass + 6) * 100).toFixed(2)),
+            "If Absent": parseFloat((TotalAttended / (TotalsClass + 6) * 100).toFixed(2)),
+          },
+          {
+            name: "Day 2",
+            "If Present": parseFloat(((TotalAttended + 12) / (TotalsClass + 12) * 100).toFixed(2)),
+            "If Absent": parseFloat((TotalAttended / (TotalsClass + 12) * 100).toFixed(2)),
+          },
+          {
+            name: "Day 3",
+            "If Present": parseFloat(((TotalAttended + 18) / (TotalsClass + 18) * 100).toFixed(2)),
+            "If Absent": parseFloat((TotalAttended / (TotalsClass + 18) * 100).toFixed(2)),
+          },
+          {
+            name: "Day 4",
+            "If Present": parseFloat(((TotalAttended + 24) / (TotalsClass + 24) * 100).toFixed(2)),
+            "If Absent": parseFloat((TotalAttended / (TotalsClass + 24) * 100).toFixed(2)),
+          },
+          {
+            name: "Day 5",
+            "If Present": parseFloat(((TotalAttended + 30) / (TotalsClass + 30) * 100).toFixed(2)),
+            "If Absent": parseFloat((TotalAttended / (TotalsClass + 30) * 100).toFixed(2)),
+          }
+        ];
+        
+        
+        
+        setGraphDataFuture(FutureAttendancedata)
       }
     }, [AttendanceData]);
     
@@ -428,8 +462,6 @@ export default function AttendacePage({onClose,StudentRoll}) {
             </div>
 
         </> ): null}
-
-
             <button className="addSubjectButton" disabled={AddingSubject} onClick={()=> setAddingSubject(true)}>Add a Subject</button>
           </>
       ): (
@@ -439,18 +471,27 @@ export default function AttendacePage({onClose,StudentRoll}) {
                 <div className="AttendanceDetailsSpan">Present: {TotalClassesAttended}</div>
                 <div className="AttendanceDetailsSpan">Percentage: {TotalClassesPercentage} %</div>
               </div>
+        <span className="AttendanceAnalyticsText">Attendance Analytics</span>
+        <div className="CurrentAttendaceGraphs" onClick={()=>setviewingGraphDataCurrent((v)=>!v)}>
+          Current Attendance Data <FontAwesomeIcon className="AttendaceGraphsDownIcon"   className={viewingGraphDataCurrent?"rotateIcon":""}  icon={faAngleDown} />
+        </div>
+        
+        {viewingGraphDataCurrent? (
         <div className="CurrentAttendaceGraphArea">
+          <span className="CurrentAttendaceGraphAreaHeader">
+            Theory Subjects
+          </span>
         <BarChart
-        width={900}
-        height={300}
-        data={GraphDataTheory}
-        margin={{
-          top: 20,
-          right: 30,
-          left: 20,
-          bottom: 5
-        }}
-      >
+          width={900}
+          height={300}
+          data={GraphDataTheory}
+          margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 5
+                  }}
+        >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="SubjectName" />
         <YAxis domain={[0, dataMax => dataMax + 5]} />
@@ -460,7 +501,51 @@ export default function AttendacePage({onClose,StudentRoll}) {
         <Bar dataKey="Present" fill="#82ca9d" />
       </BarChart>
 
+      <span className="CurrentAttendaceGraphAreaHeader">
+            Lab Subjects
+      </span>
+      <BarChart
+          width={900}
+          height={300}
+          data={GraphDataLab}
+          margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 5
+                  }}
+        >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="SubjectName" />
+        <YAxis domain={[0, dataMax => dataMax + 5]} />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="Total" fill="#8884d8" />
+        <Bar dataKey="Present" fill="#82ca9d" />
+      </BarChart>
+
+        </div>):null}
+
+        <div className="FutureAttendaceCurves" onClick={()=>setviewingGraphDataFuture((v)=>!v)} >
+          Future Attendace Data <FontAwesomeIcon className="AttendaceGraphsDownIcon" className={viewingGraphDataFuture?"rotateIcon":""} icon={faAngleDown} />
         </div>
+
+        {viewingGraphDataFuture? (
+        <div className="CurrentAttendaceGraphArea">
+          <LineChart width={730} height={250} data={GraphDataFuture}
+      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      {/* If Present in Green */}
+      <Line type="monotone" dataKey="If Present" stroke="#28a745" strokeWidth={2} dot={{ fill: '#28a745', r: 4 }} />
+      {/* If Absent in Red */}
+      <Line type="monotone" dataKey="If Absent" stroke="#dc3545" strokeWidth={2} dot={{ fill: '#dc3545', r: 4 }} />
+    </LineChart>
+
+        </div>):null}
 
 
         <div className="AttendancaAndSubjectsArea">
