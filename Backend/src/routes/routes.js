@@ -45,6 +45,8 @@ import UpdateMessagesSectionDetails from "../api/Admins/Super Admin/Update Data/
 import UpdateFaqsSectionDetails from "../api/Admins/Super Admin/Update Data/Home Page/UpdateFaqSection.js";
 import UpdateFooterSectionDetails from "../api/Admins/Super Admin/Update Data/Home Page/UpdateFooterDetails.js";
 
+import GetAllStudentsAttendanceData from "../api/Admins/Super Admin/Fetch Data/Students/Attendance Data/GetAllStudentsAttendanceData.js";
+
 // Fetching Student Data 
 import GetAllStudentDeatils from "../api/Admins/Super Admin/Fetch Data/Students/GetAllStudentsData.js";
 
@@ -114,6 +116,9 @@ router.put('/api/update/footersection',AdminVerifyTokenPass,UpdateFooterSectionD
 
 // api to Get student
 router.get('/api/super-admin/students',AdminVerifyTokenPass, GetAllStudentDeatils)
+
+// api to Get student
+router.post('/api/super-admin/students-attendance',AdminVerifyTokenPass, GetAllStudentsAttendanceData)
 
 // API to manage students
 router.put('/api/add/student',AdminVerifyTokenPass, AddStudent)
