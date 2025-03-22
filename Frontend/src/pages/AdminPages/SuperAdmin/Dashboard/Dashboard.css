@@ -1,116 +1,152 @@
-/* Body settings to prevent overflow */
-body {
-    margin: 0;
-    padding: 0;
-}
-
-/* Main dashboard container */
 .DashboardMainArea {
-    display: flex;
-    flex-direction: column;
-    width: 100%; /* Set to 100% to avoid overflow issues */
-    height: auto;
+    padding: 30px;
+    max-width: 1100px;
+    margin: 30px auto;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 12px;
+    background-color: #ffffff; /* White card-like background */
 }
 
-/* Top area of the dashboard */
-.TopAreaDashboard {
-    width: 100%; /* Set to 100% to avoid overflow issues */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Log out button */
-.SuperAdminLogOutFeature {
-    margin-top: 0.5rem;
-    padding: 0.4rem 1rem;
-    background-color: #ff4d4d;
-    color: white;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.SuperAdminLogOutFeature:hover {
-    background-color: #e60000;
-}
-
-/* Super Admin Headers */
+/* Header Styles */
 .SuperAdminHeaders {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .SuperAdminHeader {
-    font-size: 2.5rem;
-    margin-top: 0.2rem;
-    border-bottom: 1px solid black;
-    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #343a40; /* Darker color for emphasis */
 }
 
 .SuperAdminSubHeader {
-    font-size: 1.5rem;
-    margin-top: 0.2rem;
-    text-align: center;
+    font-size: 18px;
+    color: #6c757d; /* Subtle gray for subheader */
 }
 
+/* Logout Button */
+.SuperAdminLogOutFeature {
+    background-color: #dc3545; /* Danger red */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
 
+.SuperAdminLogOutFeature:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
 
+/* Section Headers */
+.HomePageModificationAreaHeader,
+.StudentControlsSectionHeader,
+.FacultyControlsSectionHeader,
+.ReprotsAnalyticsControlsSectionHeader {
+    font-size: 20px;
+    font-weight: bold;
+    color: #495057; /* Slightly muted dark gray */
+    margin-bottom: 15px;
+}
+
+/* Section Layouts */
 .HomePageModificationControlOptionsArea,
 .StudentControlsSectionOptionsArea,
 .FacultyControlsSectionOptionsArea,
-.ReprotsAnalyticsControlsSectionOptionsArea{
-    margin-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.ReprotsAnalyticsControlsSectionOptionsArea {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Responsive grid layout */
+    gap: 20px; /* Space between items */
 }
 
+/* Control Options Styling */
 .HomePageModificationControlOptions,
 .StudentControlsSectionOptions,
 .FacultyControlsSectionOptions,
-.ReprotsAnalyticsControlsSectionOptions{
-    margin-bottom: 1rem;
-    width: 26%;
-    height: 6rem;
-    border: 1.5px solid black;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    background-color: #439DF0;
-    cursor: pointer;
+.ReprotsAnalyticsControlsSectionOptions {
+    background-color: #f1f3f5; /* Soft gray background for cards */
+    padding: 15px;
+    border-radius: 10px;
     text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #495057; /* Muted dark gray text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow effect */
+    transition: all 0.3s ease-in-out; /* Smooth hover animations */
 }
-
 
 .HomePageModificationControlOptions:hover,
 .StudentControlsSectionOptions:hover,
 .FacultyControlsSectionOptions:hover,
 .ReprotsAnalyticsControlsSectionOptions:hover {
-    background-color: #2d82c7; /* Darker shade of blue for the hover effect */
-    transition: background-color 0.3s ease; /* Smooth transition for the color change */
+    background-color: #007bff; /* Primary blue on hover */
+    color: white; /* White text on hover */
+    transform: translateY(-5px); /* Lift effect on hover */
 }
 
-.StudentControlsSectionArea,
-.FacultyControlsSectionArea,
-.HomePageModificationArea,
-.ReprotsAnalyticsControlsSectionArea{
-    width: 100%; /* Set to 100% to avoid overflow issues */
-    height: auto;
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .DashboardMainArea {
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: none; /* Remove shadow on smaller screens for simplicity */
+        border-radius: 8px; 
+        width:auto
+        }
+}
+
+
+
+
+/* Header Styles */
+.TopAreaDashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack header and subheader vertically */
+    position: relative; /* For positioning the logout button */
+    margin-bottom: 20px;
+}
+
+.SuperAdminHeaders {
+    text-align: center;
     display: flex;
     flex-direction: column;
 }
 
-.StudentControlsSectionHeader,
-.FacultyControlsSectionHeader,
-.HomePageModificationAreaHeader,
-.ReprotsAnalyticsControlsSectionHeader{
-    align-self: center;
-    border-bottom: 2px solid black;
+.SuperAdminHeader {
+    font-size: 28px;
+    font-weight: bold;
+    color: #343a40; /* Darker color for emphasis */
+}
+
+.SuperAdminSubHeader {
+    font-size: 18px;
+    color: #6c757d; /* Subtle gray for subheader */
+}
+
+/* Logout Button */
+.SuperAdminLogOutFeature {
+    position: absolute; /* Attach to the top-right corner */
+    top: 10px;
+    right: 20px;
+    background-color: #dc3545; /* Danger red */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.SuperAdminLogOutFeature:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: scale(1.05); /* Slight zoom effect */
 }

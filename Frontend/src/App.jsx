@@ -25,6 +25,7 @@ import MasterSectionEditor from './pages/AdminPages/SuperAdmin/Home Editor/Maste
 // Student Control 
 import StudentViewOrEditEditor from './pages/AdminPages/SuperAdmin/Student Control/View or Edit Student/ViewOrEditStudent.jsx';
 import AdminAddStudent from './pages/AdminPages/SuperAdmin/Student Control/Add Student/AdminAddStudent.jsx';
+import AdminStudentAttendanceAnalytics from './pages/AdminPages/SuperAdmin/Student Control/Student Attendance Analytics/StudentAttendanceAnalytics.jsx'
 
 // Not Found Page 
 import NotFound from './pages/404 Not Found/NotFound.jsx';
@@ -53,6 +54,7 @@ function App() {
           <Route path="/super-admin/admin-dashboard/mastersection" element={<MasterSectionEditor/>}/>
           <Route path="/super-admin/admin-dashboard/view-or-edit-student" element={<StudentViewOrEditEditor/>}/>
           <Route path="/super-admin/admin-dashboard/add-student" element={<AdminAddStudent/>}/>
+          <Route path="/super-admin/admin-dashboard/student-attendance" element={<AdminStudentAttendanceAnalytics/>}/>
 
           {/* // Testing or playground page  */}
           <Route path="/testing" element={<TestPage/>} />

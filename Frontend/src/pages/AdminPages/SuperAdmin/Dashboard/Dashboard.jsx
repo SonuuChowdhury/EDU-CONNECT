@@ -63,14 +63,14 @@ export default function SuperAdminDashboard() {
                     <h2 className="HomePageModificationAreaHeader">MODIFY HOME PAGE DATA</h2>
                     <div className="HomePageModificationControlOptionsArea">
                         <div className="HomePageModificationControlOptions" onClick={()=> navigate('/super-admin/admin-dashboard/mastersection')}>MASTER SECTION</div>
-                        <div className="HomePageModificationControlOptions" onClick={()=> navigate('/super-admin/admin-dashboard/mastersection')}>NOTICES</div>
-                        <div className="HomePageModificationControlOptions" onClick={()=> navigate('/super-admin/admin-dashboard/mastersection')}>EVENTS</div>
-                        <div className="HomePageModificationControlOptions" onClick={()=> navigate('/super-admin/admin-dashboard/mastersection')}>ACHEIVEMENTS</div>
-                        <div className="HomePageModificationControlOptions" onClick={()=> navigate('/super-admin/admin-dashboard/mastersection')}>FACILITIES</div>
-                        <div className="HomePageModificationControlOptions" onClick={()=> navigate('/super-admin/admin-dashboard/mastersection')}>FACULTY DETAILS</div>
-                        <div className="HomePageModificationControlOptions" onClick={()=> navigate('/super-admin/admin-dashboard/mastersection')}>MESSAGES</div>
-                        <div className="HomePageModificationControlOptions" onClick={()=> navigate('/super-admin/admin-dashboard/mastersection')}>FAQs</div>
-                        <div className="HomePageModificationControlOptions" onClick={()=> navigate('/super-admin/admin-dashboard/mastersection')}>FOOTER INFO</div>
+                        <div className="HomePageModificationControlOptions" >NOTICES</div>
+                        <div className="HomePageModificationControlOptions" >EVENTS</div>
+                        <div className="HomePageModificationControlOptions" >ACHEIVEMENTS</div>
+                        <div className="HomePageModificationControlOptions" >FACILITIES</div>
+                        <div className="HomePageModificationControlOptions" >FACULTY DETAILS</div>
+                        <div className="HomePageModificationControlOptions">MESSAGES</div>
+                        <div className="HomePageModificationControlOptions">FAQs</div>
+                        <div className="HomePageModificationControlOptions">FOOTER INFO</div>
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@ export default function SuperAdminDashboard() {
                     <div className='StudentControlsSectionOptionsArea'>
                         <div className="StudentControlsSectionOptions" onClick={()=> navigate('/super-admin/admin-dashboard/add-student')}>ADD STUDENT</div>
                         <div className="StudentControlsSectionOptions" onClick={()=> navigate('/super-admin/admin-dashboard/view-or-edit-student')}>VIEW OR EDIT STUDENT</div>
-                        <div className="StudentControlsSectionOptions">ATTENDENEC ANALYTICS</div>
+                        <div className="StudentControlsSectionOptions"  onClick={()=> navigate('/super-admin/admin-dashboard/student-attendance')}>ATTENDENEC ANALYTICS</div>
                     </div>
                 </div>
 

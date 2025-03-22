@@ -1,0 +1,82 @@
+/* Student List */
+.student-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.student-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s;
+}
+.student-card:hover {
+    transform: scale(1.03);
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-picture {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.student-info h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.attendance-wheel {
+    width: 60px;
+    height: 60px;
+}
+
+/* Dropdown Toggle */
+.dropdown-toggle {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+.dropdown-toggle:hover {
+    background: #0056b3;
+}
+
+/* Subject Details */
+.subjects-section {
+    margin-top: 15px;
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+.subject-category h4 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.subject-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
