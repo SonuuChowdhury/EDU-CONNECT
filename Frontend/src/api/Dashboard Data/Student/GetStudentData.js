@@ -9,7 +9,7 @@ export default async function GetStudentDashBoardData() {
     }
 
     try {
-        const { data } = await axios.get('https://advanced-institute-management-portal.onrender.com/api/student-dashboard', {
+        const { data } = await axios.get('https://educore-institue-manager.onrender.com/api/student-dashboard', {
             headers: {
                 'aot-student-login-authorization-token': token
             }

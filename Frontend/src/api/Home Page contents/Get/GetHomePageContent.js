@@ -10,7 +10,7 @@ export default async function GetHomePageContent(contentChoice) {
         }
     };
 
-    const ServerSite = "https://advanced-institute-management-portal.onrender.com";
+    const ServerSite = "https://educore-institue-manager.onrender.com";
 
     let ResponseData;
     switch (contentChoice) {

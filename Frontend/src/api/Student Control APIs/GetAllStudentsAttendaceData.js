@@ -10,7 +10,7 @@ export default async function GetAllStudentsAttendaceData() {
 
     try {
         const response = await axios.post(
-            'https://advanced-institute-management-portal.onrender.com/api/super-admin/students-attendance', 
+            'https://educore-institue-manager.onrender.com/api/super-admin/students-attendance', 
             {},  // Empty object as the request body if none is needed
             config
         );

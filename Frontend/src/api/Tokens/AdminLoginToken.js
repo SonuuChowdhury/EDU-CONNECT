@@ -10,7 +10,7 @@ export default async function GetAdminData(uid, password,otp,reqType) {
 
     try {
         // Use await to wait for the Axios post request to complete
-        const response = await axios.post('https://advanced-institute-management-portal.onrender.com/login/admin', adminPostData);
+        const response = await axios.post('https://educore-institue-manager.onrender.com/login/admin', adminPostData);
         return {
             status: response.status,
             data: response.data

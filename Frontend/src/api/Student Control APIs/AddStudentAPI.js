@@ -28,7 +28,7 @@ export default async function AddStudentAPI(params) {
 
     try {
         const response = await axios.put(
-            'https://advanced-institute-management-portal.onrender.com/api/add/student', 
+            'https://educore-institue-manager.onrender.com/api/add/student', 
             data, 
             config
         );

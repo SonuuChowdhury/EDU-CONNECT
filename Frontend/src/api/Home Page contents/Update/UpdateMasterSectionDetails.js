@@ -11,7 +11,7 @@ export default async function UpdateMasterSectionDetails(FileData, ItemData, Del
 
         if(DeleteItem){
             try{
-                const UpdateOnDataBaseStatus = await axios.put('https://advanced-institute-management-portal.onrender.com/api/update/mastersecetion',{
+                const UpdateOnDataBaseStatus = await axios.put('https://educore-institue-manager.onrender.com/api/update/mastersecetion',{
                     deleteItem:true,
                     itemID:ItemData._id
                 },{
@@ -36,7 +36,7 @@ export default async function UpdateMasterSectionDetails(FileData, ItemData, Del
         const FileName = `${ItemData.title}_MasterPhoto`;
         if (FileData) {
             // Fetch authentication details from your backend
-            const authResponse = await fetch("https://advanced-institute-management-portal.onrender.com/api/get-authentication-parameters");
+            const authResponse = await fetch("https://educore-institue-manager.onrender.com/api/get-authentication-parameters");
 
             if (!authResponse.ok) {
                 return {'status':500}; 
@@ -51,7 +51,7 @@ export default async function UpdateMasterSectionDetails(FileData, ItemData, Del
             const ImageKitInstance = new ImageKit({
                 publicKey: "public_t9hfh2XHEFiWJT3/VxAchbic9EQ=",
                 urlEndpoint: "https://ik.imagekit.io/azzbbadmin/",
-                authenticationEndpoint: "https://advanced-institute-management-portal.onrender.com/api/    get-authentication-parameters"
+                authenticationEndpoint: "https://educore-institue-manager.onrender.com/api/    get-authentication-parameters"
             });
 
 
@@ -74,7 +74,7 @@ export default async function UpdateMasterSectionDetails(FileData, ItemData, Del
         }
 
         if(fileUpdating){
-            const UpdateOnDataBaseStatus = await axios.put('https://advanced-institute-management-portal.onrender.com/api/update/mastersecetion',{
+            const UpdateOnDataBaseStatus = await axios.put('https://educore-institue-manager.onrender.com/api/update/mastersecetion',{
                 itemID:ItemData._id,
                 url:UploadedimageURL,
                 tittle:ItemData.title

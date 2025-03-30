@@ -5,7 +5,7 @@ export default async function StudentForgetPasswordAPI(roll,reqType,otp){
     // reqType = 1 for OTP verifications and =2 for Email Sending 
     if(reqType==0){
         try{
-            const SendOTPResponse=await axios.post('https://advanced-institute-management-portal.onrender.com/login/student/forgot-password',{
+            const SendOTPResponse=await axios.post('https://educore-institue-manager.onrender.com/login/student/forgot-password',{
                 "roll":roll,
                 "reqType":reqType,
             })
@@ -17,7 +17,7 @@ export default async function StudentForgetPasswordAPI(roll,reqType,otp){
 
     if(reqType==1){
         try{
-            const VerifyOTPResponse=await axios.post('https://advanced-institute-management-portal.onrender.com/login/student/forgot-password',{
+            const VerifyOTPResponse=await axios.post('https://educore-institue-manager.onrender.com/login/student/forgot-password',{
                 "roll":roll,
                 "reqType":reqType,
                 "otp":otp

@@ -8,7 +8,7 @@ export default async function  StudentPasswordChangeAPI(NewPassword){
         return {'status':403}; 
     }
     try{
-        const response = await axios.put('https://advanced-institute-management-portal.onrender.com/api/student/change-password',
+        const response = await axios.put('https://educore-institue-manager.onrender.com/api/student/change-password',
             {'NewPassword': NewPassword },
             {
                 headers: {

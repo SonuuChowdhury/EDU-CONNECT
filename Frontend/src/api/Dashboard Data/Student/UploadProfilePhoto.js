@@ -11,7 +11,7 @@ export default async function UploadStudentProfilePhoto(FileData, StudentData, R
 
         if(RemoveProfile){
             try{
-                const UpdateOnDataBaseStatus = await axios.put('https://advanced-institute-management-portal.onrender.com/api/student/change-photo/update-or-delete',{
+                const UpdateOnDataBaseStatus = await axios.put('https://educore-institue-manager.onrender.com/api/student/change-photo/update-or-delete',{
                     update:false
                 },{
                     headers: {
@@ -29,7 +29,7 @@ export default async function UploadStudentProfilePhoto(FileData, StudentData, R
 
         }
         // Fetch authentication details from your backend
-        const authResponse = await fetch("https://advanced-institute-management-portal.onrender.com/api/get-authentication-parameters");
+        const authResponse = await fetch("https://educore-institue-manager.onrender.com/api/get-authentication-parameters");
 
         if (!authResponse.ok) {
             return {'status':500}; 
@@ -44,7 +44,7 @@ export default async function UploadStudentProfilePhoto(FileData, StudentData, R
         const ImageKitInstance = new ImageKit({
             publicKey: "public_t9hfh2XHEFiWJT3/VxAchbic9EQ=",
             urlEndpoint: "https://ik.imagekit.io/azzbbadmin/",
-            authenticationEndpoint: "https://advanced-institute-management-portal.onrender.com/api/get-authentication-parameters"
+            authenticationEndpoint: "https://educore-institue-manager.onrender.com/api/get-authentication-parameters"
         });
 
         const FileName = `${StudentData.roll}_Profile_Picture`;
@@ -67,7 +67,7 @@ export default async function UploadStudentProfilePhoto(FileData, StudentData, R
         const imageURL = `${UploadStatus.url}?updateAt=${Date.now()}`;
 
         if(UploadStatus.$ResponseMetadata.statusCode===200){
-            const UpdateOnDataBaseStatus = await axios.put('https://advanced-institute-management-portal.onrender.com/api/student/change-photo/update-or-delete',{
+            const UpdateOnDataBaseStatus = await axios.put('https://educore-institue-manager.onrender.com/api/student/change-photo/update-or-delete',{
                 url:imageURL,
                 update:true
             },{

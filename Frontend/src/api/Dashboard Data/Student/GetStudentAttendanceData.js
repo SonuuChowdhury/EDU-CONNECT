@@ -12,7 +12,7 @@ export default async function GetStudentAttendanceData(params) {
         if(params.addSubject){
             const CalculatedTotalAbsent= params.TotalClass - params.TotalPresent;
             const  data  = await axios.post(
-                'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
+                'https://educore-institue-manager.onrender.com/api/student-dashboard/attendance',
                 {
                     roll: params.roll,
                     addSubject: true,
@@ -32,7 +32,7 @@ export default async function GetStudentAttendanceData(params) {
 
         }else if(params.editData){
             const  data  = await axios.post(
-                'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
+                'https://educore-institue-manager.onrender.com/api/student-dashboard/attendance',
                 params,
                 {
                     headers: {
@@ -44,7 +44,7 @@ export default async function GetStudentAttendanceData(params) {
             return data;
         }else if(params.deleteSubject){
             const  data  = await axios.post(
-                'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
+                'https://educore-institue-manager.onrender.com/api/student-dashboard/attendance',
                 {
                     roll: params.roll,
                     deleteSubject: true,
@@ -62,7 +62,7 @@ export default async function GetStudentAttendanceData(params) {
 
         }else if(params.startMonitoring){
             const  data  = await axios.post(
-                'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
+                'https://educore-institue-manager.onrender.com/api/student-dashboard/attendance',
                 {
                     roll: params.roll,
                     startMonitoring: true
@@ -77,7 +77,7 @@ export default async function GetStudentAttendanceData(params) {
             return data;
         }else if(params.updateAttendance){
             const  data  = await axios.post(
-                'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
+                'https://educore-institue-manager.onrender.com/api/student-dashboard/attendance',
                 {
                     roll: params.roll,
                     updateAttendance: true,
@@ -98,7 +98,7 @@ export default async function GetStudentAttendanceData(params) {
 
         }else{
             const data  = await axios.post(
-                'https://advanced-institute-management-portal.onrender.com/api/student-dashboard/attendance',
+                'https://educore-institue-manager.onrender.com/api/student-dashboard/attendance',
                 {
                     roll: params.roll,
                     getAttendance: true

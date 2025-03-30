@@ -11,7 +11,7 @@ export default async function RephraseByGemeniAPI(text) {
         };
 
         const responseData = await axios.post(
-            'https://advanced-institute-management-portal.onrender.com/api/rephrase',
+            'https://educore-institue-manager.onrender.com/api/rephrase',
             { text: text }, // Ensure correct payload format
             headerObj
         );

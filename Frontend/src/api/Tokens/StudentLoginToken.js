@@ -8,7 +8,7 @@ export default async function GetStudentData(rollNumber, pass) {
 
     try {
         // Use await to wait for the Axios post request to complete
-        const response = await axios.post('https://advanced-institute-management-portal.onrender.com/login/student', studentPostData);
+        const response = await axios.post('https://educore-institue-manager.onrender.com/login/student', studentPostData);
         
         return {
             status: response.status,

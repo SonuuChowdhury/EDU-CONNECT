@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import "./SendingNoticeModal.css";
 import axios from "axios";
 
-const socket = io("https://advanced-institute-management-portal.onrender.com"); // Adjust URL if backend runs elsewhere
+const socket = io("https://educore-institue-manager.onrender.com"); // Adjust URL if backend runs elsewhere
 
 export default function SendingNoticeModal(params) {
   const [percentageStatus, setPercentageStatus] = useState(0);
@@ -55,7 +55,7 @@ const sendNotices = async () => {
     setSendingNotices(true)
     const token = await localStorage.getItem('aot-student-login-authorization-token');
     const response = await axios.put(
-      "https://advanced-institute-management-portal.onrender.com/api/notice/multiple",
+      "https://educore-institue-manager.onrender.com/api/notice/multiple",
       {
         EmailList: params.data.emails,
         subject: params.data.Subject,

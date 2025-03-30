@@ -23,7 +23,7 @@ export default async function StudentSignUP(params) {
 
     try {
         const response = await axios.put(
-            'https://advanced-institute-management-portal.onrender.com/signup/student', 
+            'https://educore-institue-manager.onrender.com/signup/student', 
             data
         );
 

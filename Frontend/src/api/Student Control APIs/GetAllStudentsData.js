@@ -9,7 +9,7 @@ export default async function GetAllStudentsData(){
     };
 
     try{
-        const ResponseData =await axios.get('https://advanced-institute-management-portal.onrender.com/api/super-admin/students', headerObj)
+        const ResponseData =await axios.get('https://educore-institue-manager.onrender.com/api/super-admin/students', headerObj)
         if(ResponseData.status==200){
             return {"data":ResponseData.data,
                 "status":ResponseData.status
