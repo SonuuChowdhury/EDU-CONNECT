@@ -1,0 +1,117 @@
+/* Base styles */
+.MobileHomePage___container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 20px;
+    animation: MobileHomePage___fadeIn 1s ease-in-out;
+  }
+  
+  .MobileHomePage___header {
+    text-align: center;
+    margin-bottom: 30px;
+    animation: MobileHomePage___slideDown 0.8s ease forwards;
+  }
+  
+  .MobileHomePage___title {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .MobileHomePage___subtitle {
+    font-size: 1rem;
+    color: #d1d1d1;
+    margin-top: 8px;
+  }
+  
+  .MobileHomePage___main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: MobileHomePage___fadeIn 1.5s ease;
+  }
+  
+  .MobileHomePage___card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+  }
+  
+  .MobileHomePage___sectionTitle {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ffffff33;
+    padding-bottom: 4px;
+  }
+  
+  .MobileHomePage___featureList {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .MobileHomePage___highlight {
+    border-left: 5px solid #00c6ff;
+    background-color: rgba(0, 198, 255, 0.1);
+  }
+  
+  .MobileHomePage___highlightTitle {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    color: #00c6ff;
+  }
+  
+  .MobileHomePage___highlightText {
+    font-size: 0.95rem;
+    color: #e1e1e1;
+  }
+  
+  .MobileHomePage___highlightNote {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: #bbbbbb;
+    font-style: italic;
+  }
+  
+  .MobileHomePage___footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #aaaaaa;
+  }
+  
+  /* Animations */
+  @keyframes MobileHomePage___fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes MobileHomePage___slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive (future-proof) */
+  @media (min-width: 769px) {
+    .MobileHomePage___container {
+      display: none;
+    }
+  }
+  
