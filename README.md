@@ -1,4 +1,4 @@
-# Advanced Institute Management Portal 🎓
+# EDU CONNECT 🎓
 
 [![Made with React](https://img.shields.io/badge/Made%20with-React-61DAFB.svg)](https://reactjs.org/)
 [![Backend - Node.js](https://img.shields.io/badge/Backend-Node.js-green.svg)](https://nodejs.org/)
